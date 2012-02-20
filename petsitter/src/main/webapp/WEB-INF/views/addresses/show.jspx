@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_sjsu_petsitter_domain_Address" object="${address}" path="/addresses" z="1v3m7kC6wlnlZrPEfVwvVm3wxa4=">
+        <field:display field="line1" id="s_com_sjsu_petsitter_domain_Address_line1" object="${address}" z="Q5N5pdUdLIxcANrBPeFWD5UlLTo="/>
+        <field:display field="line2" id="s_com_sjsu_petsitter_domain_Address_line2" object="${address}" z="PdTyJD9zPmFqX5nVIpmsH6fNpxo="/>
+        <field:display field="city" id="s_com_sjsu_petsitter_domain_Address_city" object="${address}" z="1qeuVWH0tv3/ThCbVMkxBqEhKYA="/>
+        <field:display field="zipCode" id="s_com_sjsu_petsitter_domain_Address_zipCode" object="${address}" z="hKGKXQaBdNamC9zyGXHzzGbr7s4="/>
+        <field:display field="homePhone" id="s_com_sjsu_petsitter_domain_Address_homePhone" object="${address}" z="5wjbq+o/6mp6GQ3HGZyU/5ZBSd0="/>
+        <field:display field="mobile" id="s_com_sjsu_petsitter_domain_Address_mobile" object="${address}" z="nOFPgoNhGDaJaWB0yIai0VTSK0E="/>
+    </page:show>
+</div>
