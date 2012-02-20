@@ -1,0 +1,50 @@
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-19 20:35:25
+project --topLevelPackage com.sjsu.petsitter --projectName petsitter --java 6
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-19 20:35:26
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-19 20:35:30
+help
+addon list
+addon search cloud
+addon info id --searchResultId 02
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml.zip
+osgi obr start --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.2.0.M1
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml.zip
+addon install bundle --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.2.0.M1
+// [failed] cloud foundry login --email lin-hua.cheng@hp.com --password WeOQWD59
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml.zip
+osgi obr start --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml.zip
+addon install bundle --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+addon list
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml.zip
+osgi obr start --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml.zip
+addon install bundle --bundleSymbolicName org.springframework.roo.addon.cloud.foundry 
+mongo setup 
+entity mongo --class ~.domain.User
+field string --fieldName userName --class ~.domain.User --notNull
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field string --fieldName password  --notNull
+field string --fieldName status  --notNull
+field string --fieldName description
+field number --fieldName averageRating --type java.lang.Double
+entity mongo --class ~.domain.Address
+field string --fieldName line1 --notNull --class ~.domain.Address
+field string --fieldName line2
+field string --fieldName city --notNull
+// [failed] field string --fieldName state --notNull
+field number --fieldName zipCode --type java.lang.Integer
+field string --fieldName homePhone --notNull
+field string --fieldName mobile --notNull
+field reference --type ~.domain.Address --fieldName address --class ~.domain.User --notNull
+field reference --type ~.domain.User --fieldName userAccount --class ~.domain.Address --notNull
+repository mongo --interface ~.repository.UserRepository --entity ~.domain.User
+repository mongo --interface ~.repository.AddressRepository --entity ~.domain.Address
+service --interface ~.service.UserService --entity ~.domain.User
+service --interface ~.service.AddressService --entity ~.domain.Address
+web mvc setup
+web mvc all --package ~.web
+mongo setup --cloudFoundry true
+mongo setup
