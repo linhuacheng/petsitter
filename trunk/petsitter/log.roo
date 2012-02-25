@@ -48,3 +48,201 @@ web mvc setup
 web mvc all --package ~.web
 mongo setup --cloudFoundry true
 mongo setup
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log opened at 2012-02-25 01:11:22
+help
+help
+exit
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log closed at 2012-02-25 01:30:57
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log opened at 2012-02-25 01:35:22
+// [failed] class --class com.sjsu.petsitter.domain.User
+// [failed] field string --fieldName status
+// [failed] field string --fieldName password
+field string --fieldName type
+// [failed] field number --fieldName averageRating --type java.lang.Double
+field number --fieldName awardPoints --type java.lang.Integer
+field string --fieldName addressLine1 --sizeMax  255
+// [failed] field string --fieldName addressLine1 --sizeMax 255
+field string --fieldName addressLine2 --sizeMax  255
+field string --fieldName city --sizeMax  100
+field string --fieldName zip --sizeMax  50
+// [failed] field string --fieldName state --sizeMax  100
+field string --fieldName country --sizeMax  100
+field string --fieldName homePhone --sizeMax  100
+field string --fieldName mobile --sizeMax  100
+field string --fieldName displayName --sizeMax  255
+class --class com.sjsu.petsitter.domain.Request
+field number --fieldName requestId --type java.lang.Integer;
+// [failed] field number --fieldName requestId  --type java.lang.Integer
+// [failed] field number --fieldName petId  --type java.lang.Integer
+// [failed] field number --fieldName petOwnerId --type java.lang.Integer
+// [failed] field number --fieldName petSitterId  --type java.lang.Integer
+// [failed] field string --fieldName requestType --sizeMax  50
+field number --fieldName requestId  --type java.lang.Integer
+exit
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log closed at 2012-02-25 02:08:32
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log opened at 2012-02-25 02:08:35
+version 
+exit
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log closed at 2012-02-25 02:11:44
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-25 02:33:18
+entity mongo --class ~.domain.Request
+field number --fieldName requestId  --type java.lang.Integer
+field string --fieldName requestType --sizeMax  50
+field string --fieldName comment --sizeMax  1000
+field number --fieldName petId  --type java.lang.Integer
+field string --fieldName status --sizeMax  100
+field number --fieldName petOwnerId --type java.lang.Integer
+field number --fieldName petSitterId  --type java.lang.Integer
+field date --fieldName requestStartDate --type java.util.Date
+field date --fieldName requestEndDate --type java.util.Date
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName updatedDate --type java.util.Date
+entity mongo --class ~.domain.Response
+field number --fieldName responseId  --type java.lang.Integer
+field number --fieldName requestId  --type java.lang.Integer
+field number --fieldName petId  --type java.lang.Integer
+field string --fieldName comment --sizeMax  1000
+field string --fieldName status --sizeMax  100
+field number --fieldName userId --type java.lang.Integer
+field number --fieldName responderType --type java.lang.Integer
+field date --fieldName responseDate --type java.util.Date
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName updatedDate --type java.util.Date
+entity mongo --class ~.domain.PetDetail
+field number --fieldName petId  --type java.lang.Integer
+field string --fieldName petName --sizeMax  255
+field string --fieldName petType --sizeMax  255
+field string --fieldName description --sizeMax  1000
+field number --fieldName userId --type java.lang.Integer
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName updatedDate --type java.util.Date
+field number --fieldName preferenceId  --type java.lang.Integer
+field string --fieldName serviceLocation --sizeMax  255
+// [failed] field string --fieldName petType --sizeMax  255
+field string --fieldName comment --sizeMax  1000
+// [failed] field number --fieldName userId --type java.lang.Integer
+// [failed] field date --fieldName createdDate --type java.util.Date
+// [failed] field date --fieldName updatedDate --type java.util.Date
+entity mongo --class ~.domain.UserPreference
+field number --fieldName preferenceId  --type java.lang.Integer
+field string --fieldName serviceLocation --sizeMax  255
+field string --fieldName petType --sizeMax  255
+field string --fieldName comment --sizeMax  1000
+field number --fieldName userId --type java.lang.Integer
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName updatedDate --type java.util.Date
+entity mongo --class ~.domain.Review
+field number --fieldName reviewId  --type java.lang.Integer
+field number --fieldName fromUserId  --type java.lang.Integer
+field number --fieldName toUserId  --type java.lang.Integer
+field string --fieldName type  --sizeMax  50
+field number --fieldName rating --type  java.lang.Integer
+field string --fieldName comment --sizeMax  1000
+field number --fieldName requestId --type java.lang.Integer
+field date --fieldName reviewDate --type java.util.Date
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName updatedDate --type java.util.Date
+mongo setup 
+repository mongo --interface ~.repository.RequestRepository --entity ~.domain.Request
+repository mongo --interface ~.repository.ResponseRepository --entity ~.domain.Response
+repository mongo --interface ~.repository.ReviewRepository --entity ~.domain.Review
+repository mongo --interface ~.repository.PetDetailRepository --entity ~.domain.PetDetail
+repository mongo --interface ~.repository.ReviewRepository --entity ~.domain.Review
+repository mongo --interface ~.repository.UserPreferenceRepository --entity ~.domain.UserPreference
+mongo setup --cloudFoundry true
+entity mongo --class ~.domain.User --testAutomatically 
+entity mongo --class ~.domain.UserPreference --testAutomatically 
+service --interface ~.service.UserService --entity ~.domain.User
+service --interface ~.service.PetDetailService --entity ~.domain.PetDetail
+service --interface ~.service.RequestService --entity ~.domain.Request
+service --interface ~.service.ResponseService --entity ~.domain.ResponseService
+service --interface ~.service.ResponseService --entity ~.domain.Response
+service --interface ~.service.ResponseService --entity ~.domain.Response
+service --interface ~.service.ReviewService --entity ~.domain.Review
+web mvc all --package com.sjsu.petsitter.web
+web mvc all --package com.sjsu.petsitter.web
+perform package
+// [failed] addon info id --searchResultId cloud
+pgp automatic trust
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml.zip
+osgi obr start --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml.zip
+addon install bundle --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml.zip
+osgi obr start --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml.zip
+addon install bundle --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml.zip
+osgi obr start --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.1.5.RELEASE
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml.zip
+addon install bundle --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.1.5.RELEASE
+// [failed] cloud foundry login
+osgi uninstall --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+addon remove --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml.zip
+osgi obr start --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.1.4.RELEASE
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml.zip
+addon install bundle --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.1.4.RELEASE
+// [failed] cloud foundry login 
+osgi uninstall --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+addon remove --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml.zip
+osgi obr start --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.2.0.M1
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml.zip
+addon install bundle --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.2.0.M1
+// [failed] cloud foundry login
+// [failed] cloud foundry login --email ckempaiah@markmonitor.com --password Samu$ra7
+version
+osgi uninstall --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+addon remove --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+// [failed] osgi uninstall --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+addon remove --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+// [failed] osgi uninstall --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+addon remove --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+exit
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-25 03:58:40
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-25 03:58:45
+addon install bundle --bundleSymbolicName org.springframework.
+addon install bundle --bundleSymbolicName org.springframework.roo.addon.
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml.zip
+osgi obr start --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.2.0.M1
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml.zip
+addon install bundle --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.2.0.M1
+// [failed] cloud foundry login
+addon install bundle --bundleSymbolicName org.springframework.roo.
+// [failed] cloud foundry login
+// [failed] cloud foundry login
+// [failed] cloud foundry login
+// [failed] cloud foundry login 
+addon install bundle --bundleSymbolicName org.springframework.roo.
+exit
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-25 04:19:08
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-25 04:19:46
+// [failed] cloud foundry login
+exit
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-25 04:25:33
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2012-02-25 04:42:20
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml.zip
+osgi obr start --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.2.0.M1
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml.zip
+addon install bundle --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.2.0.M1
+cloud foundry login
+cloud foundry login --email ckempaiah@markmonitor.com
+cloud foundry login --email ckempaiah@markmonitor.com --password Samu$ra7
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2012-02-25 04:47:16
+cloud foundry login --email ckempaiah@markmonitor.com --password Samu$ra7
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2012-02-25 04:50:38
+cloud foundry login --email ckempaiah@markmonitor.com --password Samu$ra7
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-25 04:54:06
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml.zip
+osgi obr start --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.2.0.M1
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml.zip
+addon install bundle --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.2.0.M1
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-25 04:58:34
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml.zip
+osgi obr start --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.1.5.RELEASE
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml.zip
+addon install bundle --bundleSymbolicName org.springframework.roo.addon.cloud.foundry;1.1.5.RELEASE
+// [failed] cloud foundry login --email ckempaiah@markmonitor.com --password Samu$ra7
+exit
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-25 05:27:39

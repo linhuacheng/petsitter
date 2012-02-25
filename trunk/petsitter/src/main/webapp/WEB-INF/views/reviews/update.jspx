@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_sjsu_petsitter_domain_Review" modelAttribute="review" path="/reviews" versionField="none" z="MCX+VSiACGc6RZg+M1yV7dlCQmc=">
+        <field:input field="reviewId" id="c_com_sjsu_petsitter_domain_Review_reviewId" validationMessageCode="field_invalid_integer" z="OprYeuMsZzEgWmjhniGypztnWCI="/>
+        <field:input field="fromUserId" id="c_com_sjsu_petsitter_domain_Review_fromUserId" validationMessageCode="field_invalid_integer" z="W/xDUtb+Zyfe178omNXpqV1sryQ="/>
+        <field:input field="toUserId" id="c_com_sjsu_petsitter_domain_Review_toUserId" validationMessageCode="field_invalid_integer" z="IHzaVNFNdDoTWuLehYgCGu7ml7I="/>
+        <field:textarea field="type" id="c_com_sjsu_petsitter_domain_Review_type" z="EEoh4k18AJt5PV8ei+ZlZobbhpo="/>
+        <field:input field="rating" id="c_com_sjsu_petsitter_domain_Review_rating" validationMessageCode="field_invalid_integer" z="ZsCBFRCY5baSax6mIDqXRlLSVBs="/>
+        <field:textarea field="comment" id="c_com_sjsu_petsitter_domain_Review_comment" z="Ra6Pdh2T4FMWjM0TCAoz3k38CqI="/>
+        <field:input field="requestId" id="c_com_sjsu_petsitter_domain_Review_requestId" validationMessageCode="field_invalid_integer" z="nCJqO6ow6iKMaAuA0WHB0Ir93Qw="/>
+        <field:datetime dateTimePattern="${review_reviewdate_date_format}" field="reviewDate" id="c_com_sjsu_petsitter_domain_Review_reviewDate" z="1cHJsOW1e+qpr9ul8FI9Po2MNTM="/>
+        <field:datetime dateTimePattern="${review_createddate_date_format}" field="createdDate" id="c_com_sjsu_petsitter_domain_Review_createdDate" z="ddllHRUT87q9nSXBvtxmkqNIaB8="/>
+        <field:datetime dateTimePattern="${review_updateddate_date_format}" field="updatedDate" id="c_com_sjsu_petsitter_domain_Review_updatedDate" z="ZMLnuclLGDB2rtGlofXdvpy0KzY="/>
+    </form:update>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_sjsu_petsitter_domain_Response" modelAttribute="response" path="/responses" versionField="none" z="EHR3ZFGUBA8R0kcuTI0qcqT9zwU=">
+        <field:input field="responseId" id="c_com_sjsu_petsitter_domain_Response_responseId" validationMessageCode="field_invalid_integer" z="9u5tCoEhHR9ETHwzRFwPL0bPCwM="/>
+        <field:input field="requestId" id="c_com_sjsu_petsitter_domain_Response_requestId" validationMessageCode="field_invalid_integer" z="vNyPz0ikUveeXaMnK25SNMTuJLU="/>
+        <field:input field="petId" id="c_com_sjsu_petsitter_domain_Response_petId" validationMessageCode="field_invalid_integer" z="VIJ4CwJJhgK9sVODp4BN0LIFbLU="/>
+        <field:textarea field="comment" id="c_com_sjsu_petsitter_domain_Response_comment" z="iRC3Fibv6aNf5HA5BrT5S8RlZ6I="/>
+        <field:textarea field="status" id="c_com_sjsu_petsitter_domain_Response_status" z="a6WVRSK2CU/U688Vthiw6zF9gHY="/>
+        <field:input field="userId" id="c_com_sjsu_petsitter_domain_Response_userId" validationMessageCode="field_invalid_integer" z="VsiKOBA/A7zi0SnVsX+mnlP+R6g="/>
+        <field:input field="responderType" id="c_com_sjsu_petsitter_domain_Response_responderType" validationMessageCode="field_invalid_integer" z="w3t0wo/KwSCNmsAw7t+oDQrLTs4="/>
+        <field:datetime dateTimePattern="${response_responsedate_date_format}" field="responseDate" id="c_com_sjsu_petsitter_domain_Response_responseDate" z="vzbHwDQmVbMTZ7sgYAyIrp1p5i0="/>
+        <field:datetime dateTimePattern="${response_createddate_date_format}" field="createdDate" id="c_com_sjsu_petsitter_domain_Response_createdDate" z="jkv5w+Md4KGjIJPSkY4QRWnEYbc="/>
+        <field:datetime dateTimePattern="${response_updateddate_date_format}" field="updatedDate" id="c_com_sjsu_petsitter_domain_Response_updatedDate" z="3C7ckeZGgNSccV/ZbhnAzS6hCO8="/>
+    </form:update>
+</div>

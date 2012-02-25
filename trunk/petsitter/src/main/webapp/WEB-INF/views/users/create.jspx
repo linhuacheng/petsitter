@@ -11,6 +11,16 @@
         <field:input field="status" id="c_com_sjsu_petsitter_domain_User_status" required="true" z="VqyFuJjTGieh++sWjZgeuQabwpg="/>
         <field:input field="description" id="c_com_sjsu_petsitter_domain_User_description" z="2pC+Ft+9V0j4AE1Z550SwHykTkU="/>
         <field:input field="averageRating" id="c_com_sjsu_petsitter_domain_User_averageRating" validationMessageCode="field_invalid_number" z="6JLtjsjZUYWuQGexOvYreJmsP8M="/>
+        <field:input field="type" id="c_com_sjsu_petsitter_domain_User_type" z="+Z0z21lD1XGJWI+DoI+ETUGWtzs="/>
+        <field:input field="awardPoints" id="c_com_sjsu_petsitter_domain_User_awardPoints" validationMessageCode="field_invalid_integer" z="HfuZM7Dby0gKdPjgI0vrCmw/Qfw="/>
+        <field:textarea field="addressLine1" id="c_com_sjsu_petsitter_domain_User_addressLine1" z="YvyaHUcnuS0isxvOgrcqmrbRS2Q="/>
+        <field:textarea field="addressLine2" id="c_com_sjsu_petsitter_domain_User_addressLine2" z="UR59OPdV/fTWb8njCxYquV2eF5s="/>
+        <field:textarea field="city" id="c_com_sjsu_petsitter_domain_User_city" z="vGHsin0CLc++tDDet643ntGKcsM="/>
+        <field:textarea field="zip" id="c_com_sjsu_petsitter_domain_User_zip" z="bqii6wF4bW+bItseR+45Rqrqr2s="/>
+        <field:textarea field="country" id="c_com_sjsu_petsitter_domain_User_country" z="Bm8kOpHfkoIcSDn4MyHthDuLPG4="/>
+        <field:textarea field="homePhone" id="c_com_sjsu_petsitter_domain_User_homePhone" z="lDCYIVKCve494tBHaha8TdHlwas="/>
+        <field:textarea field="mobile" id="c_com_sjsu_petsitter_domain_User_mobile" z="eRzAU3MuSV1cSfRBDK0cbRdOlZo="/>
+        <field:textarea field="displayName" id="c_com_sjsu_petsitter_domain_User_displayName" z="+GCz7R5vwOKOEuEgdujz3wMAHyk="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_sjsu_petsitter_domain_User" render="${not empty dependencies}" z="XDIlGY0cWrGEPVDmwl2q0JHE1qc="/>
 </div>

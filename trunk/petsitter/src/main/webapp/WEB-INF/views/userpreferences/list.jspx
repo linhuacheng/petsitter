@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_sjsu_petsitter_domain_UserPreference" items="${userpreferences}" z="nZzxoB6aq5S5EHXMnkjWKiHj+W8=">
+        <table:table data="${userpreferences}" id="l_com_sjsu_petsitter_domain_UserPreference" path="/userpreferences" z="RaFD2V2wPJWNS5N9K9C0RV2Ydb0=">
+            <table:column id="c_com_sjsu_petsitter_domain_UserPreference_preferenceId" property="preferenceId" z="Z9JG6NRyPpehEVsIXkRufhyNVAM="/>
+            <table:column id="c_com_sjsu_petsitter_domain_UserPreference_serviceLocation" property="serviceLocation" z="ewQl9YBUsg5sgH04MbPnB1MSnjs="/>
+            <table:column id="c_com_sjsu_petsitter_domain_UserPreference_petType" property="petType" z="HeWHfhGTqE+PkNhaF/d3u9bB0+Y="/>
+            <table:column id="c_com_sjsu_petsitter_domain_UserPreference_comment" property="comment" z="A8s2QBNaPbkDFfuL29Ymc+zw+lQ="/>
+            <table:column id="c_com_sjsu_petsitter_domain_UserPreference_userId" property="userId" z="I29sExSThCZ2ZIE6V8Fa+t0lVWs="/>
+            <table:column date="true" dateTimePattern="${userPreference_createddate_date_format}" id="c_com_sjsu_petsitter_domain_UserPreference_createdDate" property="createdDate" z="sfvMh7RNrXeJaQcZ0GIIRdpLKVo="/>
+        </table:table>
+    </page:list>
+</div>
