@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.layers.repository.mongo.RooMongoEntity;
 import org.springframework.roo.addon.tostring.RooToString;
+import javax.validation.constraints.Size;
 
 @RooJavaBean
 @RooToString
@@ -33,4 +34,31 @@ public class User {
 
     private Double averageRating;
 
+    private String type;
+
+    private Integer awardPoints;
+
+    @Size(max = 255)
+    private String addressLine1;
+
+    @Size(max = 255)
+    private String addressLine2;
+
+    @Size(max = 100)
+    private String city;
+
+    @Size(max = 50)
+    private String zip;
+
+    @Size(max = 100)
+    private String country;
+
+    @Size(max = 100)
+    private String homePhone;
+
+    @Size(max = 100)
+    private String mobile;
+
+    @Size(max = 255)
+    private String displayName;
 }

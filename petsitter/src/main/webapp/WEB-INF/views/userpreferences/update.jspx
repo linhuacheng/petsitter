@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_sjsu_petsitter_domain_UserPreference" modelAttribute="userPreference" path="/userpreferences" versionField="none" z="jSY2WXgEO3qoLPcnX7i8hg8UFdg=">
+        <field:input field="preferenceId" id="c_com_sjsu_petsitter_domain_UserPreference_preferenceId" validationMessageCode="field_invalid_integer" z="/V1g//TgU+6plXZEweeoZwMYTUg="/>
+        <field:textarea field="serviceLocation" id="c_com_sjsu_petsitter_domain_UserPreference_serviceLocation" z="TfmVE8vQwfo5Zd9aaJ1hBvrQO5k="/>
+        <field:textarea field="petType" id="c_com_sjsu_petsitter_domain_UserPreference_petType" z="ldL52yrQHs/LL7TfDcOYJkbK69Y="/>
+        <field:textarea field="comment" id="c_com_sjsu_petsitter_domain_UserPreference_comment" z="qQgPqmk1cvJizopr2tDTaZLmEhQ="/>
+        <field:input field="userId" id="c_com_sjsu_petsitter_domain_UserPreference_userId" validationMessageCode="field_invalid_integer" z="BOiEtAU6p6jaE2avEp4ejVx5NvI="/>
+        <field:datetime dateTimePattern="${userPreference_createddate_date_format}" field="createdDate" id="c_com_sjsu_petsitter_domain_UserPreference_createdDate" z="Qb/OK0QB334pEEJEkIbbUR1nMRE="/>
+        <field:datetime dateTimePattern="${userPreference_updateddate_date_format}" field="updatedDate" id="c_com_sjsu_petsitter_domain_UserPreference_updatedDate" z="k3cKG2riLYn9tVTjo7yL+CocAJQ="/>
+    </form:update>
+</div>

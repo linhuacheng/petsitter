@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_sjsu_petsitter_domain_UserPreference" object="${userpreference}" path="/userpreferences" z="NgX4kQz7EEbbQcKzTplnhEub0vM=">
+        <field:display field="preferenceId" id="s_com_sjsu_petsitter_domain_UserPreference_preferenceId" object="${userpreference}" z="CxMG80gdb6GQDAe6fn9Nwk5ycVw="/>
+        <field:display field="serviceLocation" id="s_com_sjsu_petsitter_domain_UserPreference_serviceLocation" object="${userpreference}" z="gFt8tYCz1Jda+YD2wT+NXwVCHAA="/>
+        <field:display field="petType" id="s_com_sjsu_petsitter_domain_UserPreference_petType" object="${userpreference}" z="zKMF6WU6nx7WhusUkvih+3k/FzI="/>
+        <field:display field="comment" id="s_com_sjsu_petsitter_domain_UserPreference_comment" object="${userpreference}" z="z3jUdRQJqMcvmKkePjVvzW+lqgI="/>
+        <field:display field="userId" id="s_com_sjsu_petsitter_domain_UserPreference_userId" object="${userpreference}" z="fwuqtFUXSS8Fm2XJnQ0SoPM6iq4="/>
+        <field:display date="true" dateTimePattern="${userPreference_createddate_date_format}" field="createdDate" id="s_com_sjsu_petsitter_domain_UserPreference_createdDate" object="${userpreference}" z="d1JyxujDhUN3w5HPqkdDRJNeOgM="/>
+        <field:display date="true" dateTimePattern="${userPreference_updateddate_date_format}" field="updatedDate" id="s_com_sjsu_petsitter_domain_UserPreference_updatedDate" object="${userpreference}" z="TJA+0fZOVDWXkrDFuYlYYEjz1dc="/>
+    </page:show>
+</div>

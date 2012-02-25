@@ -71,4 +71,84 @@ privileged aspect User_Roo_JavaBean {
         this.averageRating = averageRating;
     }
     
+    public String User.getType() {
+        return this.type;
+    }
+    
+    public void User.setType(String type) {
+        this.type = type;
+    }
+    
+    public Integer User.getAwardPoints() {
+        return this.awardPoints;
+    }
+    
+    public void User.setAwardPoints(Integer awardPoints) {
+        this.awardPoints = awardPoints;
+    }
+    
+    public String User.getAddressLine1() {
+        return this.addressLine1;
+    }
+    
+    public void User.setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+    
+    public String User.getAddressLine2() {
+        return this.addressLine2;
+    }
+    
+    public void User.setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+    
+    public String User.getCity() {
+        return this.city;
+    }
+    
+    public void User.setCity(String city) {
+        this.city = city;
+    }
+    
+    public String User.getZip() {
+        return this.zip;
+    }
+    
+    public void User.setZip(String zip) {
+        this.zip = zip;
+    }
+    
+    public String User.getCountry() {
+        return this.country;
+    }
+    
+    public void User.setCountry(String country) {
+        this.country = country;
+    }
+    
+    public String User.getHomePhone() {
+        return this.homePhone;
+    }
+    
+    public void User.setHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+    }
+    
+    public String User.getMobile() {
+        return this.mobile;
+    }
+    
+    public void User.setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+    
+    public String User.getDisplayName() {
+        return this.displayName;
+    }
+    
+    public void User.setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+    
 }

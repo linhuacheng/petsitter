@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_sjsu_petsitter_domain_Request" items="${requests}" z="7X3IRflZCZj3vinxtZ9wT8X81xo=">
+        <table:table data="${requests}" id="l_com_sjsu_petsitter_domain_Request" path="/requests" z="GLAao9QoiI3xWuCsM6bjaJaGJTs=">
+            <table:column id="c_com_sjsu_petsitter_domain_Request_requestId" property="requestId" z="CZK/+npl/VaNSAg9IHo0rKMP1V4="/>
+            <table:column id="c_com_sjsu_petsitter_domain_Request_requestType" property="requestType" z="OEZ8nDl6CDtcDDWomb/pomiwVPQ="/>
+            <table:column id="c_com_sjsu_petsitter_domain_Request_comment" property="comment" z="eBuKtb3nT+aI5iXVEFXaC/SVB5o="/>
+            <table:column id="c_com_sjsu_petsitter_domain_Request_petId" property="petId" z="hVyJ1PbmiYgCPigln3wTIwgg8GE="/>
+            <table:column id="c_com_sjsu_petsitter_domain_Request_status" property="status" z="H9TIUfaTDDFyn8u3fFBINgsLU6c="/>
+            <table:column id="c_com_sjsu_petsitter_domain_Request_petOwnerId" property="petOwnerId" z="isY7FOV+l4Rb9YgOHGLINELOFlA="/>
+        </table:table>
+    </page:list>
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_sjsu_petsitter_domain_Request" object="${request}" path="/requests" z="011RFqHEu2sB5lJ5fMyljou33ns=">
+        <field:display field="requestId" id="s_com_sjsu_petsitter_domain_Request_requestId" object="${request}" z="aHA5GWsipEpapmXwrvilo0UJNRY="/>
+        <field:display field="requestType" id="s_com_sjsu_petsitter_domain_Request_requestType" object="${request}" z="Oi9oczfqWkcwIWdBDlD6q+co+Ig="/>
+        <field:display field="comment" id="s_com_sjsu_petsitter_domain_Request_comment" object="${request}" z="NOiuwU5fG40nZyGTCypnEvt2ccA="/>
+        <field:display field="petId" id="s_com_sjsu_petsitter_domain_Request_petId" object="${request}" z="jFLJAHj1jWl+kOUaEYj0DnDMRD4="/>
+        <field:display field="status" id="s_com_sjsu_petsitter_domain_Request_status" object="${request}" z="YLCXU4IRv+0c4QAf7/xJwqsjBAY="/>
+        <field:display field="petOwnerId" id="s_com_sjsu_petsitter_domain_Request_petOwnerId" object="${request}" z="ikhBEfOe12y/HF3Kx1+RNWSxWs8="/>
+        <field:display field="petSitterId" id="s_com_sjsu_petsitter_domain_Request_petSitterId" object="${request}" z="XLlLF86NB0QlIaaAr6RVujbsz5A="/>
+        <field:display date="true" dateTimePattern="${request_requeststartdate_date_format}" field="requestStartDate" id="s_com_sjsu_petsitter_domain_Request_requestStartDate" object="${request}" z="k3NWBXP6ZzTXSufVslzNALSOewg="/>
+        <field:display date="true" dateTimePattern="${request_requestenddate_date_format}" field="requestEndDate" id="s_com_sjsu_petsitter_domain_Request_requestEndDate" object="${request}" z="DBL9eF5F4ijeT1Anh2LRAM6lELM="/>
+        <field:display date="true" dateTimePattern="${request_createddate_date_format}" field="createdDate" id="s_com_sjsu_petsitter_domain_Request_createdDate" object="${request}" z="k5TecUikZ3QXuC35XRiKKArJ1B0="/>
+        <field:display date="true" dateTimePattern="${request_updateddate_date_format}" field="updatedDate" id="s_com_sjsu_petsitter_domain_Request_updatedDate" object="${request}" z="m061FbAXsE2vOpBFSMyJialFuAg="/>
+    </page:show>
+</div>

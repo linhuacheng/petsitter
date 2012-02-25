@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_sjsu_petsitter_domain_Review" object="${review}" path="/reviews" z="4XIrZtDOtEouGvV+cuyddU0y4sQ=">
+        <field:display field="reviewId" id="s_com_sjsu_petsitter_domain_Review_reviewId" object="${review}" z="QW6NfNVmWeAvzNi0s/CBTaYNjvo="/>
+        <field:display field="fromUserId" id="s_com_sjsu_petsitter_domain_Review_fromUserId" object="${review}" z="99PWEH9E01m1FINnTkaWlP9ceBo="/>
+        <field:display field="toUserId" id="s_com_sjsu_petsitter_domain_Review_toUserId" object="${review}" z="XofpHgukE6wefXKq1qaCqy5M7tQ="/>
+        <field:display field="type" id="s_com_sjsu_petsitter_domain_Review_type" object="${review}" z="gWsytpOj5iubxD70aGGzxqZ7cHE="/>
+        <field:display field="rating" id="s_com_sjsu_petsitter_domain_Review_rating" object="${review}" z="6qT0bJKvWoqU0mDAaysmPlxh4Ls="/>
+        <field:display field="comment" id="s_com_sjsu_petsitter_domain_Review_comment" object="${review}" z="NyZSfUz3gdMk5hLkGDCDtMNFlTQ="/>
+        <field:display field="requestId" id="s_com_sjsu_petsitter_domain_Review_requestId" object="${review}" z="6ovIn29hMZHmkpoa8NgmTmyhzGI="/>
+        <field:display date="true" dateTimePattern="${review_reviewdate_date_format}" field="reviewDate" id="s_com_sjsu_petsitter_domain_Review_reviewDate" object="${review}" z="6/fRtyRm3b4YFsSzVJo36ultn9Y="/>
+        <field:display date="true" dateTimePattern="${review_createddate_date_format}" field="createdDate" id="s_com_sjsu_petsitter_domain_Review_createdDate" object="${review}" z="KvTPFQPrGUqnut5xuzEtBSFv2LI="/>
+        <field:display date="true" dateTimePattern="${review_updateddate_date_format}" field="updatedDate" id="s_com_sjsu_petsitter_domain_Review_updatedDate" object="${review}" z="b/GmKnBbXDwNAXGFqoiEvKPOTYE="/>
+    </page:show>
+</div>

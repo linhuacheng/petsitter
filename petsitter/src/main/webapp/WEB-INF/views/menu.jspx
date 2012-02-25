@@ -11,5 +11,25 @@
             <menu:item id="i_address_new" messageCode="global_menu_new" url="/addresses?form" z="vg+UZ0neKcizSzKiVzXeI3oY1BA="/>
             <menu:item id="i_address_list" messageCode="global_menu_list" url="/addresses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="u8ooCATbc0N+VHl1spo80t0zy+k="/>
         </menu:category>
+        <menu:category id="c_petdetail" z="a6fWN7aJc9487fZ1sMTT7fmN69Q=">
+            <menu:item id="i_petdetail_new" messageCode="global_menu_new" url="/petdetails?form" z="Pw1B88Cd4vWU5sflEJRCClJHIYk="/>
+            <menu:item id="i_petdetail_list" messageCode="global_menu_list" url="/petdetails?page=1&amp;size=${empty param.size ? 10 : param.size}" z="krCoEoCW6FQxjXsjs00OpvY2MAE="/>
+        </menu:category>
+        <menu:category id="c_review" z="L2mRs5PtSirHXHgGXfHGAElLSxA=">
+            <menu:item id="i_review_new" messageCode="global_menu_new" url="/reviews?form" z="UfnjoJCITLMB151WOsEb9d6vYGw="/>
+            <menu:item id="i_review_list" messageCode="global_menu_list" url="/reviews?page=1&amp;size=${empty param.size ? 10 : param.size}" z="vE1ZLoyB7NH5prwbCr8wTQQBjXs="/>
+        </menu:category>
+        <menu:category id="c_request" z="K3H2XFvnqlPuvp7YsYXLCJyWwHQ=">
+            <menu:item id="i_request_new" messageCode="global_menu_new" url="/requests?form" z="vXscIy5n1QOw1AlVbhpVIpJCppg="/>
+            <menu:item id="i_request_list" messageCode="global_menu_list" url="/requests?page=1&amp;size=${empty param.size ? 10 : param.size}" z="zR+uAsU8p+xT+34YNGm0eI2d/Dk="/>
+        </menu:category>
+        <menu:category id="c_userpreference" z="sW/G3faUaQTx2HP5ERego7HY47Q=">
+            <menu:item id="i_userpreference_new" messageCode="global_menu_new" url="/userpreferences?form" z="eoXqSlNNfhFCdpANduIKQfIgsRE="/>
+            <menu:item id="i_userpreference_list" messageCode="global_menu_list" url="/userpreferences?page=1&amp;size=${empty param.size ? 10 : param.size}" z="9FFMKox+alApeVAipRW4trCfqCI="/>
+        </menu:category>
+        <menu:category id="c_response" z="/EtV5iwRtvniQ1cANvb3cis+7fo=">
+            <menu:item id="i_response_new" messageCode="global_menu_new" url="/responses?form" z="1imwXpR33jTyqphLwLHDEP32iIo="/>
+            <menu:item id="i_response_list" messageCode="global_menu_list" url="/responses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="OcF5x3LAKfi1RTzZeNuQ7LBvBGM="/>
+        </menu:category>
     </menu:menu>
 </div>
