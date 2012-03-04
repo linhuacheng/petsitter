@@ -4,11 +4,11 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_com_sjsu_petsitter_domain_PetDetail" items="${petdetails}" z="dL4h5MGi3CKUhzz3l8CVD12Jtcw=">
         <table:table data="${petdetails}" id="l_com_sjsu_petsitter_domain_PetDetail" path="/petdetails" z="c2hCm/89zwwmspfLEckoTymDnLc=">
-            <table:column id="c_com_sjsu_petsitter_domain_PetDetail_petId" property="petId" z="LNtNFUZ2imknTY98uxXCRZaBzzE="/>
+            <table:column id="c_com_sjsu_petsitter_domain_PetDetail_petId" property="petId" render="false" z="LNtNFUZ2imknTY98uxXCRZaBzzE="/>
             <table:column id="c_com_sjsu_petsitter_domain_PetDetail_petName" property="petName" z="5kOHrxdZsoabheyayPvOE36Ein4="/>
             <table:column id="c_com_sjsu_petsitter_domain_PetDetail_petType" property="petType" z="eYEC6QXoQAZmkdIMEp2Jthz3oMk="/>
             <table:column id="c_com_sjsu_petsitter_domain_PetDetail_description" property="description" z="JZEyZ84om0HWPKiQx7IU1qG3NxU="/>
-            <table:column id="c_com_sjsu_petsitter_domain_PetDetail_userId" property="userId" z="hC3PQNYPuPYJq2rKmqOGlVfSB3A="/>
+            <table:column id="c_com_sjsu_petsitter_domain_PetDetail_userId" property="userId" render="false" z="hC3PQNYPuPYJq2rKmqOGlVfSB3A="/>
             <table:column date="true" dateTimePattern="${petDetail_createddate_date_format}" id="c_com_sjsu_petsitter_domain_PetDetail_createdDate" property="createdDate" z="SiIPCmu981tiKzvQtefGLWx96rw="/>
         </table:table>
     </page:list>
