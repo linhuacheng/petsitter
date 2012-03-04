@@ -1,0 +1,104 @@
+field string --fieldName addressLine1 --sizeMax 255
+field string --fieldName addressLine2 --sizeMax  255
+field string --fieldName city --sizeMax  100
+field string --fieldName zip --sizeMax  50
+field string --fieldName state --sizeMax  100
+field string --fieldName country --sizeMax  100
+field string --fieldName homePhone --sizeMax  100
+field string --fieldName mobile --sizeMax  100
+field string --fieldName displayName --sizeMax  255
+
+
+entity mongo --class com.sjsu.petsitter.domain.Request
+field number --fieldName requestId  --type java.lang.Integer
+field string --fieldName requestType --sizeMax  50
+field string --fieldName comment --sizeMax  1000
+field number --fieldName petId  --type java.lang.Integer
+field string --fieldName status --sizeMax  100
+field number --fieldName petOwnerId --type java.lang.Integer
+field number --fieldName petSitterId  --type java.lang.Integer
+field string --fieldName requestStartDate --type java.util.Date
+field date --fieldName requestEndDate --type java.util.Date
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName updatedDate --type java.util.Date
+
+entity mongo --class ~.domain.Response
+field number --fieldName responseId  --type java.lang.Integer
+field number --fieldName requestId  --type java.lang.Integer
+field number --fieldName petId  --type java.lang.Integer
+field string --fieldName comment --sizeMax  1000
+field string --fieldName status --sizeMax  100
+field number --fieldName userId --type java.lang.Integer
+field number --fieldName responderType --type java.lang.Integer
+field date --fieldName responseDate --type java.util.Date
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName updatedDate --type java.util.Date
+
+entity mongo --class ~.domain.PetDetail
+field number --fieldName petId  --type java.lang.Integer
+field string --fieldName petName --sizeMax  255
+field string --fieldName petType --sizeMax  255
+field string --fieldName description --sizeMax  1000
+field number --fieldName userId --type java.lang.Integer
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName updatedDate --type java.util.Date
+field number --fieldName photo --type java.lang.Integer
+
+entity mongo --class ~.domain.UserPreference
+field number --fieldName preferenceId  --type java.lang.Integer
+field string --fieldName serviceLocation --sizeMax  255
+field string --fieldName petType --sizeMax  255
+field string --fieldName comment --sizeMax  1000
+field number --fieldName userId --type java.lang.Integer
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName updatedDate --type java.util.Date
+
+entity mongo --class ~.domain.Review
+field number --fieldName reviewId  --type java.lang.Integer
+field number --fieldName fromUserId  --type java.lang.Integer
+field number --fieldName toUserId  --type java.lang.Integer
+field string --fieldName type  --sizeMax  50
+field number --fieldName rating --type  java.lang.Integer
+field string --fieldName comment --sizeMax  1000
+field number --fieldName requestId --type java.lang.Integer
+field date --fieldName reviewDate --type java.util.Date
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName updatedDate --type java.util.Date
+
+gem update --system
+prompt> gem install vmc
+gem uninstall vmc
+gem update vmc --pre
+gem contents vmc
+
+vmc delete-service <serviceName>
+vmc create-service <serviceType> <serviceName>
+vmc push -v -t
+
+Deploying application
+**VMC cannot deploy war files direclty
+To deploy a spring application unzip the war in to a directory run vmc push from that directory.
+
+Would you like to deploy from the current directory? [Yn]: y
+Application Deployed URL [petsitter.cloudfoundry.com]:
+Detected a Java SpringSource Spring Application, is this correct? [Yn]: y
+Memory Reservation (64M, 128M, 256M, 512M, 1G, 2G) [512M]:
+Creating Application: OK
+Would you like to bind any services to 'petsitter'? [yN]: y
+Would you like to use an existing provisioned service? [yN]: y
+The following provisioned services are available
+1: petsitter
+Please select one you wish to use: petsitter
+Binding Service [petsitter]: OK
+Uploading Application:
+  Checking for available resources: OK
+  Processing resources: OK
+  Packing application: OK
+  Uploading (246K): OK
+Push Status: OK
+
+Staging Application: OK
+
+Starting Application: OK
+
+vmc stop petsitter
