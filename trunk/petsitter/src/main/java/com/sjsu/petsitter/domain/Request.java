@@ -1,6 +1,8 @@
 package com.sjsu.petsitter.domain;
 
 import java.util.Date;
+import java.math.BigInteger;
+import java.util.List;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
@@ -14,22 +16,22 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooMongoEntity
 public class Request {
 
-    private Integer requestId;
-
     @Size(max = 50)
     private String requestType;
 
     @Size(max = 1000)
     private String comment;
 
-    private Integer petId;
+    private BigInteger petId;
 
     @Size(max = 100)
     private String status;
 
-    private Integer petOwnerId;
+    private BigInteger petOwnerId;
 
-    private Integer petSitterId;
+    private BigInteger petSitterId;
+    
+    private BigInteger petSitterPetId;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
@@ -46,4 +48,6 @@ public class Request {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     private Date updatedDate;
+    
+    private List<Response> reponses;
 }

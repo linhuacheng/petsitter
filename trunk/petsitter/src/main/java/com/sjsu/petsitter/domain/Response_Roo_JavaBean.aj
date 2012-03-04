@@ -4,31 +4,32 @@
 package com.sjsu.petsitter.domain;
 
 import com.sjsu.petsitter.domain.Response;
+import java.math.BigInteger;
 import java.util.Date;
 
 privileged aspect Response_Roo_JavaBean {
     
-    public Integer Response.getResponseId() {
+    public BigInteger Response.getResponseId() {
         return this.responseId;
     }
     
-    public void Response.setResponseId(Integer responseId) {
+    public void Response.setResponseId(BigInteger responseId) {
         this.responseId = responseId;
     }
     
-    public Integer Response.getRequestId() {
+    public BigInteger Response.getRequestId() {
         return this.requestId;
     }
     
-    public void Response.setRequestId(Integer requestId) {
+    public void Response.setRequestId(BigInteger requestId) {
         this.requestId = requestId;
     }
     
-    public Integer Response.getPetId() {
+    public BigInteger Response.getPetId() {
         return this.petId;
     }
     
-    public void Response.setPetId(Integer petId) {
+    public void Response.setPetId(BigInteger petId) {
         this.petId = petId;
     }
     
@@ -48,11 +49,11 @@ privileged aspect Response_Roo_JavaBean {
         this.status = status;
     }
     
-    public Integer Response.getUserId() {
+    public BigInteger Response.getUserId() {
         return this.userId;
     }
     
-    public void Response.setUserId(Integer userId) {
+    public void Response.setUserId(BigInteger userId) {
         this.userId = userId;
     }
     

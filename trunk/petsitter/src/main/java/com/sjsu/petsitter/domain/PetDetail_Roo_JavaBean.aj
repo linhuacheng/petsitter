@@ -8,14 +8,6 @@ import java.util.Date;
 
 privileged aspect PetDetail_Roo_JavaBean {
     
-    public Integer PetDetail.getPetId() {
-        return this.petId;
-    }
-    
-    public void PetDetail.setPetId(Integer petId) {
-        this.petId = petId;
-    }
-    
     public String PetDetail.getPetName() {
         return this.petName;
     }

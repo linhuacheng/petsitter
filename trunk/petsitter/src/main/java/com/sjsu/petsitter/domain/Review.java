@@ -1,6 +1,7 @@
 package com.sjsu.petsitter.domain;
 
 import java.util.Date;
+import java.math.BigInteger;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
@@ -14,11 +15,9 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooMongoEntity
 public class Review {
 
-    private Integer reviewId;
+    private BigInteger fromUserId;
 
-    private Integer fromUserId;
-
-    private Integer toUserId;
+    private BigInteger toUserId;
 
     @Size(max = 50)
     private String type;
@@ -28,7 +27,7 @@ public class Review {
     @Size(max = 1000)
     private String comment;
 
-    private Integer requestId;
+    private BigInteger requestId;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")

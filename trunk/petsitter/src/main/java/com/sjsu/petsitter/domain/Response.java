@@ -1,6 +1,7 @@
 package com.sjsu.petsitter.domain;
 
 import java.util.Date;
+import java.math.BigInteger;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
@@ -14,11 +15,11 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooMongoEntity
 public class Response {
 
-    private Integer responseId;
+    private BigInteger responseId;
 
-    private Integer requestId;
+    private BigInteger requestId;
 
-    private Integer petId;
+    private BigInteger petId;
 
     @Size(max = 1000)
     private String comment;
@@ -26,7 +27,7 @@ public class Response {
     @Size(max = 100)
     private String status;
 
-    private Integer userId;
+    private BigInteger userId;
 
     private Integer responderType;
 

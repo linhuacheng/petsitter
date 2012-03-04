@@ -14,8 +14,6 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooMongoEntity
 public class PetDetail {
 
-    private Integer petId;
-
     @Size(max = 255)
     private String petName;
 

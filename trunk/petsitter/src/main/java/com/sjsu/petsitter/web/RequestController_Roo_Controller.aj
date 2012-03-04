@@ -5,6 +5,7 @@ package com.sjsu.petsitter.web;
 
 import com.sjsu.petsitter.domain.Request;
 import com.sjsu.petsitter.service.RequestService;
+import com.sjsu.petsitter.service.ResponseService;
 import com.sjsu.petsitter.web.RequestController;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
@@ -27,6 +28,9 @@ privileged aspect RequestController_Roo_Controller {
     @Autowired
     RequestService RequestController.requestService;
     
+    @Autowired
+    ResponseService RequestController.responseService;
+    
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String RequestController.create(@Valid Request request, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -36,12 +40,6 @@ privileged aspect RequestController_Roo_Controller {
         uiModel.asMap().clear();
         requestService.saveRequest(request);
         return "redirect:/requests/" + encodeUrlPathSegment(request.getId().toString(), httpServletRequest);
-    }
-    
-    @RequestMapping(params = "form", produces = "text/html")
-    public String RequestController.createForm(Model uiModel) {
-        populateEditForm(uiModel, new Request());
-        return "requests/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
@@ -104,6 +102,7 @@ privileged aspect RequestController_Roo_Controller {
     void RequestController.populateEditForm(Model uiModel, Request request) {
         uiModel.addAttribute("request", request);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("responses", responseService.findAllResponses());
     }
     
     String RequestController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
