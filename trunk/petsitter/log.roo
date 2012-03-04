@@ -246,3 +246,5 @@ addon install bundle --bundleSymbolicName org.springframework.roo.addon.cloud.fo
 // [failed] cloud foundry login --email ckempaiah@markmonitor.com --password Samu$ra7
 exit
 // Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-25 05:27:39
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-27 00:55:18
+security setup
