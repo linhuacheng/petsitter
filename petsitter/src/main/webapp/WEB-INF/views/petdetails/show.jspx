@@ -3,11 +3,11 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_com_sjsu_petsitter_domain_PetDetail" object="${petdetail}" path="/petdetails" z="I+V+Bs/oBKS1fqMWvUGthixn1mY=">
-        <field:display field="petId" id="s_com_sjsu_petsitter_domain_PetDetail_petId" object="${petdetail}" z="1gDj0+7c5T93BABQUAczWguMGUo="/>
+        <field:display field="petId" id="s_com_sjsu_petsitter_domain_PetDetail_petId" object="${petdetail}" render="false" z="1gDj0+7c5T93BABQUAczWguMGUo="/>
         <field:display field="petName" id="s_com_sjsu_petsitter_domain_PetDetail_petName" object="${petdetail}" z="72ko7AHs/hbR0tn8EtVZkopMXN0="/>
         <field:display field="petType" id="s_com_sjsu_petsitter_domain_PetDetail_petType" object="${petdetail}" z="T+00lVvtxXvPGGv6N5qkpKyuCKA="/>
         <field:display field="description" id="s_com_sjsu_petsitter_domain_PetDetail_description" object="${petdetail}" z="MmSYpVqW50rmA/oABnCRitzwqFk="/>
-        <field:display field="userId" id="s_com_sjsu_petsitter_domain_PetDetail_userId" object="${petdetail}" z="5gT4jrMWSEj/h6L61bkMZm/wDvQ="/>
+        <field:display field="userId" id="s_com_sjsu_petsitter_domain_PetDetail_userId" object="${petdetail}" render="false" z="5gT4jrMWSEj/h6L61bkMZm/wDvQ="/>
         <field:display date="true" dateTimePattern="${petDetail_createddate_date_format}" field="createdDate" id="s_com_sjsu_petsitter_domain_PetDetail_createdDate" object="${petdetail}" z="duP3MuVi8UWTSPHDv7c07codEKU="/>
         <field:display date="true" dateTimePattern="${petDetail_updateddate_date_format}" field="updatedDate" id="s_com_sjsu_petsitter_domain_PetDetail_updatedDate" object="${petdetail}" z="gxMQHnJEBgTMGVsSGQH8x6BF+xs="/>
     </page:show>
