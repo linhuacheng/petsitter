@@ -3,7 +3,10 @@
 
 package com.sjsu.petsitter.domain;
 
+import com.sjsu.petsitter.domain.PetDetail;
 import com.sjsu.petsitter.domain.User;
+import com.sjsu.petsitter.domain.UserPreference;
+import java.util.Set;
 
 privileged aspect User_Roo_JavaBean {
     
@@ -149,6 +152,22 @@ privileged aspect User_Roo_JavaBean {
     
     public void User.setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+    
+    public Set<PetDetail> User.getPets() {
+        return this.pets;
+    }
+    
+    public void User.setPets(Set<PetDetail> pets) {
+        this.pets = pets;
+    }
+    
+    public UserPreference User.getPreference() {
+        return this.preference;
+    }
+    
+    public void User.setPreference(UserPreference preference) {
+        this.preference = preference;
     }
     
 }

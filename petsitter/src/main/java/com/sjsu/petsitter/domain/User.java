@@ -1,5 +1,7 @@
 package com.sjsu.petsitter.domain;
 
+import java.util.Set;
+
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -61,4 +63,8 @@ public class User {
 
     @Size(max = 255)
     private String displayName;
+    
+    private Set<PetDetail> pets;
+    
+    private UserPreference preference;
 }

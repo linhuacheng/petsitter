@@ -4,31 +4,24 @@
 package com.sjsu.petsitter.domain;
 
 import com.sjsu.petsitter.domain.Review;
+import java.math.BigInteger;
 import java.util.Date;
 
 privileged aspect Review_Roo_JavaBean {
     
-    public Integer Review.getReviewId() {
-        return this.reviewId;
-    }
-    
-    public void Review.setReviewId(Integer reviewId) {
-        this.reviewId = reviewId;
-    }
-    
-    public Integer Review.getFromUserId() {
+    public BigInteger Review.getFromUserId() {
         return this.fromUserId;
     }
     
-    public void Review.setFromUserId(Integer fromUserId) {
+    public void Review.setFromUserId(BigInteger fromUserId) {
         this.fromUserId = fromUserId;
     }
     
-    public Integer Review.getToUserId() {
+    public BigInteger Review.getToUserId() {
         return this.toUserId;
     }
     
-    public void Review.setToUserId(Integer toUserId) {
+    public void Review.setToUserId(BigInteger toUserId) {
         this.toUserId = toUserId;
     }
     
@@ -56,11 +49,11 @@ privileged aspect Review_Roo_JavaBean {
         this.comment = comment;
     }
     
-    public Integer Review.getRequestId() {
+    public BigInteger Review.getRequestId() {
         return this.requestId;
     }
     
-    public void Review.setRequestId(Integer requestId) {
+    public void Review.setRequestId(BigInteger requestId) {
         this.requestId = requestId;
     }
     

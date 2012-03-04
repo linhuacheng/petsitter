@@ -4,17 +4,12 @@
 package com.sjsu.petsitter.domain;
 
 import com.sjsu.petsitter.domain.Request;
+import com.sjsu.petsitter.domain.Response;
+import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
 privileged aspect Request_Roo_JavaBean {
-    
-    public Integer Request.getRequestId() {
-        return this.requestId;
-    }
-    
-    public void Request.setRequestId(Integer requestId) {
-        this.requestId = requestId;
-    }
     
     public String Request.getRequestType() {
         return this.requestType;
@@ -32,11 +27,11 @@ privileged aspect Request_Roo_JavaBean {
         this.comment = comment;
     }
     
-    public Integer Request.getPetId() {
+    public BigInteger Request.getPetId() {
         return this.petId;
     }
     
-    public void Request.setPetId(Integer petId) {
+    public void Request.setPetId(BigInteger petId) {
         this.petId = petId;
     }
     
@@ -48,20 +43,28 @@ privileged aspect Request_Roo_JavaBean {
         this.status = status;
     }
     
-    public Integer Request.getPetOwnerId() {
+    public BigInteger Request.getPetOwnerId() {
         return this.petOwnerId;
     }
     
-    public void Request.setPetOwnerId(Integer petOwnerId) {
+    public void Request.setPetOwnerId(BigInteger petOwnerId) {
         this.petOwnerId = petOwnerId;
     }
     
-    public Integer Request.getPetSitterId() {
+    public BigInteger Request.getPetSitterId() {
         return this.petSitterId;
     }
     
-    public void Request.setPetSitterId(Integer petSitterId) {
+    public void Request.setPetSitterId(BigInteger petSitterId) {
         this.petSitterId = petSitterId;
+    }
+    
+    public BigInteger Request.getPetSitterPetId() {
+        return this.petSitterPetId;
+    }
+    
+    public void Request.setPetSitterPetId(BigInteger petSitterPetId) {
+        this.petSitterPetId = petSitterPetId;
     }
     
     public Date Request.getRequestStartDate() {
@@ -94,6 +97,14 @@ privileged aspect Request_Roo_JavaBean {
     
     public void Request.setUpdatedDate(Date updatedDate) {
         this.updatedDate = updatedDate;
+    }
+    
+    public List<Response> Request.getReponses() {
+        return this.reponses;
+    }
+    
+    public void Request.setReponses(List<Response> reponses) {
+        this.reponses = reponses;
     }
     
 }

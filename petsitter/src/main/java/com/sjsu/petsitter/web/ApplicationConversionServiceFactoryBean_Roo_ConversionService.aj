@@ -76,7 +76,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<PetDetail, String> ApplicationConversionServiceFactoryBean.getPetDetailToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.sjsu.petsitter.domain.PetDetail, java.lang.String>() {
             public String convert(PetDetail petDetail) {
-                return new StringBuilder().append(petDetail.getPetId()).append(" ").append(petDetail.getPetName()).append(" ").append(petDetail.getPetType()).append(" ").append(petDetail.getDescription()).toString();
+                return new StringBuilder().append(petDetail.getPetName()).append(" ").append(petDetail.getPetType()).append(" ").append(petDetail.getDescription()).append(" ").append(petDetail.getUserId()).toString();
             }
         };
     }
@@ -100,7 +100,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Request, String> ApplicationConversionServiceFactoryBean.getRequestToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.sjsu.petsitter.domain.Request, java.lang.String>() {
             public String convert(Request request) {
-                return new StringBuilder().append(request.getRequestId()).append(" ").append(request.getRequestType()).append(" ").append(request.getComment()).append(" ").append(request.getPetId()).toString();
+                return new StringBuilder().append(request.getRequestType()).append(" ").append(request.getComment()).append(" ").append(request.getPetId()).append(" ").append(request.getStatus()).toString();
             }
         };
     }
@@ -148,7 +148,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Review, String> ApplicationConversionServiceFactoryBean.getReviewToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.sjsu.petsitter.domain.Review, java.lang.String>() {
             public String convert(Review review) {
-                return new StringBuilder().append(review.getReviewId()).append(" ").append(review.getFromUserId()).append(" ").append(review.getToUserId()).append(" ").append(review.getType()).toString();
+                return new StringBuilder().append(review.getFromUserId()).append(" ").append(review.getToUserId()).append(" ").append(review.getType()).append(" ").append(review.getRating()).toString();
             }
         };
     }
