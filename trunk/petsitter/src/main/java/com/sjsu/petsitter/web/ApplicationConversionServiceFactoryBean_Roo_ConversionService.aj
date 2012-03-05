@@ -73,14 +73,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<PetDetail, String> ApplicationConversionServiceFactoryBean.getPetDetailToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<com.sjsu.petsitter.domain.PetDetail, java.lang.String>() {
-            public String convert(PetDetail petDetail) {
-                return new StringBuilder().append(petDetail.getPetName()).append(" ").append(petDetail.getPetType()).append(" ").append(petDetail.getDescription()).append(" ").append(petDetail.getUserId()).toString();
-            }
-        };
-    }
-    
     public Converter<BigInteger, PetDetail> ApplicationConversionServiceFactoryBean.getIdToPetDetailConverter() {
         return new org.springframework.core.convert.converter.Converter<java.math.BigInteger, com.sjsu.petsitter.domain.PetDetail>() {
             public com.sjsu.petsitter.domain.PetDetail convert(java.math.BigInteger id) {
