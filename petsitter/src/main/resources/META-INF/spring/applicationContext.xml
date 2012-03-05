@@ -50,8 +50,8 @@
         <context:exclude-filter expression=".*_Roo_.*" type="regex"/>
         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
-<!--
-    <bean id="dataInitialization" class="com.sjsu.petsitter.service.DataInitializationService" init-method="initialize">
-    </bean>
-      -->
+
+    <!--<bean id="dataInitialization" class="com.sjsu.petsitter.service.DataInitializationService" init-method="initialize">-->
+    <!--</bean>-->
+
 </beans>

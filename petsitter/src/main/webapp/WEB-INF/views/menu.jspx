@@ -7,10 +7,13 @@
             <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?form" z="Zv1m8u2rG+JFKcvJ+AHVVK0ey24="/>
             <menu:item id="i_user_list" messageCode="global_menu_list" url="/users?page=1&amp;size=${empty param.size ? 10 : param.size}" z="4MY4uybxa60Q1G2rlI5bOwg+sm0="/>
         </menu:category>
-        <menu:category id="c_address" z="my5R1aInTRohGzWz9TL4j8LX/vE=" render="false">
-            <menu:item id="i_address_new" messageCode="global_menu_new" url="/addresses?form" z="vg+UZ0neKcizSzKiVzXeI3oY1BA="/>
-            <menu:item id="i_address_list" messageCode="global_menu_list" url="/addresses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="u8ooCATbc0N+VHl1spo80t0zy+k="/>
+        <menu:category id="c_search" z="user-managed">
+            <menu:item id="i_search_new" messageCode="global_menu_new" url="/search" z="usermanaged"/>
         </menu:category>
+        <!--<menu:category id="c_address" render="false" z="user-managed">-->
+            <!--<menu:item id="i_address_new" messageCode="global_menu_new" url="/addresses?form" z="vg+UZ0neKcizSzKiVzXeI3oY1BA="/>-->
+            <!--<menu:item id="i_address_list" messageCode="global_menu_list" url="/addresses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="u8ooCATbc0N+VHl1spo80t0zy+k="/>-->
+        <!--</menu:category>-->
         <menu:category id="c_petdetail" z="a6fWN7aJc9487fZ1sMTT7fmN69Q=">
             <menu:item id="i_petdetail_new" messageCode="global_menu_new" url="/petdetails?form" z="Pw1B88Cd4vWU5sflEJRCClJHIYk="/>
             <menu:item id="i_petdetail_list" messageCode="global_menu_list" url="/petdetails?page=1&amp;size=${empty param.size ? 10 : param.size}" z="krCoEoCW6FQxjXsjs00OpvY2MAE="/>

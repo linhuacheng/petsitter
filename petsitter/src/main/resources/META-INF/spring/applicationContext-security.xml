@@ -22,7 +22,7 @@
         <intercept-url pattern="/userpreferences/**" access="isAuthenticated()" />
         <intercept-url pattern="/users/**" access="isAuthenticated()" />
         <!--<intercept-url pattern="/logon" access="permitAll" />-->
-        <intercept-url pattern="/*" access="isAuthenticated()" />
+        <!--<intercept-url pattern="/*" access="isAuthenticated()" />-->
         <intercept-url pattern="/resources/**" access="permitAll" />
     </http>
     <!-- Configure Authentication mechanism -->
