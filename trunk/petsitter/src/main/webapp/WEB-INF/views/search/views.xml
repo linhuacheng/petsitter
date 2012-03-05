@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="search/searchWithResult">
+        <put-attribute name="body" value="/WEB-INF/views/search/searchWithResult.jspx"/>
+    </definition>
+<definition extends="default" name="search/show">
+        <put-attribute name="body" value="/WEB-INF/views/search/show.jspx"/>
+    </definition>
+<definition extends="default" name="search/searchForm">
+        <put-attribute name="body" value="/WEB-INF/views/search/searchForm.jspx"/>
+    </definition>
+<definition extends="default" name="search/update">
+        <put-attribute name="body" value="/WEB-INF/views/search/update.jspx"/>
+    </definition>
+</tiles-definitions>

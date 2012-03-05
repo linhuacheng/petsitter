@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_sjsu_petsitter_domain_User" object="${user}" path="/search" z="bAS33ZQPaPEUWNRjRFCexJ4EdXE=">
+        <field:display field="userName" id="s_com_sjsu_petsitter_domain_User_userName" object="${user}" z="BPiW8PCwiYDHfcEedJQmxHfyIoA="/>
+        <field:display field="firstName" id="s_com_sjsu_petsitter_domain_User_firstName" object="${user}" z="SH72RCqzosplvqFed89arFbUo5k="/>
+        <field:display field="lastName" id="s_com_sjsu_petsitter_domain_User_lastName" object="${user}" z="E2/GsHM29Hoa8+oYj5x1ALOe/dg="/>
+        <field:display field="email" id="s_com_sjsu_petsitter_domain_User_email" object="${user}" z="8LTqz/2Yrp/7bS3VVqN8/O0azJc="/>
+        <field:display field="password" id="s_com_sjsu_petsitter_domain_User_password" object="${user}" z="iS3qejneuPO+ifKp/Q5Q80wbpQw="/>
+        <field:display field="status" id="s_com_sjsu_petsitter_domain_User_status" object="${user}" z="o9mveE4N0HohP3JhomXROpghdlk="/>
+        <field:display field="description" id="s_com_sjsu_petsitter_domain_User_description" object="${user}" z="NzHr2e+6Aipi53D3uMEQ4XiHXs0="/>
+        <field:display field="averageRating" id="s_com_sjsu_petsitter_domain_User_averageRating" object="${user}" z="PYeQVvP9L/bElQDPC+kOv9OXx28="/>
+        <field:display field="type" id="s_com_sjsu_petsitter_domain_User_type" object="${user}" z="kOf2dcvP9cNcJawsUTLGFz7G7YU="/>
+        <field:display field="awardPoints" id="s_com_sjsu_petsitter_domain_User_awardPoints" object="${user}" z="+r4hIPvUkt1nZjN/sQNZ1N5NIXc="/>
+        <field:display field="addressLine1" id="s_com_sjsu_petsitter_domain_User_addressLine1" object="${user}" z="OE911n3E7njBLrP6wAFP+E3qMo8="/>
+        <field:display field="addressLine2" id="s_com_sjsu_petsitter_domain_User_addressLine2" object="${user}" z="ElBKgBoFVLBBhdU41Im0oOJQCew="/>
+        <field:display field="city" id="s_com_sjsu_petsitter_domain_User_city" object="${user}" z="qWedG1RNxey8/mVgVOySRcCQg7Y="/>
+        <field:display field="zip" id="s_com_sjsu_petsitter_domain_User_zip" object="${user}" z="fyaw6CLkUGIlqqFGGfOIH/AerDE="/>
+        <field:display field="country" id="s_com_sjsu_petsitter_domain_User_country" object="${user}" z="z+Bpfk+T7Ntz5crznZ0DMjhteK4="/>
+        <field:display field="homePhone" id="s_com_sjsu_petsitter_domain_User_homePhone" object="${user}" z="j0CwpviTLFVe1DwSh3egX6pI8kI="/>
+        <field:display field="mobile" id="s_com_sjsu_petsitter_domain_User_mobile" object="${user}" z="GWMwW4Rh+2uAM12OdehZI3ZmTRQ="/>
+        <field:display field="displayName" id="s_com_sjsu_petsitter_domain_User_displayName" object="${user}" z="NWMT32RyopstRzWCrZJBpZuB/Og="/>
+    </page:show>
+</div>
