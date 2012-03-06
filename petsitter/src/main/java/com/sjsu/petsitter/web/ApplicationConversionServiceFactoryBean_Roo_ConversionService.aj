@@ -22,7 +22,6 @@ import java.math.BigInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.format.FormatterRegistry;
 
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
@@ -30,9 +29,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     
     @Autowired
     AddressService ApplicationConversionServiceFactoryBean.addressService;
-    
-    @Autowired
-    PetDetailService ApplicationConversionServiceFactoryBean.petDetailService;
     
     @Autowired
     RequestService ApplicationConversionServiceFactoryBean.requestService;
@@ -81,18 +77,10 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<String, PetDetail> ApplicationConversionServiceFactoryBean.getStringToPetDetailConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.sjsu.petsitter.domain.PetDetail>() {
-            public com.sjsu.petsitter.domain.PetDetail convert(String id) {
-                return getObject().convert(getObject().convert(id, BigInteger.class), PetDetail.class);
-            }
-        };
-    }
-    
     public Converter<Request, String> ApplicationConversionServiceFactoryBean.getRequestToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.sjsu.petsitter.domain.Request, java.lang.String>() {
             public String convert(Request request) {
-                return new StringBuilder().append(request.getRequestType()).append(" ").append(request.getComment()).append(" ").append(request.getPetId()).append(" ").append(request.getStatus()).toString();
+                return new StringBuilder().append(request.getRequestType()).append(" ").append(request.getComment()).append(" ").append(request.getStatus()).append(" ").append(request.getRequestorId()).toString();
             }
         };
     }
@@ -207,30 +195,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
                 return getObject().convert(getObject().convert(id, BigInteger.class), UserPreference.class);
             }
         };
-    }
-    
-    public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
-        registry.addConverter(getAddressToStringConverter());
-        registry.addConverter(getIdToAddressConverter());
-        registry.addConverter(getStringToAddressConverter());
-        registry.addConverter(getPetDetailToStringConverter());
-        registry.addConverter(getIdToPetDetailConverter());
-        registry.addConverter(getStringToPetDetailConverter());
-        registry.addConverter(getRequestToStringConverter());
-        registry.addConverter(getIdToRequestConverter());
-        registry.addConverter(getStringToRequestConverter());
-        registry.addConverter(getResponseToStringConverter());
-        registry.addConverter(getIdToResponseConverter());
-        registry.addConverter(getStringToResponseConverter());
-        registry.addConverter(getReviewToStringConverter());
-        registry.addConverter(getIdToReviewConverter());
-        registry.addConverter(getStringToReviewConverter());
-        registry.addConverter(getUserToStringConverter());
-        registry.addConverter(getIdToUserConverter());
-        registry.addConverter(getStringToUserConverter());
-        registry.addConverter(getUserPreferenceToStringConverter());
-        registry.addConverter(getIdToUserPreferenceConverter());
-        registry.addConverter(getStringToUserPreferenceConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {
