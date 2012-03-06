@@ -2,7 +2,7 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_com_sjsu_petsitter_domain_User" object="${user}" path="/registration" z="74K1xeRasabOGQ2VJp5YInlWsXU=">
+    <page:show id="ps_com_sjsu_petsitter_domain_User" object="${user}" path="/users" z="74K1xeRasabOGQ2VJp5YInlWsXU=">
         <field:display field="userName" id="s_com_sjsu_petsitter_domain_User_userName" object="${user}" z="BPiW8PCwiYDHfcEedJQmxHfyIoA="/>
         <field:display field="firstName" id="s_com_sjsu_petsitter_domain_User_firstName" object="${user}" z="SH72RCqzosplvqFed89arFbUo5k="/>
         <field:display field="lastName" id="s_com_sjsu_petsitter_domain_User_lastName" object="${user}" z="E2/GsHM29Hoa8+oYj5x1ALOe/dg="/>
