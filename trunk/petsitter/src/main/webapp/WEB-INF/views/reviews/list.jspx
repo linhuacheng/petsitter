@@ -4,12 +4,12 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_com_sjsu_petsitter_domain_Review" items="${reviews}" z="PCCK1k7aD9pTeBtZfVDqell+IbU=">
         <table:table data="${reviews}" id="l_com_sjsu_petsitter_domain_Review" path="/reviews" z="WnDyapA/WWCkKNOwAgrgtoUo03U=">
-            <table:column id="c_com_sjsu_petsitter_domain_Review_reviewId" property="reviewId" z="CUvFJvSUHDCPWZZhiS8cRfmriyk="/>
             <table:column id="c_com_sjsu_petsitter_domain_Review_fromUserId" property="fromUserId" z="SpEP83OUW5D4IZMWBUkDWFm5I9I="/>
             <table:column id="c_com_sjsu_petsitter_domain_Review_toUserId" property="toUserId" z="DFiBH/0m+NhikWebw8zDfuVtPqU="/>
             <table:column id="c_com_sjsu_petsitter_domain_Review_type" property="type" z="1ETDbwCzIZ8YbCS8RJ/cfMNJvv4="/>
             <table:column id="c_com_sjsu_petsitter_domain_Review_rating" property="rating" z="gf+a651iI59DCXJrd9thXIvKKg8="/>
             <table:column id="c_com_sjsu_petsitter_domain_Review_comment" property="comment" z="ds32FlxMKNAIy+dOulkMwmbyG2c="/>
+            <table:column id="c_com_sjsu_petsitter_domain_Review_requestId" property="requestId" z="lENi+vj9BbISgNQOi7Sp2LoVZZ8="/>
         </table:table>
     </page:list>
 </div>
