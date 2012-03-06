@@ -3,9 +3,10 @@
 
 package com.sjsu.petsitter.domain;
 
+import com.sjsu.petsitter.domain.Address;
+import com.sjsu.petsitter.domain.PetDetail;
 import com.sjsu.petsitter.domain.Request;
 import com.sjsu.petsitter.domain.Response;
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -27,14 +28,6 @@ privileged aspect Request_Roo_JavaBean {
         this.comment = comment;
     }
     
-    public BigInteger Request.getPetId() {
-        return this.petId;
-    }
-    
-    public void Request.setPetId(BigInteger petId) {
-        this.petId = petId;
-    }
-    
     public String Request.getStatus() {
         return this.status;
     }
@@ -43,28 +36,68 @@ privileged aspect Request_Roo_JavaBean {
         this.status = status;
     }
     
-    public BigInteger Request.getPetOwnerId() {
-        return this.petOwnerId;
+    public String Request.getRequestorId() {
+        return this.requestorId;
     }
     
-    public void Request.setPetOwnerId(BigInteger petOwnerId) {
-        this.petOwnerId = petOwnerId;
+    public void Request.setRequestorId(String requestorId) {
+        this.requestorId = requestorId;
     }
     
-    public BigInteger Request.getPetSitterId() {
-        return this.petSitterId;
+    public String Request.getRequestorUserName() {
+        return this.requestorUserName;
     }
     
-    public void Request.setPetSitterId(BigInteger petSitterId) {
-        this.petSitterId = petSitterId;
+    public void Request.setRequestorUserName(String requestorUserName) {
+        this.requestorUserName = requestorUserName;
     }
     
-    public BigInteger Request.getPetSitterPetId() {
-        return this.petSitterPetId;
+    public String Request.getApproverId() {
+        return this.approverId;
     }
     
-    public void Request.setPetSitterPetId(BigInteger petSitterPetId) {
-        this.petSitterPetId = petSitterPetId;
+    public void Request.setApproverId(String approverId) {
+        this.approverId = approverId;
+    }
+    
+    public String Request.getApproverUserName() {
+        return this.approverUserName;
+    }
+    
+    public void Request.setApproverUserName(String approverUserName) {
+        this.approverUserName = approverUserName;
+    }
+    
+    public Address Request.getRequestorAddress() {
+        return this.requestorAddress;
+    }
+    
+    public void Request.setRequestorAddress(Address requestorAddress) {
+        this.requestorAddress = requestorAddress;
+    }
+    
+    public PetDetail Request.getRequestorPet() {
+        return this.requestorPet;
+    }
+    
+    public void Request.setRequestorPet(PetDetail requestorPet) {
+        this.requestorPet = requestorPet;
+    }
+    
+    public Address Request.getApproverAddress() {
+        return this.approverAddress;
+    }
+    
+    public void Request.setApproverAddress(Address approverAddress) {
+        this.approverAddress = approverAddress;
+    }
+    
+    public PetDetail Request.getApproverPet() {
+        return this.approverPet;
+    }
+    
+    public void Request.setApproverPet(PetDetail approverPet) {
+        this.approverPet = approverPet;
     }
     
     public Date Request.getRequestStartDate() {

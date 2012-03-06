@@ -22,16 +22,24 @@ public class Request {
     @Size(max = 1000)
     private String comment;
 
-    private BigInteger petId;
-
     @Size(max = 100)
     private String status;
 
-    private BigInteger petOwnerId;
-
-    private BigInteger petSitterId;
+    private String requestorId;
     
-    private BigInteger petSitterPetId;
+    private String requestorUserName;
+    
+    private String approverId;
+    
+    private String approverUserName;
+ 
+    private Address requestorAddress;
+    
+    private PetDetail requestorPet;
+
+    private Address approverAddress;
+    
+    private PetDetail approverPet;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
