@@ -3,7 +3,6 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_com_sjsu_petsitter_domain_Review" object="${review}" path="/reviews" z="4XIrZtDOtEouGvV+cuyddU0y4sQ=">
-        <field:display field="reviewId" id="s_com_sjsu_petsitter_domain_Review_reviewId" object="${review}" z="QW6NfNVmWeAvzNi0s/CBTaYNjvo="/>
         <field:display field="fromUserId" id="s_com_sjsu_petsitter_domain_Review_fromUserId" object="${review}" z="99PWEH9E01m1FINnTkaWlP9ceBo="/>
         <field:display field="toUserId" id="s_com_sjsu_petsitter_domain_Review_toUserId" object="${review}" z="XofpHgukE6wefXKq1qaCqy5M7tQ="/>
         <field:display field="type" id="s_com_sjsu_petsitter_domain_Review_type" object="${review}" z="gWsytpOj5iubxD70aGGzxqZ7cHE="/>

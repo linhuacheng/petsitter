@@ -3,7 +3,6 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_com_sjsu_petsitter_domain_Review" modelAttribute="review" path="/reviews" render="${empty dependencies}" z="IFm1FoStQJpcqqWaYrVPbhlE0Xw=">
-        <field:input field="reviewId" id="c_com_sjsu_petsitter_domain_Review_reviewId" validationMessageCode="field_invalid_integer" z="OprYeuMsZzEgWmjhniGypztnWCI="/>
         <field:input field="fromUserId" id="c_com_sjsu_petsitter_domain_Review_fromUserId" validationMessageCode="field_invalid_integer" z="W/xDUtb+Zyfe178omNXpqV1sryQ="/>
         <field:input field="toUserId" id="c_com_sjsu_petsitter_domain_Review_toUserId" validationMessageCode="field_invalid_integer" z="IHzaVNFNdDoTWuLehYgCGu7ml7I="/>
         <field:textarea field="type" id="c_com_sjsu_petsitter_domain_Review_type" z="EEoh4k18AJt5PV8ei+ZlZobbhpo="/>
