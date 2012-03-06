@@ -31,11 +31,11 @@ privileged aspect Address_Roo_JavaBean {
         this.city = city;
     }
     
-    public Integer Address.getZipCode() {
+    public String Address.getZipCode() {
         return this.zipCode;
     }
     
-    public void Address.setZipCode(Integer zipCode) {
+    public void Address.setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
     

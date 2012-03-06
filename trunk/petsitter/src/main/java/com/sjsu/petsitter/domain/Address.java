@@ -19,7 +19,7 @@ public class Address {
     @NotNull
     private String city;
 
-    private Integer zipCode;
+    private String zipCode;
 
     @NotNull
     private String homePhone;
