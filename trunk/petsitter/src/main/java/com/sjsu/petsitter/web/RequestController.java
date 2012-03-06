@@ -83,8 +83,7 @@ public class RequestController {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ((UserDetails)principal).getUsername();
 
-		//return username;
-		return "petowner1";
+		return username;
 	}
 	
 	 @RequestMapping(method = RequestMethod.POST, produces = "text/html")
