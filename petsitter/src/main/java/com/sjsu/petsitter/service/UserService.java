@@ -11,4 +11,8 @@ import java.util.List;
 public interface UserService {
 
     public List<User> findPetOwners(SearchRequestBean searchRequestBean,int firstResult, int maxResults);
+
+    User findUserByUserName(String userName);
+
+    User findByUserNameAndPassword(String userName, String password);
 }
