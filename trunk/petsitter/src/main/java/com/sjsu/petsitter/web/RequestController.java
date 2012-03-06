@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.sjsu.petsitter.domain.Request;
 import com.sjsu.petsitter.domain.Address;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -43,7 +45,7 @@ public class RequestController {
     	
     	
     	String requestorUserName = getLogonUsername();
-    	User requestor = userService.findPetOwnerByUsername(requestorUserName);
+    	User requestor = userService.findUserByUserName(requestorUserName);
     	Address requestorAddress = getAddress(requestor);
     	
     	Request request = new Request();
@@ -78,10 +80,10 @@ public class RequestController {
     
     
 	public static String getLogonUsername() {	
-	//	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		//String username = ((UserDetails)principal).getUsername();
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = ((UserDetails)principal).getUsername();
 
-	//	return username;
+		//return username;
 		return "petowner1";
 	}
 	
