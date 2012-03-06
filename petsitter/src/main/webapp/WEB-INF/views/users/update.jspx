@@ -21,5 +21,7 @@
         <field:textarea field="homePhone" id="c_com_sjsu_petsitter_domain_User_homePhone" z="lDCYIVKCve494tBHaha8TdHlwas="/>
         <field:textarea field="mobile" id="c_com_sjsu_petsitter_domain_User_mobile" z="eRzAU3MuSV1cSfRBDK0cbRdOlZo="/>
         <field:textarea field="displayName" id="c_com_sjsu_petsitter_domain_User_displayName" z="+GCz7R5vwOKOEuEgdujz3wMAHyk="/>
+        <field:input field="pets" id="c_com_sjsu_petsitter_domain_User_pets" z="fz67HreDbYqjUhO862BwZcqrFNU="/>
+        <field:input field="preference" id="c_com_sjsu_petsitter_domain_User_preference" z="ShJ0bSY19OQ+0eTNwPDTmD06jjk="/>
     </form:update>
 </div>
