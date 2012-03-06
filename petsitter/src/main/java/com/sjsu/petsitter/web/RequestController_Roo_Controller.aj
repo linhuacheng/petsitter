@@ -4,6 +4,8 @@
 package com.sjsu.petsitter.web;
 
 import com.sjsu.petsitter.domain.Request;
+import com.sjsu.petsitter.service.AddressService;
+import com.sjsu.petsitter.service.PetDetailService;
 import com.sjsu.petsitter.service.RequestService;
 import com.sjsu.petsitter.service.ResponseService;
 import com.sjsu.petsitter.web.RequestController;
@@ -29,18 +31,15 @@ privileged aspect RequestController_Roo_Controller {
     RequestService RequestController.requestService;
     
     @Autowired
+    AddressService RequestController.addressService;
+    
+    @Autowired
+    PetDetailService RequestController.petDetailService;
+    
+    @Autowired
     ResponseService RequestController.responseService;
     
-    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String RequestController.create(@Valid Request request, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, request);
-            return "requests/create";
-        }
-        uiModel.asMap().clear();
-        requestService.saveRequest(request);
-        return "redirect:/requests/" + encodeUrlPathSegment(request.getId().toString(), httpServletRequest);
-    }
+   
     
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String RequestController.show(@PathVariable("id") BigInteger id, Model uiModel) {
@@ -102,6 +101,8 @@ privileged aspect RequestController_Roo_Controller {
     void RequestController.populateEditForm(Model uiModel, Request request) {
         uiModel.addAttribute("request", request);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("addresses", addressService.findAllAddresses());
+        uiModel.addAttribute("petdetails", petDetailService.findAllPetDetails());
         uiModel.addAttribute("responses", responseService.findAllResponses());
     }
     
