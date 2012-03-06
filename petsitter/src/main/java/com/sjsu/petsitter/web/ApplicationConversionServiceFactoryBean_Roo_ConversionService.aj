@@ -29,7 +29,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     
     @Autowired
     AddressService ApplicationConversionServiceFactoryBean.addressService;
-    
+
     @Autowired
     RequestService ApplicationConversionServiceFactoryBean.requestService;
     

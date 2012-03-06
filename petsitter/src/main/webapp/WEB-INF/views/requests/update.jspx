@@ -19,5 +19,7 @@
         <field:input field="requestorPet" id="c_com_sjsu_petsitter_domain_Request_requestorPet" z="Ek/FaBk9gJ9eb0tV3+AkIUHROh8="/>
         <field:input field="approverAddress" id="c_com_sjsu_petsitter_domain_Request_approverAddress" z="fPRLv4Tv/1T16/44SOhocGjI+Oo="/>
         <field:input field="approverPet" id="c_com_sjsu_petsitter_domain_Request_approverPet" z="kDIbTKsmf1u74SHfkXGrVPbpT5Q="/>
+        <field:datetime dateTimePattern="${request_switchstartdate_date_format}" field="switchStartDate" id="c_com_sjsu_petsitter_domain_Request_switchStartDate" z="rEj+aKoofuBcLopupyGLNJfB5Xc="/>
+        <field:datetime dateTimePattern="${request_switchenddate_date_format}" field="switchEndDate" id="c_com_sjsu_petsitter_domain_Request_switchEndDate" z="8uTXsTgsJ+XphucEPUf2bUi7mkA="/>
     </form:update>
 </div>
