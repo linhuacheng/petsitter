@@ -4,6 +4,7 @@ package com.sjsu.petsitter.service;
 import java.util.Date;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,12 +40,14 @@ public class DataInitializationService {
 	    
 	    PetDetail pet1 = new PetDetail();
 	    
+	    pet1.setPetId(UUID.randomUUID().toString());
 	    pet1.setPetName("bruce");
 	    pet1.setPetType("Dog");
 	    pet1.setDescription("bruce is cute");
 	
 	    PetDetail pet2 = new PetDetail();
 	    
+	    pet2.setPetId(UUID.randomUUID().toString());
 	    pet2.setPetName("John");
 	    pet2.setPetType("Cat");
 	    pet2.setDescription("John likes to meow");
@@ -85,12 +88,14 @@ public class DataInitializationService {
 	    
 	    PetDetail pet3 = new PetDetail();
 	    
+	    pet3.setPetId(UUID.randomUUID().toString());
 	    pet3.setPetName("Mike");
 	    pet3.setPetType("Dog");
 	    pet3.setDescription("Mike is cute");
 
 	    PetDetail pet4= new PetDetail();
 	    
+	    pet4.setPetId(UUID.randomUUID().toString());
 	    pet4.setPetName("Dave");
 	    pet4.setPetType("Cat");
 	    pet4.setDescription("Dave likes to meow");
