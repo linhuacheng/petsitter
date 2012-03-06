@@ -11,7 +11,7 @@
         <field:display field="status" id="s_com_sjsu_petsitter_domain_User_status" object="${user}" z="o9mveE4N0HohP3JhomXROpghdlk="/>
         <field:display field="description" id="s_com_sjsu_petsitter_domain_User_description" object="${user}" z="NzHr2e+6Aipi53D3uMEQ4XiHXs0="/>
         <field:display field="averageRating" id="s_com_sjsu_petsitter_domain_User_averageRating" object="${user}" z="PYeQVvP9L/bElQDPC+kOv9OXx28="/>
-        <field:display field="type" id="s_com_sjsu_petsitter_domain_User_type" object="${user}" z="kOf2dcvP9cNcJawsUTLGFz7G7YU="/>
+        <field:display field="type" id="s_com_sjsu_petsitter_domain_User_type" render="hidden" object="${user}" z="kOf2dcvP9cNcJawsUTLGFz7G7YU="/>
         <field:display field="awardPoints" id="s_com_sjsu_petsitter_domain_User_awardPoints" object="${user}" z="+r4hIPvUkt1nZjN/sQNZ1N5NIXc="/>
         <field:display field="addressLine1" id="s_com_sjsu_petsitter_domain_User_addressLine1" object="${user}" z="OE911n3E7njBLrP6wAFP+E3qMo8="/>
         <field:display field="addressLine2" id="s_com_sjsu_petsitter_domain_User_addressLine2" object="${user}" z="ElBKgBoFVLBBhdU41Im0oOJQCew="/>

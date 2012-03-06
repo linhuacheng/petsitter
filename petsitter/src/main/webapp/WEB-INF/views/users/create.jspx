@@ -11,7 +11,7 @@
         <field:input field="status" id="c_com_sjsu_petsitter_domain_User_status" required="true" z="VqyFuJjTGieh++sWjZgeuQabwpg="/>
         <field:input field="description" id="c_com_sjsu_petsitter_domain_User_description" z="2pC+Ft+9V0j4AE1Z550SwHykTkU="/>
         <field:input field="averageRating" id="c_com_sjsu_petsitter_domain_User_averageRating" validationMessageCode="field_invalid_number" z="6JLtjsjZUYWuQGexOvYreJmsP8M="/>
-        <field:input field="type" id="c_com_sjsu_petsitter_domain_User_type" z="+Z0z21lD1XGJWI+DoI+ETUGWtzs="/>
+        <field:input field="type" id="c_com_sjsu_petsitter_domain_User_type" render="hidden" z="+Z0z21lD1XGJWI+DoI+ETUGWtzs="/>
         <field:input field="awardPoints" id="c_com_sjsu_petsitter_domain_User_awardPoints" validationMessageCode="field_invalid_integer" z="HfuZM7Dby0gKdPjgI0vrCmw/Qfw="/>
         <field:textarea field="addressLine1" id="c_com_sjsu_petsitter_domain_User_addressLine1" z="YvyaHUcnuS0isxvOgrcqmrbRS2Q="/>
         <field:textarea field="addressLine2" id="c_com_sjsu_petsitter_domain_User_addressLine2" z="UR59OPdV/fTWb8njCxYquV2eF5s="/>
