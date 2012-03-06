@@ -6,7 +6,7 @@
         <field:input field="line1" id="c_com_sjsu_petsitter_domain_Address_line1" required="true" z="TnCU9VosLEyI9KAgOXNwXsB/9Wg="/>
         <field:input field="line2" id="c_com_sjsu_petsitter_domain_Address_line2" z="V2reDMisHYEpDijaoG+RP83Nv80="/>
         <field:input field="city" id="c_com_sjsu_petsitter_domain_Address_city" required="true" z="LaX0nxA06OK+3t0icldRroXLDL8="/>
-        <field:input field="zipCode" id="c_com_sjsu_petsitter_domain_Address_zipCode" validationMessageCode="field_invalid_integer" z="O+3S1rIOBT0O0tYagWhPSxT5QaM="/>
+        <field:input field="zipCode" id="c_com_sjsu_petsitter_domain_Address_zipCode" z="7e9CMYGEofFbZJ6K9tgcubItAKM="/>
         <field:input field="homePhone" id="c_com_sjsu_petsitter_domain_Address_homePhone" required="true" z="RIrvvbfwgKa/rgWVuDYt8TbPIR8="/>
         <field:input field="mobile" id="c_com_sjsu_petsitter_domain_Address_mobile" required="true" z="Niiztu1KDWdZZnfIXdMeO6pZ7xA="/>
     </form:create>
