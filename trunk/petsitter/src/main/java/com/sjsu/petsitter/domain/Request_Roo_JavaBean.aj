@@ -116,6 +116,22 @@ privileged aspect Request_Roo_JavaBean {
         this.requestEndDate = requestEndDate;
     }
     
+    public Date Request.getSwitchStartDate() {
+        return this.switchStartDate;
+    }
+    
+    public void Request.setSwitchStartDate(Date switchStartDate) {
+        this.switchStartDate = switchStartDate;
+    }
+    
+    public Date Request.getSwitchEndDate() {
+        return this.switchEndDate;
+    }
+    
+    public void Request.setSwitchEndDate(Date switchEndDate) {
+        this.switchEndDate = switchEndDate;
+    }
+    
     public Date Request.getCreatedDate() {
         return this.createdDate;
     }

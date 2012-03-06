@@ -39,8 +39,6 @@ privileged aspect RequestController_Roo_Controller {
     @Autowired
     ResponseService RequestController.responseService;
     
-   
-    
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String RequestController.show(@PathVariable("id") BigInteger id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
@@ -94,6 +92,8 @@ privileged aspect RequestController_Roo_Controller {
     void RequestController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("request_requeststartdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("request_requestenddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("request_switchstartdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("request_switchenddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("request_createddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("request_updateddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }

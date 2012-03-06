@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import com.sjsu.petsitter.service.UserService;
 import com.sjsu.petsitter.domain.User;
 import java.math.BigInteger;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import com.sjsu.petsitter.util.RequestStatus;
 import org.springframework.validation.BindingResult;
@@ -78,6 +80,16 @@ public class RequestController {
     	return address;
     }
     
+    private void setAddress (Address address, User user) {
+    	
+    	address.setLine1(user.getAddressLine1());
+    	address.setLine2(user.getAddressLine2());
+    	address.setCity(user.getCity());
+    	address.setZipCode(user.getZip());
+    	address.setHomePhone(user.getHomePhone());
+    	address.setMobile(user.getMobile());
+
+    }
     
 	public static String getLogonUsername() {	
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -93,6 +105,18 @@ public class RequestController {
 	            return "requests/create";
 	        }
 	        uiModel.asMap().clear();
+	        
+	    	User approver = userService.findUser(new BigInteger(request.getApproverId()));
+	    	Address approverAddress =  getAddress(approver);
+	    	
+	    	User requestor = userService.findUser(new BigInteger(request.getRequestorId()));
+	    	Address requestorAddress = getAddress(requestor);
+	       
+	        request.setCreatedDate(new Date());
+	        request.setUpdatedDate(new Date());
+	        request.setApproverAddress(approverAddress);
+	        request.setRequestorAddress(requestorAddress);
+	        
 	        requestService.saveRequest(request);
 	        return "redirect:/requests/" + encodeUrlPathSegment(request.getId().toString(), httpServletRequest);
 	    }
