@@ -44,6 +44,10 @@ public class PetswitchAuthenticationProvider extends AbstractUserDetailsAuthenti
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         try {
             user = userService.findByUserNameAndPassword(userName, password);
+
+            if (user == null) {
+                throw new BadCredentialsException("Invalid username or password");
+            }
             authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         } catch (EmptyResultDataAccessException e) {
             throw new BadCredentialsException("Invalid username or password");
