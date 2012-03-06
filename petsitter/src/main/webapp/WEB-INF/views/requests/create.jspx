@@ -7,22 +7,39 @@
         <field:textarea field="requestType" id="c_com_sjsu_petsitter_domain_Request_requestType" z="DNSK3dSd3udqrIIavruKRRgXwdQ="/>
  		-->
         <field:textarea field="comment" id="c_com_sjsu_petsitter_domain_Request_comment" z="2RGbCb9sErvJEScvMV3xblbUTI0="/>
-        <field:select disableFormBinding="false" field="petId" id="c_com_sjsu_petsitter_domain_Request_petId" items="${myPets}" path="/" z="user-managed"/>
-        <field:select disableFormBinding="false" field="petSitterPetId" id="c_com_sjsu_petsitter_domain_Request_petSitterPetId" items="${petSitterPets}" path="/" z="user-managed"/>
-        <field:simple field="status" id="c_com_sjsu_petsitter_domain_Request_status" text="${request.status}" z="user-managed"/>
+         <field:simple field="status" id="c_com_sjsu_petsitter_domain_Request_status" text="${request.status}" z="user-managed"/>
         <field:hidden field="status" id="c_com_sjsu_petsitter_domain_Request_status" z="Ja4n5g0IA7YFVaVDgaMkRmT3tnA="/>
-        <field:hidden field="petOwnerId" id="c_com_sjsu_petsitter_domain_Request_petOwnerId" z="user-managed"/>
-        <field:hidden field="petSitterId" id="c_com_sjsu_petsitter_domain_Request_petSitterId" z="user-managed"/>
         <field:datetime dateTimePattern="${request_requeststartdate_date_format}" field="requestStartDate" id="c_com_sjsu_petsitter_domain_Request_requestStartDate" z="3kb6+zoLmfyvU3Jx0IsibjbZMpw="/>
         <field:datetime dateTimePattern="${request_requestenddate_date_format}" field="requestEndDate" id="c_com_sjsu_petsitter_domain_Request_requestEndDate" z="FNog4gEx60ZsuQCCEAK+pfbOOi4="/>
-        <!-- 
-        <field:datetime dateTimePattern="${request_createddate_date_format}" field="createdDate" id="c_com_sjsu_petsitter_domain_Request_createdDate" z="quG3mlWsG2qKvRkgNPjV5koOv78="/>
-        <field:datetime dateTimePattern="${request_updateddate_date_format}" field="updatedDate" id="c_com_sjsu_petsitter_domain_Request_updatedDate" z="1EUdOy5dOT2o8V2yME6IiVjtSM0="/>
-    -->
+         
+      
+         <field:select disableFormBinding="false" field="requestorPet" id="c_com_sjsu_petsitter_domain_Request_requestorPet" itemValue="petId" items="${requestorPets}"  z="Ek/FaBk9gJ9eb0tV3+AkIUHROh8="  path="/" />
+       
+      <!-- 
+      <field:select  disableFormBinding="false" field="requestorAddress" id="c_com_sjsu_petsitter_domain_Request_requestorAddress" itemValue="petId" items="${requestorPets}" z="XRHAI+qrbD1sdIywk0vSqSIuD0c="  path="/" />
+       
         <field:textarea field="requestType" id="c_com_sjsu_petsitter_domain_Request_requestType" z="DNSK3dSd3udqrIIavruKRRgXwdQ="/>
         <field:datetime dateTimePattern="${request_createddate_date_format}" field="createdDate" id="c_com_sjsu_petsitter_domain_Request_createdDate" z="quG3mlWsG2qKvRkgNPjV5koOv78="/>
         <field:datetime dateTimePattern="${request_updateddate_date_format}" field="updatedDate" id="c_com_sjsu_petsitter_domain_Request_updatedDate" z="1EUdOy5dOT2o8V2yME6IiVjtSM0="/>
         <field:input field="reponses" id="c_com_sjsu_petsitter_domain_Request_reponses" z="TWc88CbNN9G7XcFasXboLfFfF4o="/>
-    </form:create>
+      <field:input field="requestorAddress" id="c_com_sjsu_petsitter_domain_Request_requestorAddress" z="XRHAI+qrbD1sdIywk0vSqSIuD0c="/>
+        <field:input field="requestorPet" id="c_com_sjsu_petsitter_domain_Request_requestorPet" z="Ek/FaBk9gJ9eb0tV3+AkIUHROh8="/>
+        <field:input field="approverAddress" id="c_com_sjsu_petsitter_domain_Request_approverAddress" z="fPRLv4Tv/1T16/44SOhocGjI+Oo="/>
+        <field:input field="approverPet" id="c_com_sjsu_petsitter_domain_Request_approverPet" z="kDIbTKsmf1u74SHfkXGrVPbpT5Q="/>
+        -->  
+  
+        <field:hidden field="requestType" id="c_com_sjsu_petsitter_domain_Request_requestType" z="DNSK3dSd3udqrIIavruKRRgXwdQ="/>
+        <field:hidden field="requestorId" id="c_com_sjsu_petsitter_domain_Request_requestorId" z="VH4k8IvTATp3eabZiPJBLE9iuFQ="/>
+        <field:hidden field="requestorUserName" id="c_com_sjsu_petsitter_domain_Request_requestorUserName" z="yTzDAqwFHGGU9FQzvgTrccWMrpY="/>
+        <field:hidden field="approverId" id="c_com_sjsu_petsitter_domain_Request_approverId" z="/lpNZyOZXPp3wX21RWE9cx6gVtk="/>
+        <field:simple field="approverUserName" id="c_com_sjsu_petsitter_domain_Request_approverUserName" text="${request.approverUserName}" z="4Z8CGrYlkD9YYTJ/K+KvYgrF4vU="/>
+        <field:hidden field="approverUserName" id="c_com_sjsu_petsitter_domain_Request_approverUserName" z="4Z8CGrYlkD9YYTJ/K+KvYgrF4vU="/>
+        <field:select  disableFormBinding="false" field="approverPet" id="c_com_sjsu_petsitter_domain_Request_approverPet" itemValue="petId" items="${approverPets}" z="XRHAI+qrbD1sdIywk0vSqSIuD0c="  path="/" />
+  
+    
+        <field:hidden field="createdDate" id="c_com_sjsu_petsitter_domain_Request_createdDate" z="quG3mlWsG2qKvRkgNPjV5koOv78="/>
+        <field:hidden  field="updatedDate" id="c_com_sjsu_petsitter_domain_Request_updatedDate" z="1EUdOy5dOT2o8V2yME6IiVjtSM0="/>
+        <field:hidden field="reponses" id="c_com_sjsu_petsitter_domain_Request_reponses" z="TWc88CbNN9G7XcFasXboLfFfF4o="/>
+      </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_sjsu_petsitter_domain_Request" render="${not empty dependencies}" z="raV92LJ5EbnpXYR7cAWkIWJ6jAc="/>
 </div>

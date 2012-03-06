@@ -6,10 +6,10 @@
         <table:table data="${requests}" id="l_com_sjsu_petsitter_domain_Request" path="/requests" z="GLAao9QoiI3xWuCsM6bjaJaGJTs=">
             <table:column id="c_com_sjsu_petsitter_domain_Request_requestType" property="requestType" z="OEZ8nDl6CDtcDDWomb/pomiwVPQ="/>
             <table:column id="c_com_sjsu_petsitter_domain_Request_comment" property="comment" z="eBuKtb3nT+aI5iXVEFXaC/SVB5o="/>
-            <table:column id="c_com_sjsu_petsitter_domain_Request_petId" property="petId" z="hVyJ1PbmiYgCPigln3wTIwgg8GE="/>
             <table:column id="c_com_sjsu_petsitter_domain_Request_status" property="status" z="H9TIUfaTDDFyn8u3fFBINgsLU6c="/>
-            <table:column id="c_com_sjsu_petsitter_domain_Request_petOwnerId" property="petOwnerId" z="isY7FOV+l4Rb9YgOHGLINELOFlA="/>
-            <table:column id="c_com_sjsu_petsitter_domain_Request_petSitterId" property="petSitterId" z="rVQ4RUqcEnHo08yEGJNcFXhJFuc="/>
+            <table:column id="c_com_sjsu_petsitter_domain_Request_requestorId" property="requestorId" z="cA2gb7u8QG3VnpodIm2psha7q/A="/>
+            <table:column id="c_com_sjsu_petsitter_domain_Request_requestorUserName" property="requestorUserName" z="MWeKbLRn87Hc3cO3UgYg5qZv8eM="/>
+            <table:column id="c_com_sjsu_petsitter_domain_Request_approverId" property="approverId" z="aT8W0jrW2TmSJoefKKxVUD+CiQY="/>
         </table:table>
     </page:list>
 </div>
