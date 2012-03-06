@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0" xmlns:spring="http://www.springframework.org/tags">
+    <style>
+        .mainStyle {
+            padding: 5px;
+            font-weight:bold;
+
+        }
+        .contentLeft {
+            width: 45%;
+            float:left;
+            border: 1px solid #000;
+        }
+        .contentRight {
+            width: 45%;
+            float: right;
+            border: 1px solid #000;
+        }
+
+    </style>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <!--<div class="mainStyle">-->
+
+    <c:forEach items="${petDetails}" var="petdetail" varStatus="i">
+
+        <spring:eval expression="i.index%2" var="even"/>
+        <c:set var="styleClass" value="contentLeft"/>
+        <c:if test="${even != 0}">
+            <c:set var="styleClass" value="contentRight"/>
+        </c:if>
+            <div class="${styleClass}">
+                <field:display field="petId" id="s_com_sjsu_petsitter_domain_PetDetail_petId" object="${petdetail}" render="false" z="1gDj0+7c5T93BABQUAczWguMGUo="/>
+                <field:display field="petName" id="s_com_sjsu_petsitter_domain_PetDetail_petName" object="${petdetail}" z="72ko7AHs/hbR0tn8EtVZkopMXN0="/>
+                <field:display field="petType" id="s_com_sjsu_petsitter_domain_PetDetail_petType" object="${petdetail}" z="T+00lVvtxXvPGGv6N5qkpKyuCKA="/>
+                <field:display field="description" id="s_com_sjsu_petsitter_domain_PetDetail_description" object="${petdetail}" z="MmSYpVqW50rmA/oABnCRitzwqFk="/>
+            </div>
+    </c:forEach>
+    <!--</div>-->
+</div>
