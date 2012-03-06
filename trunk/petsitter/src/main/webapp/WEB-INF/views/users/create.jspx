@@ -2,7 +2,7 @@
 <div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <form:create id="fc_com_sjsu_petsitter_domain_User" modelAttribute="user" path="/users" render="${empty dependencies}" z="VAqZ07ST6LmVRmiyGQLOhIokwrY=">
+    <form:create id="fc_com_sjsu_petsitter_domain_User" modelAttribute="user" path="/registration" render="${empty dependencies}" z="VAqZ07ST6LmVRmiyGQLOhIokwrY=">
         <field:input field="userName" id="c_com_sjsu_petsitter_domain_User_userName" required="true" z="RHciPrDBSYTCzSimxAYCZr49ffA="/>
         <field:input field="firstName" id="c_com_sjsu_petsitter_domain_User_firstName" required="true" z="vTXw4GnYXiepLhDfBSS8vEET7GI="/>
         <field:input field="lastName" id="c_com_sjsu_petsitter_domain_User_lastName" required="true" z="fjPuFAywJAxunplykVL9Dd3hhI8="/>
