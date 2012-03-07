@@ -1,5 +1,6 @@
 package com.sjsu.petsitter.web;
 
+import com.sjsu.petsitter.bean.PetswithUserPrinciple;
 import com.sjsu.petsitter.bean.SearchRequestBean;
 import com.sjsu.petsitter.domain.PetDetail;
 import com.sjsu.petsitter.domain.User;
@@ -9,6 +10,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,7 +52,8 @@ public class SearchController {
             , @RequestParam(value = "page", required = false) Integer page
             , @RequestParam(value = "size", required = false) Integer size
             , Model uiModel, HttpSession session){
-
+        PetswithUserPrinciple petswithUserPrinciple = (PetswithUserPrinciple)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        searchRequestBean.setLoggedOnUserId(petswithUserPrinciple.getUserId());
         int sizeNo = size == null ? 10 : size.intValue();
         final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
         uiModel.addAttribute("petOwners", userService.findPetOwners(searchRequestBean, firstResult, sizeNo));

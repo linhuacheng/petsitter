@@ -15,7 +15,7 @@
         <intercept-url pattern="/registration/**" access="permitAll"/>
         <intercept-url pattern="/choices/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/member/**" access="isAuthenticated()" />
-        <!--<intercept-url pattern="/addresses/**" access="isAuthenticated()" />-->
+        <intercept-url pattern="/search/**" access="isAuthenticated()" />
         <intercept-url pattern="/petdetails/**" access="isAuthenticated()" />
         <intercept-url pattern="/requests/**" access="isAuthenticated()" />
         <intercept-url pattern="/responses/**" access="isAuthenticated()" />

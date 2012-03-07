@@ -15,7 +15,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     public static final String PROP_USER_NAME = "userName";
-    public static final String PROP_PREFERENCE_PET_TYPE = "preference.petType";
+    public static final String PROP_PREFERENCE_PET_TYPE = "pets.petType";
     public static final String PROP_ZIP = "zip";
     public static final String PROP_CITY = "city";
     public static final String PROP_PASSWORD = "password";
@@ -33,24 +33,20 @@ public class UserServiceImpl implements UserService {
         Query query = null;
         if (StringUtils.isNotBlank(searchRequestBean.getPetType())){
 
-            query = new Query(Criteria.where(PROP_PREFERENCE_PET_TYPE).regex(searchRequestBean.getPetType(), "i")).limit(maxResults).skip(firstResult);
+            query = new Query(Criteria.where(PROP_PREFERENCE_PET_TYPE).regex(searchRequestBean.getPetType(), "i")
+                    .and("id").ne(searchRequestBean.getLoggedOnUserId())).limit(maxResults).skip(firstResult);
 
-//            return userRepository.findPetOwnerByPetType(searchRequestBean.getPetType()
-//                    , new org.springframework.data.domain.PageRequest(firstResult / maxResults, maxResults));
         } else if (StringUtils.isNotBlank(searchRequestBean.getZip())){
 
-            query = new Query(Criteria.where(PROP_ZIP).is(searchRequestBean.getZip())).limit(maxResults).skip(firstResult);
-//            return userRepository.findPetOwnerByZipCode(searchRequestBean.getZip()
-//                    , new org.springframework.data.domain.PageRequest(firstResult / maxResults, maxResults));
+            query = new Query(Criteria.where(PROP_ZIP).is(searchRequestBean.getZip())
+                    .and("id").ne(searchRequestBean.getLoggedOnUserId())).limit(maxResults).skip(firstResult);
         } else if (StringUtils.isNotBlank(searchRequestBean.getCity())){
-            query = new Query(Criteria.where(PROP_CITY).regex(searchRequestBean.getCity(),"i")).limit(maxResults).skip(firstResult);
+            query = new Query(Criteria.where(PROP_CITY).regex(searchRequestBean.getCity(),"i")
+                    .and("id").ne(searchRequestBean.getLoggedOnUserId())).limit(maxResults).skip(firstResult);
 
-//            return userRepository.findPetOwnerByCity(searchRequestBean.getCity()
-//                    , new org.springframework.data.domain.PageRequest(firstResult / maxResults, maxResults));
         }
         return query != null? mongoTemplate.find(query, User.class): null;
-        //return mongoTemplate.find(query, User.class);
-    }
+     }
 
     /**
      * finds user by user name

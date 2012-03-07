@@ -13,5 +13,5 @@
     </bean>
 
 
-<mongo:db-factory host="${mongo.host}" id="mongoDbFactory" port="${mongo.port}"/>
+<mongo:db-factory host="${mongo.host}" id="mongoDbFactory" dbname="${mongo.name}" port="${mongo.port}"/>
 </beans>
