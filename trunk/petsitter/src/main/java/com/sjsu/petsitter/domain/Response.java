@@ -15,11 +15,11 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooMongoEntity
 public class Response {
 
-    private BigInteger responseId;
+    private String responseId;
 
-    private BigInteger requestId;
+    private String requestId;
 
-    private BigInteger petId;
+    private String petId;
 
     @Size(max = 1000)
     private String comment;
@@ -27,9 +27,9 @@ public class Response {
     @Size(max = 100)
     private String status;
 
-    private BigInteger userId;
+    private String userId;
 
-    private Integer responderType;
+    private String respondent;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
