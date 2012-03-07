@@ -27,23 +27,6 @@ privileged aspect ResponseController_Roo_Controller {
     @Autowired
     ResponseService ResponseController.responseService;
     
-    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String ResponseController.create(@Valid Response response, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, response);
-            return "responses/create";
-        }
-        uiModel.asMap().clear();
-        responseService.saveResponse(response);
-        return "redirect:/responses/" + encodeUrlPathSegment(response.getId().toString(), httpServletRequest);
-    }
-    
-    @RequestMapping(params = "form", produces = "text/html")
-    public String ResponseController.createForm(Model uiModel) {
-        populateEditForm(uiModel, new Response());
-        return "responses/create";
-    }
-    
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String ResponseController.show(@PathVariable("id") BigInteger id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);

@@ -9,6 +9,7 @@
   <jsp:directive.attribute name="create" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'create' link into table (default true)" />
   <jsp:directive.attribute name="update" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'update' link into table (default true)" />
   <jsp:directive.attribute name="delete" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'delete' link into table (default true)" />
+  <jsp:directive.attribute name="showDetail" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'show' link into table (default true)" />
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
   <jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)" />
 
@@ -28,6 +29,10 @@
 
     <c:if test="${empty update}">
       <c:set var="update" value="true" />
+    </c:if>
+    
+    <c:if test="${empty showDetail}">
+      <c:set var="showDetail" value="true" />
     </c:if>
 
     <c:if test="${empty delete}">
@@ -92,14 +97,16 @@
             </td>
           </c:forTokens>
           <c:set var="itemId"><spring:eval expression="item[typeIdFieldName]"/></c:set>
-          <td class="utilbox">
-            <spring:url value="${path}/${itemId}" var="show_form_url" />
-            <spring:url value="/resources/images/show.png" var="show_image_url" />
-            <spring:message arguments="${typeName}" code="entity_show" var="show_label" htmlEscape="false" />
-            <a href="${show_form_url}" alt="${fn:escapeXml(show_label)}" title="${fn:escapeXml(show_label)}">
-              <img alt="${fn:escapeXml(show_label)}" class="image" src="${show_image_url}" title="${fn:escapeXml(show_label)}" />
-            </a>
-          </td>
+          <c:if test="${showDetail}">
+	          <td class="utilbox">
+	            <spring:url value="${path}/${itemId}" var="show_form_url" />
+	            <spring:url value="/resources/images/show.png" var="show_image_url" />
+	            <spring:message arguments="${typeName}" code="entity_show" var="show_label" htmlEscape="false" />
+	            <a href="${show_form_url}" alt="${fn:escapeXml(show_label)}" title="${fn:escapeXml(show_label)}">
+	              <img alt="${fn:escapeXml(show_label)}" class="image" src="${show_image_url}" title="${fn:escapeXml(show_label)}" />
+	            </a>
+	          </td>
+          </c:if>
           <c:if test="${update}">
             <td class="utilbox">
               <spring:url value="${path}/${itemId}" var="update_form_url">

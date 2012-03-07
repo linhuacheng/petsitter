@@ -9,27 +9,27 @@ import java.util.Date;
 
 privileged aspect Response_Roo_JavaBean {
     
-    public BigInteger Response.getResponseId() {
+    public String Response.getResponseId() {
         return this.responseId;
     }
     
-    public void Response.setResponseId(BigInteger responseId) {
+    public void Response.setResponseId(String responseId) {
         this.responseId = responseId;
     }
     
-    public BigInteger Response.getRequestId() {
+    public String Response.getRequestId() {
         return this.requestId;
     }
     
-    public void Response.setRequestId(BigInteger requestId) {
+    public void Response.setRequestId(String requestId) {
         this.requestId = requestId;
     }
     
-    public BigInteger Response.getPetId() {
+    public String Response.getPetId() {
         return this.petId;
     }
     
-    public void Response.setPetId(BigInteger petId) {
+    public void Response.setPetId(String petId) {
         this.petId = petId;
     }
     
@@ -49,20 +49,20 @@ privileged aspect Response_Roo_JavaBean {
         this.status = status;
     }
     
-    public BigInteger Response.getUserId() {
+    public String Response.getUserId() {
         return this.userId;
     }
     
-    public void Response.setUserId(BigInteger userId) {
+    public void Response.setUserId(String userId) {
         this.userId = userId;
     }
     
-    public Integer Response.getResponderType() {
-        return this.responderType;
+    public String Response.getRespondent() {
+        return this.respondent;
     }
     
-    public void Response.setResponderType(Integer responderType) {
-        this.responderType = responderType;
+    public void Response.setRespondent(String respondent) {
+        this.respondent = respondent;
     }
     
     public Date Response.getResponseDate() {
