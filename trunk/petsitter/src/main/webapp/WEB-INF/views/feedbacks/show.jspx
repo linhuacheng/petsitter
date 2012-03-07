@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show create="false" delete="false" id="ps_com_sjsu_petsitter_domain_Feedback" object="${feedback}" path="/feedbacks" update="false" z="user-managed">
+        <field:display field="fromUserName" id="s_com_sjsu_petsitter_domain_Feedback_fromUserName" object="${feedback}" z="j67jR669y8FuuHj8aiR9BSUqlf4="/>
+        <field:display field="type" id="s_com_sjsu_petsitter_domain_Feedback_type" object="${feedback}" z="LSM2ni1uNZ6ftg6vEGl1w6C14WI="/>
+        <field:display field="rating" id="s_com_sjsu_petsitter_domain_Feedback_rating" object="${feedback}" z="KR0mH8s0UGV+5aQy2Q7fKAmFpq4="/>
+        <field:display field="comment" id="s_com_sjsu_petsitter_domain_Feedback_comment" object="${feedback}" z="ubh2j8uNuvIY4oNQ2Jv/Kv3OBZk="/>
+        <!--<field:display field="requestId" id="s_com_sjsu_petsitter_domain_Feedback_requestId" object="${feedback}" z="NRgfr1rX7gSYLhzFQ7svDiYBvV4="/>-->
+        <field:display date="true" dateTimePattern="${feedback_feedbackdate_date_format}" field="feedbackDate" id="s_com_sjsu_petsitter_domain_Feedback_feedbackDate" object="${feedback}" z="REK+8Y6q2XgUojP1CPdZA3a6SlU="/>
+        <!--<field:display date="true" dateTimePattern="${feedback_createddate_date_format}" field="createdDate" id="s_com_sjsu_petsitter_domain_Feedback_createdDate" object="${feedback}" z="+4YWQoIGsDNOsXTEgYv/TtoO4To="/>-->
+        <field:display date="true" dateTimePattern="${feedback_updateddate_date_format}" field="updatedDate" id="s_com_sjsu_petsitter_domain_Feedback_updatedDate" object="${feedback}" z="GYPbfY8W2wKhjlWG07odchJcdaU="/>
+        <!--<field:display field="feedbackId" id="s_com_sjsu_petsitter_domain_Feedback_feedbackId" object="${feedback}" z="Ps4Mr9l7+9tY0YIAumZEPu5kzOQ="/>-->
+    </page:show>
+</div>

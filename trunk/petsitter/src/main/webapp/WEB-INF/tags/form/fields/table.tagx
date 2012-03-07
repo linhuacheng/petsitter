@@ -10,6 +10,8 @@
   <jsp:directive.attribute name="update" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'update' link into table (default true)" />
   <jsp:directive.attribute name="delete" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'delete' link into table (default true)" />
   <jsp:directive.attribute name="showDetail" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'show' link into table (default true)" />
+  <jsp:directive.attribute name="feedback" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'feedback' link into table (default true)" />
+  <jsp:directive.attribute name="feedbackPath" type="java.lang.String" required="false" rtexprvalue="true" description="Include 'feedback' path " />
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
   <jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)" />
 
@@ -64,6 +66,11 @@
             <th></th>
             <spring:eval var="colCounter" expression="colCounter  + 1" />
           </c:if>
+         <c:if test="${feedback}">
+           <th></th>
+           <spring:eval var="colCounter" expression="colCounter  + 1" />
+         </c:if>
+
         </tr>
       </thead>
       <c:forEach items="${data}" var="item">
@@ -140,6 +147,20 @@
               </form:form>
             </td>
           </c:if>
+          <c:if test="${feedback}">
+            <td class="utilbox">
+              <spring:url value="${feedbackPath}" var="feedback_form_url">
+                <spring:param name="form" />
+                <spring:param name="requestId" value="${itemId}"/>
+              </spring:url>
+              <spring:url value="/resources/images/feedback.png" var="feedback_image_url" />
+              <spring:message arguments="${typeName}" code="entity_update" var="feedback_label" htmlEscape="false" />
+              <a href="${feedback_form_url}" alt="${fn:escapeXml(feedback_label)}" title="${fn:escapeXml(feedback_label)}">
+                <img alt="${fn:escapeXml(feedback_label)}" class="image" src="${feedback_image_url}" title="${fn:escapeXml(feedback_label)}" />
+              </a>
+            </td>
+          </c:if>
+
         </tr>
       </c:forEach>
       <tr class="footer">

@@ -65,6 +65,8 @@ public class User {
     private String displayName;
     
     private Set<PetDetail> pets;
+
+    private Set<Feedback> feedbackSet;
     
     private UserPreference preference;
 }

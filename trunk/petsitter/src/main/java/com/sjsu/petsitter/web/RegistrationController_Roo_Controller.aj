@@ -4,8 +4,11 @@
 package com.sjsu.petsitter.web;
 
 import com.sjsu.petsitter.domain.User;
+import com.sjsu.petsitter.repository.UserPreferenceRepository;
+import com.sjsu.petsitter.service.FeedbackService;
+import com.sjsu.petsitter.service.PetDetailService;
 import com.sjsu.petsitter.service.UserService;
-import com.sjsu.petsitter.web.UserController;
+import com.sjsu.petsitter.web.RegistrationController;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import javax.servlet.http.HttpServletRequest;
@@ -25,24 +28,24 @@ privileged aspect RegistrationController_Roo_Controller {
     @Autowired
     UserService RegistrationController.userService;
     
-	@RequestMapping(method = RequestMethod.POST, produces = "text/html")
+    @Autowired
+    FeedbackService RegistrationController.feedbackService;
+    
+    @Autowired
+    PetDetailService RegistrationController.petDetailService;
+    
+    @Autowired
+    UserPreferenceRepository RegistrationController.userPreferenceRepository;
+    
+    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String RegistrationController.create(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, user);
             return "registration/create";
         }
         uiModel.asMap().clear();
-        if(userService.findUserByUserName(user.getUserName())==null){
-        	userService.saveUser(user);
-        	return "registration/success";
-        }
-        else{
-        	return "registration/failure";
-        }
-        
-//        return "redirect:/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
-
-//        return "users/create";
+        userService.saveUser(user);
+        return "redirect:/registration/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
@@ -51,10 +54,61 @@ privileged aspect RegistrationController_Roo_Controller {
         return "registration/create";
     }
     
+    @RequestMapping(value = "/{id}", produces = "text/html")
+    public String RegistrationController.show(@PathVariable("id") BigInteger id, Model uiModel) {
+        uiModel.addAttribute("user", userService.findUser(id));
+        uiModel.addAttribute("itemId", id);
+        return "registration/show";
+    }
+    
+    @RequestMapping(produces = "text/html")
+    public String RegistrationController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+        if (page != null || size != null) {
+            int sizeNo = size == null ? 10 : size.intValue();
+            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+            uiModel.addAttribute("users", userService.findUserEntries(firstResult, sizeNo));
+            float nrOfPages = (float) userService.countAllUsers() / sizeNo;
+            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+        } else {
+            uiModel.addAttribute("users", userService.findAllUsers());
+        }
+        return "registration/list";
+    }
+    
+    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
+    public String RegistrationController.update(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+        if (bindingResult.hasErrors()) {
+            populateEditForm(uiModel, user);
+            return "registration/update";
+        }
+        uiModel.asMap().clear();
+        userService.updateUser(user);
+        return "redirect:/registration/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
+    }
+    
+    @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
+    public String RegistrationController.updateForm(@PathVariable("id") BigInteger id, Model uiModel) {
+        populateEditForm(uiModel, userService.findUser(id));
+        return "registration/update";
+    }
+    
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
+    public String RegistrationController.delete(@PathVariable("id") BigInteger id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+        User user = userService.findUser(id);
+        userService.deleteUser(user);
+        uiModel.asMap().clear();
+        uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
+        uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
+        return "redirect:/registration";
+    }
+    
     void RegistrationController.populateEditForm(Model uiModel, User user) {
         uiModel.addAttribute("user", user);
+        uiModel.addAttribute("feedbacks", feedbackService.findAllFeedbacks());
+        uiModel.addAttribute("petdetails", petDetailService.findAllPetDetails());
+        uiModel.addAttribute("userpreferences", userPreferenceRepository.findAll());
     }
-  
+    
     String RegistrationController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {

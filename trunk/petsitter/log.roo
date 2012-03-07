@@ -254,3 +254,30 @@ quit
 // Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-03-04 16:17:24
 exit
 // Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-03-05 03:46:07
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-03-07 02:24:16
+entity mongo --class ~.domain.Feedback
+entity mongo --class ~.domain.Feedback 
+hint
+// [failed] web mvc all --package ~.web
+// [failed] entity mongo --class ~.domain.Feedback
+entity mongo --class ~.domain.Feedback
+field number --fieldName feedbackId  --type java.lang.Integer
+field number --fieldName fromUserId  --type java.lang.Integer
+field number --fieldName toUserId  --type java.lang.Integer
+field string --fieldName type  --sizeMax  50
+field number --fieldName rating --type  java.lang.Integer
+field string --fieldName comment --sizeMax  1000
+field number --fieldName requestId --type java.lang.Integer
+field date --fieldName feedbackDate --type java.util.Date
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName updatedDate --type java.util.Date
+// [failed] web mvc all --package ~.web
+repository mongo --interface ~.repository.FeedbackRepository --entity ~.domain.Feedback
+repository mongo --interface ~.service.FeedbackService --entity ~.domain.Feedback
+// [failed] web mvc all --package ~.web
+web mvc all --package ~.web
+exit
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-03-07 05:55:25
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-03-07 05:55:31
+exit
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-03-07 07:09:30
