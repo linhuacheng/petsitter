@@ -44,8 +44,13 @@ privileged aspect RegistrationController_Roo_Controller {
             return "registration/create";
         }
         uiModel.asMap().clear();
-        userService.saveUser(user);
-        return "redirect:/registration/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
+        if(userService.findUserByUserName(user.getUserName())==null){
+        	userService.saveUser(user);
+        	return "registration/success";
+        }
+        else{
+        	return "registration/failure";
+        }
     }
     
     @RequestMapping(params = "form", produces = "text/html")
