@@ -17,6 +17,7 @@
         <intercept-url pattern="/member/**" access="isAuthenticated()" />
         <intercept-url pattern="/search/**" access="isAuthenticated()" />
         <intercept-url pattern="/petdetails/**" access="isAuthenticated()" />
+        <intercept-url pattern="/feedbacks/**" access="isAuthenticated()" />
         <intercept-url pattern="/requests/**" access="isAuthenticated()" />
         <intercept-url pattern="/responses/**" access="isAuthenticated()" />
         <intercept-url pattern="/reviews/**" access="isAuthenticated()" />

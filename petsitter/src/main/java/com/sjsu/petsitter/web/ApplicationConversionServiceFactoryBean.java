@@ -14,9 +14,6 @@ import com.sjsu.petsitter.service.PetDetailService;
 @RooConversionService
 public class ApplicationConversionServiceFactoryBean extends FormattingConversionServiceFactoryBean {
 
-    @Autowired
-    PetDetailService petDetailService;
-    
 	@Override
 	protected void installFormatters(FormatterRegistry registry) {
 		super.installFormatters(registry);

@@ -3,6 +3,7 @@
 
 package com.sjsu.petsitter.domain;
 
+import com.sjsu.petsitter.domain.Feedback;
 import com.sjsu.petsitter.domain.PetDetail;
 import com.sjsu.petsitter.domain.User;
 import com.sjsu.petsitter.domain.UserPreference;
@@ -160,6 +161,14 @@ privileged aspect User_Roo_JavaBean {
     
     public void User.setPets(Set<PetDetail> pets) {
         this.pets = pets;
+    }
+    
+    public Set<Feedback> User.getFeedbackSet() {
+        return this.feedbackSet;
+    }
+    
+    public void User.setFeedbackSet(Set<Feedback> feedbackSet) {
+        this.feedbackSet = feedbackSet;
     }
     
     public UserPreference User.getPreference() {

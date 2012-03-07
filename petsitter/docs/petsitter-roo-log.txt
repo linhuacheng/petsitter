@@ -53,15 +53,15 @@ field number --fieldName userId --type java.lang.Integer
 field date --fieldName createdDate --type java.util.Date
 field date --fieldName updatedDate --type java.util.Date
 
-entity mongo --class ~.domain.Review
-field number --fieldName reviewId  --type java.lang.Integer
+entity mongo --class ~.domain.Feedback
+field number --fieldName feedbackId  --type java.lang.Integer
 field number --fieldName fromUserId  --type java.lang.Integer
 field number --fieldName toUserId  --type java.lang.Integer
 field string --fieldName type  --sizeMax  50
 field number --fieldName rating --type  java.lang.Integer
 field string --fieldName comment --sizeMax  1000
 field number --fieldName requestId --type java.lang.Integer
-field date --fieldName reviewDate --type java.util.Date
+field date --fieldName feedbackDate --type java.util.Date
 field date --fieldName createdDate --type java.util.Date
 field date --fieldName updatedDate --type java.util.Date
 

@@ -4,6 +4,7 @@
 package com.sjsu.petsitter.web;
 
 import com.sjsu.petsitter.domain.Address;
+import com.sjsu.petsitter.domain.Feedback;
 import com.sjsu.petsitter.domain.PetDetail;
 import com.sjsu.petsitter.domain.Request;
 import com.sjsu.petsitter.domain.Response;
@@ -12,6 +13,7 @@ import com.sjsu.petsitter.domain.User;
 import com.sjsu.petsitter.domain.UserPreference;
 import com.sjsu.petsitter.repository.UserPreferenceRepository;
 import com.sjsu.petsitter.service.AddressService;
+import com.sjsu.petsitter.service.FeedbackService;
 import com.sjsu.petsitter.service.PetDetailService;
 import com.sjsu.petsitter.service.RequestService;
 import com.sjsu.petsitter.service.ResponseService;
@@ -29,7 +31,13 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     
     @Autowired
     AddressService ApplicationConversionServiceFactoryBean.addressService;
-
+    
+    @Autowired
+    FeedbackService ApplicationConversionServiceFactoryBean.feedbackService;
+    
+    @Autowired
+    PetDetailService ApplicationConversionServiceFactoryBean.petDetailService;
+    
     @Autowired
     RequestService ApplicationConversionServiceFactoryBean.requestService;
     
@@ -65,6 +73,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, com.sjsu.petsitter.domain.Address>() {
             public com.sjsu.petsitter.domain.Address convert(String id) {
                 return getObject().convert(getObject().convert(id, BigInteger.class), Address.class);
+            }
+        };
+    }
+    
+    public Converter<Feedback, String> ApplicationConversionServiceFactoryBean.getFeedbackToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.sjsu.petsitter.domain.Feedback, java.lang.String>() {
+            public String convert(Feedback feedback) {
+                return new StringBuilder().append(feedback.getFeedbackId()).append(" ").append(feedback.getFromUserId()).append(" ").append(feedback.getFromUserName()).append(" ").append(feedback.getType()).toString();
+            }
+        };
+    }
+    
+    public Converter<BigInteger, Feedback> ApplicationConversionServiceFactoryBean.getIdToFeedbackConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.math.BigInteger, com.sjsu.petsitter.domain.Feedback>() {
+            public com.sjsu.petsitter.domain.Feedback convert(java.math.BigInteger id) {
+                return feedbackService.findFeedback(id);
+            }
+        };
+    }
+    
+    public Converter<String, Feedback> ApplicationConversionServiceFactoryBean.getStringToFeedbackConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.sjsu.petsitter.domain.Feedback>() {
+            public com.sjsu.petsitter.domain.Feedback convert(String id) {
+                return getObject().convert(getObject().convert(id, BigInteger.class), Feedback.class);
             }
         };
     }
