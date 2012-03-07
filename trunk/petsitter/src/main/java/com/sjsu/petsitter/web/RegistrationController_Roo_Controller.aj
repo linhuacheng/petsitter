@@ -32,8 +32,14 @@ privileged aspect RegistrationController_Roo_Controller {
             return "registration/create";
         }
         uiModel.asMap().clear();
-        userService.saveUser(user);
-        return "registration/success";
+        if(userService.findUserByUserName(user.getUserName())==null){
+        	userService.saveUser(user);
+        	return "registration/success";
+        }
+        else{
+        	return "registration/failure";
+        }
+        
 //        return "redirect:/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
 
 //        return "users/create";
