@@ -3,50 +3,13 @@
 
 package com.sjsu.petsitter.service;
 
-import com.sjsu.petsitter.domain.Request;
-import com.sjsu.petsitter.repository.RequestRepository;
 import com.sjsu.petsitter.service.RequestServiceImpl;
-import java.math.BigInteger;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 privileged aspect RequestServiceImpl_Roo_Service {
     
     declare @type: RequestServiceImpl: @Service;
-    
+   
     declare @type: RequestServiceImpl: @Transactional;
-    
-    @Autowired
-    RequestRepository RequestServiceImpl.requestRepository;
-    
-    public long RequestServiceImpl.countAllRequests() {
-        return requestRepository.count();
-    }
-    
-    public void RequestServiceImpl.deleteRequest(Request request) {
-        requestRepository.delete(request);
-    }
-    
-    public Request RequestServiceImpl.findRequest(BigInteger id) {
-        return requestRepository.findOne(id);
-    }
-    
-    public List<Request> RequestServiceImpl.findAllRequests() {
-        return requestRepository.findAll();
-    }
-    
-    public List<Request> RequestServiceImpl.findRequestEntries(int firstResult, int maxResults) {
-        return requestRepository.findAll(new org.springframework.data.domain.PageRequest(firstResult / maxResults, maxResults)).getContent();
-    }
-    
-    public void RequestServiceImpl.saveRequest(Request request) {
-        requestRepository.save(request);
-    }
-    
-    public Request RequestServiceImpl.updateRequest(Request request) {
-        return requestRepository.save(request);
-    }
     
 }

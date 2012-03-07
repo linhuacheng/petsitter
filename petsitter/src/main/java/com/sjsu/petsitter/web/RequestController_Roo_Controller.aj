@@ -46,22 +46,7 @@ privileged aspect RequestController_Roo_Controller {
         uiModel.addAttribute("itemId", id);
         return "requests/show";
     }
-    
-    @RequestMapping(produces = "text/html")
-    public String RequestController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
-            int sizeNo = size == null ? 10 : size.intValue();
-            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("requests", requestService.findRequestEntries(firstResult, sizeNo));
-            float nrOfPages = (float) requestService.countAllRequests() / sizeNo;
-            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
-        } else {
-            uiModel.addAttribute("requests", requestService.findAllRequests());
-        }
-        addDateTimeFormatPatterns(uiModel);
-        return "requests/list";
-    }
-    
+
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String RequestController.update(@Valid Request request, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
