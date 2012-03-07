@@ -6,7 +6,7 @@
         <menu:category id="c_user" z="uoTSf/uIZ821ZppidzS9aO776yk=">
             <!--             <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?form" z="Zv1m8u2rG+JFKcvJ+AHVVK0ey24="/> -->
             <menu:item id="i_user_list" messageCode="local_menu_list" url="/users?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-            <menu:item id="i_user_new" messageCode="global_menu_new" url="/registration?form" z="XPuB+K+87kIVnPjO3NTedY2pzZk="/>
+<!--             <menu:item id="i_user_new" messageCode="global_menu_new" url="/registration?form" z="XPuB+K+87kIVnPjO3NTedY2pzZk="/> -->
         </menu:category>
         <menu:category id="c_search" z="user-managed">
             <menu:item id="i_search_new" messageCode="global_menu_new" url="/search" z="user-managed"/>
