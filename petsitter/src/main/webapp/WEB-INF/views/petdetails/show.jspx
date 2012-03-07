@@ -8,7 +8,7 @@
         <field:display field="petType" id="s_com_sjsu_petsitter_domain_PetDetail_petType" object="${petdetail}" z="T+00lVvtxXvPGGv6N5qkpKyuCKA="/>
         <field:display field="description" id="s_com_sjsu_petsitter_domain_PetDetail_description" object="${petdetail}" z="MmSYpVqW50rmA/oABnCRitzwqFk="/>
         <field:display field="userId" id="s_com_sjsu_petsitter_domain_PetDetail_userId" object="${petdetail}" render="false" z="user-managed"/>
-        <field:display date="true" dateTimePattern="${petDetail_createddate_date_format}" field="createdDate" id="s_com_sjsu_petsitter_domain_PetDetail_createdDate" object="${petdetail}" z="duP3MuVi8UWTSPHDv7c07codEKU="/>
-        <field:display date="true" dateTimePattern="${petDetail_updateddate_date_format}" field="updatedDate" id="s_com_sjsu_petsitter_domain_PetDetail_updatedDate" object="${petdetail}" z="gxMQHnJEBgTMGVsSGQH8x6BF+xs="/>
+        <field:display date="true" dateTimePattern="${petDetail_createddate_date_format}" render="false" field="createdDate" id="s_com_sjsu_petsitter_domain_PetDetail_createdDate" object="${petdetail}" z="duP3MuVi8UWTSPHDv7c07codEKU="/>
+        <field:display date="true" dateTimePattern="${petDetail_updateddate_date_format}" render="false" field="updatedDate" id="s_com_sjsu_petsitter_domain_PetDetail_updatedDate" object="${petdetail}" z="gxMQHnJEBgTMGVsSGQH8x6BF+xs="/>
     </page:show>
 </div>
