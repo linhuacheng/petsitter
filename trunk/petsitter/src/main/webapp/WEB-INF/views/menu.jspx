@@ -23,8 +23,7 @@
             <menu:item id="i_review_list" messageCode="global_menu_list" url="/reviews?page=1&amp;size=${empty param.size ? 10 : param.size}" z="vE1ZLoyB7NH5prwbCr8wTQQBjXs="/>
         </menu:category>
         <menu:category id="c_request" z="K3H2XFvnqlPuvp7YsYXLCJyWwHQ=">
-            <menu:item id="i_request_new" messageCode="global_menu_new" url="/requests?form" z="vXscIy5n1QOw1AlVbhpVIpJCppg="/>
-            <menu:item id="i_request_list" messageCode="global_menu_list" url="/requests?page=1&amp;size=${empty param.size ? 10 : param.size}" z="zR+uAsU8p+xT+34YNGm0eI2d/Dk="/>
+            <menu:item id="i_request_list" messageCode="global_menu_my" url="/requests?page=1&amp;size=${empty param.size ? 10 : param.size}" z="zR+uAsU8p+xT+34YNGm0eI2d/Dk="/>
         </menu:category>
         <menu:category id="c_userpreference" render="false" z="sW/G3faUaQTx2HP5ERego7HY47Q=">
             <menu:item id="i_userpreference_new" messageCode="global_menu_new" url="/userpreferences?form" z="eoXqSlNNfhFCdpANduIKQfIgsRE="/>

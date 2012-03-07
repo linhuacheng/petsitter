@@ -9,12 +9,5 @@ import java.math.BigInteger;
 import java.util.List;
 
 privileged aspect RequestService_Roo_Service {
-    
-    public abstract long RequestService.countAllRequests();    
-    public abstract void RequestService.deleteRequest(Request request);    
-    public abstract Request RequestService.findRequest(BigInteger id);    
-    public abstract List<Request> RequestService.findAllRequests();    
-    public abstract List<Request> RequestService.findRequestEntries(int firstResult, int maxResults);    
-    public abstract void RequestService.saveRequest(Request request);    
-    public abstract Request RequestService.updateRequest(Request request);    
+
 }
