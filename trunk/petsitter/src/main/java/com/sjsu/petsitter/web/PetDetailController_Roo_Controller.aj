@@ -34,8 +34,8 @@ privileged aspect PetDetailController_Roo_Controller {
             return "petdetails/create";
         }
         uiModel.asMap().clear();
-        petDetailService.savePetDetail(petDetail);
-        return "redirect:/petdetails/" + encodeUrlPathSegment(petDetail.getId().toString(), httpServletRequest);
+        petDetailService.savePetDetailToUser(petDetail);
+        return "redirect:/petdetails/" + encodeUrlPathSegment(petDetail.getPetId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
@@ -44,25 +44,17 @@ privileged aspect PetDetailController_Roo_Controller {
         return "petdetails/create";
     }
     
-    @RequestMapping(value = "/{id}", produces = "text/html")
-    public String PetDetailController.show(@PathVariable("id") BigInteger id, Model uiModel) {
+    @RequestMapping(value = "/{petId}", produces = "text/html")
+    public String PetDetailController.show(@PathVariable("petId") String petId, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("petdetail", petDetailService.findPetDetail(id));
-        uiModel.addAttribute("itemId", id);
+        uiModel.addAttribute("petdetail", petDetailService.findPetDetailByPetId(petId));
+        uiModel.addAttribute("itemId", petId);
         return "petdetails/show";
     }
     
     @RequestMapping(produces = "text/html")
     public String PetDetailController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
-            int sizeNo = size == null ? 10 : size.intValue();
-            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("petdetails", petDetailService.findPetDetailEntries(firstResult, sizeNo));
-            float nrOfPages = (float) petDetailService.countAllPetDetails() / sizeNo;
-            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
-        } else {
-            uiModel.addAttribute("petdetails", petDetailService.findAllPetDetails());
-        }
+        uiModel.addAttribute("petdetails", petDetailService.findPetDetailsByUser());
         addDateTimeFormatPatterns(uiModel);
         return "petdetails/list";
     }
@@ -74,23 +66,22 @@ privileged aspect PetDetailController_Roo_Controller {
             return "petdetails/update";
         }
         uiModel.asMap().clear();
-        petDetailService.updatePetDetail(petDetail);
-        return "redirect:/petdetails/" + encodeUrlPathSegment(petDetail.getId().toString(), httpServletRequest);
+        petDetailService.updatePetIdByUser(petDetail);
+        return "redirect:/petdetails/" + encodeUrlPathSegment(petDetail.getPetId().toString(), httpServletRequest);
     }
     
-    @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String PetDetailController.updateForm(@PathVariable("id") BigInteger id, Model uiModel) {
-        populateEditForm(uiModel, petDetailService.findPetDetail(id));
+    @RequestMapping(value = "/{petId}", params = "form", produces = "text/html")
+    public String PetDetailController.updateForm(@PathVariable("petId") String petId, Model uiModel) {
+        populateEditForm(uiModel, petDetailService.findPetDetailByPetId(petId));
         return "petdetails/update";
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
-    public String PetDetailController.delete(@PathVariable("id") BigInteger id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        PetDetail petDetail = petDetailService.findPetDetail(id);
-        petDetailService.deletePetDetail(petDetail);
+    @RequestMapping(value = "/{petId}", method = RequestMethod.DELETE, produces = "text/html")
+    public String PetDetailController.delete(@PathVariable("petId") String petId, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+        petDetailService.deletePetDetailByUser(petId);
         uiModel.asMap().clear();
-        uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
-        uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
+//        uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
+//        uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
         return "redirect:/petdetails";
     }
     
