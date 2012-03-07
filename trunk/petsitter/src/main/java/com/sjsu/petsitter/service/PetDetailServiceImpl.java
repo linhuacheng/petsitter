@@ -1,6 +1,7 @@
 package com.sjsu.petsitter.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -45,6 +46,7 @@ public void savePetDetailToUser(PetDetail petdetail){
     	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ((UserDetails)principal).getUsername();
 		petdetail.setPetId(UUID.randomUUID().toString());
+		petdetail.setCreatedDate(new Date());
 		Set<PetDetail> pets = new HashSet<PetDetail>();
 		Query query = new Query(Criteria.where("userName").is(username));
 		User user = mongoTemplate.findOne(query, User.class);
@@ -106,6 +108,7 @@ public void savePetDetailToUser(PetDetail petdetail){
 		String username = ((UserDetails)principal).getUsername();
 		Set<PetDetail> pets = new HashSet<PetDetail>();
 		String petId = petdetail.getPetId();
+		petdetail.setUpdatedDate(new Date());
 		PetDetail pet = new PetDetail();
 		Query query = new Query(Criteria.where("userName").is(username));
 		User user = mongoTemplate.findOne(query, User.class);
