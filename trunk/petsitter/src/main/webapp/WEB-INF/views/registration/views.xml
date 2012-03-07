@@ -10,5 +10,8 @@
     <definition extends="loginlayout" name="registration/success">
         <put-attribute name="body" value="/WEB-INF/views/registration/success.jspx"/>
     </definition>
+    <definition extends="loginlayout" name="registration/failure">
+        <put-attribute name="body" value="/WEB-INF/views/registration/failure.jspx"/>
+    </definition>
     
 </tiles-definitions>
