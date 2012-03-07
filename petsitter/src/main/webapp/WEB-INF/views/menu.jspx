@@ -29,9 +29,9 @@
             <menu:item id="i_userpreference_new" messageCode="global_menu_new" url="/userpreferences?form" z="eoXqSlNNfhFCdpANduIKQfIgsRE="/>
             <menu:item id="i_userpreference_list" messageCode="global_menu_list" url="/userpreferences?page=1&amp;size=${empty param.size ? 10 : param.size}" z="9FFMKox+alApeVAipRW4trCfqCI="/>
         </menu:category>
-        <menu:category id="c_response" z="/EtV5iwRtvniQ1cANvb3cis+7fo=">
-            <menu:item id="i_response_new" messageCode="global_menu_new" url="/responses?form" z="1imwXpR33jTyqphLwLHDEP32iIo="/>
-            <menu:item id="i_response_list" messageCode="global_menu_list" url="/responses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="OcF5x3LAKfi1RTzZeNuQ7LBvBGM="/>
-        </menu:category>
+       <!-- <menu:category id="c_response" z="/EtV5iwRtvniQ1cANvb3cis+7fo=">-->
+           <!-- <menu:item id="i_response_new" messageCode="global_menu_new" url="/responses?form" z="1imwXpR33jTyqphLwLHDEP32iIo="/>-->
+            <!--<menu:item id="i_response_list" messageCode="global_menu_list" url="/responses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="OcF5x3LAKfi1RTzZeNuQ7LBvBGM="/>-->
+       <!-- </menu:category>-->
     </menu:menu>
 </div>
