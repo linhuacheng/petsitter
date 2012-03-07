@@ -11,6 +11,8 @@ import java.math.BigInteger;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,7 +52,7 @@ privileged aspect UserController_Roo_Controller {
     }
     
     @RequestMapping(produces = "text/html")
-    public String UserController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String UserController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
@@ -60,12 +62,18 @@ privileged aspect UserController_Roo_Controller {
         } else {
             uiModel.addAttribute("users", userService.findAllUsers());
         }
-        return "users/list";
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = ((UserDetails)principal).getUsername();
+		User user = userService.findUserByUserName(username);
+        return "redirect:/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
+//        return "users/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String UserController.update(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
+        	System.out.println("Errors in update");
+        	System.out.println(bindingResult.toString());
             populateEditForm(uiModel, user);
             return "users/update";
         }
