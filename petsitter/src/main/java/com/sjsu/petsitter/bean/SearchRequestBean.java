@@ -3,6 +3,8 @@ package com.sjsu.petsitter.bean;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import java.math.BigInteger;
+
 /**
  * request bean for the search request
  * User: ckempaiah
@@ -19,6 +21,7 @@ public class SearchRequestBean {
     private String city;
     private Integer page;
     private Integer size;
+    private BigInteger loggedOnUserId;
 
     public String getPetType() {
         return petType;
@@ -59,5 +62,13 @@ public class SearchRequestBean {
 
     public void setSize(Integer size) {
         this.size = size;
+    }
+
+    public BigInteger getLoggedOnUserId() {
+        return loggedOnUserId;
+    }
+
+    public void setLoggedOnUserId(BigInteger loggedOnUserId) {
+        this.loggedOnUserId = loggedOnUserId;
     }
 }

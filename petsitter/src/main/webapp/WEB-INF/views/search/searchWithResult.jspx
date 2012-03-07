@@ -12,12 +12,13 @@
     </form:search>
     <page:list id="pl_com_sjsu_petsitter_domain_User" items="${petOwners}" label="Pet Owner" labelPlural="Pet Owners" z="XZ3IWybHLDtQCaNbR2ZCxptfJrI=">
 
-        <table:table-result data="${petOwners}" id="l_com_sjsu_petsitter_domain_User" path="/search" z="GVsxxbI55xxmWteUq5fBZ3G7YF0=" update="false" delete="false" create="false">
+        <table:table-result data="${petOwners}" id="l_com_sjsu_petsitter_domain_User" path="/search" z="GVsxxbI55xxmWteUq5fBZ3G7YF0=" update="false" delete="false" create="false" request="true">
             <table:column id="c_com_sjsu_petsitter_domain_User_firstName" property="firstName" z="sY8evpkpSKUssfE9Z/FRhE3g7Hs="/>
             <table:column id="c_com_sjsu_petsitter_domain_User_lastName" property="lastName" z="VpHE+NAZCATYRvy+H2Ayqz8TCpY="/>
             <table:column id="c_com_sjsu_petsitter_domain_User_averageRating" property="averageRating" z="usercreated"/>
             <table:column id="c_com_sjsu_petsitter_domain_User_city" property="city" z="usercreated"/>
             <table:column id="c_com_sjsu_petsitter_domain_User_zip" property="zip" z="usercreated"/>
+
             <table:column id="c_com_sjsu_petsitter_domain_User_pets" property="pets" z="usercreated"/>
         </table:table-result>
     </page:list>

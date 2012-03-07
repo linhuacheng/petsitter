@@ -10,6 +10,7 @@
   <jsp:directive.attribute name="update" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'update' link into table (default true)" />
   <jsp:directive.attribute name="delete" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'delete' link into table (default true)" />
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
+  <jsp:directive.attribute name="request" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
   <jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)" />
 
   <c:if test="${empty render or render}">
@@ -56,6 +57,10 @@
             <spring:eval var="colCounter" expression="colCounter  + 1" />
           </c:if>
           <c:if test="${delete}">
+            <th></th>
+            <spring:eval var="colCounter" expression="colCounter  + 1" />
+          </c:if>
+          <c:if test="${request}">
             <th></th>
             <spring:eval var="colCounter" expression="colCounter  + 1" />
           </c:if>
@@ -133,6 +138,20 @@
               </form:form>
             </td>
           </c:if>
+          <c:if test="${request}">
+            <td class="utilbox">
+              <c:url value="/requests" var="request_form_url" >
+                <c:param name="form" />
+                <c:param name="approverId" value="${itemId}"/>
+              </c:url>
+              <spring:url value="/resources/images/requestswitch.png" var="request_image_url" />
+              <spring:message arguments="${typeName}" code="entity_update" var="request_label" htmlEscape="false" />
+              <a href="${request_form_url}" alt="${fn:escapeXml(request_label)}" title="${fn:escapeXml(request_label)}">
+                <img alt="${fn:escapeXml(request_label)}" class="image" src="${request_image_url}" title="${fn:escapeXml(request_label)}" />
+              </a>
+            </td>
+          </c:if>
+
         </tr>
       </c:forEach>
       <tr class="footer">
