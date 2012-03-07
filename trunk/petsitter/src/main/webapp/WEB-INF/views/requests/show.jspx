@@ -2,7 +2,7 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_com_sjsu_petsitter_domain_Request" object="${request}" path="/requests" z="011RFqHEu2sB5lJ5fMyljou33ns=">
+    <page:show-request id="ps_com_sjsu_petsitter_domain_Request" object="${request}" requestEditable="true" path="/requests" z="011RFqHEu2sB5lJ5fMyljou33ns=">
         <field:display field="status" id="s_com_sjsu_petsitter_domain_Request_status" object="${request}" z="YLCXU4IRv+0c4QAf7/xJwqsjBAY="/>
         <field:display field="requestorUserName" id="s_com_sjsu_petsitter_domain_Request_requestorUserName" object="${request}" z="K/nSErGGDwBz/DSWPrOJFMQa0CQ="/>
         <field:display field="requestorAddress" id="s_com_sjsu_petsitter_domain_Request_requestorAddress" object="${request}" z="h0nxhIfHPegenpjUsXgzNQvA7hI="/>
@@ -18,5 +18,5 @@
         <field:display date="true" dateTimePattern="${request_createddate_date_format}" field="createdDate" id="s_com_sjsu_petsitter_domain_Request_createdDate" object="${request}" z="k5TecUikZ3QXuC35XRiKKArJ1B0="/>
         <field:display date="true" dateTimePattern="${request_updateddate_date_format}" field="updatedDate" id="s_com_sjsu_petsitter_domain_Request_updatedDate" object="${request}" z="m061FbAXsE2vOpBFSMyJialFuAg="/>
         <field:display field="reponses" id="s_com_sjsu_petsitter_domain_Request_reponses" object="${request}" z="g/d7V6XN8GUJ+LOo5AtL+r6fbGQ="/>
-    </page:show>
+    </page:show-request>
 </div>
