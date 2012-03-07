@@ -4,11 +4,22 @@
   <spring:message var="app_name" code="application_name" htmlEscape="false" />
   <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
   <util:panel id="title" title="${title}">
-    <h3>
+    <p style="font-size: x-large;">
+    <b>
       <spring:message code="welcome_h3" arguments="${app_name}" />
-    </h3>
-    <p>
+      </b></p>
+    
+    <p align="center">
+    <spring:url value="/resources/images/pups_grandchildren.png" var="pups" />
+    <img src="${pups}" />
+    </p>
+    
+    <h3>
+    <i>
+    <p align="right" >
       <spring:message code="welcome_text" />
     </p>
+    </i>
+    </h3>
   </util:panel>
 </div>
