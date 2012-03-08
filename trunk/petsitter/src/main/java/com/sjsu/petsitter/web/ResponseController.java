@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 import com.sjsu.petsitter.service.RequestService;
+import com.sjsu.petsitter.util.RequestStatus;
 
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -38,9 +39,52 @@ public class ResponseController {
        	Response response = new Response();
        	response.setRequestId(strRequestId);
        	
+       	boolean isRequestor = request.getRequestorUserName().equalsIgnoreCase(getLogonUsername());
+       	boolean isApprover = request.getApproverUserName().equalsIgnoreCase(getLogonUsername());
+       	
         uiModel.addAttribute("response", response);
         uiModel.addAttribute("request", request);
-        uiModel.addAttribute("isRequestor", request.getRequestorUserName().equalsIgnoreCase(getLogonUsername()));
+        uiModel.addAttribute("isRequestor", isRequestor);
+        
+        boolean canReject = false, canConfirm =false, canRespond =false, canAccept=false, canCancel=false,canClose=false;
+        String requestStatus = request.getStatus();
+        if (RequestStatus.NEW.equals(requestStatus)) {
+        	if (isRequestor) {
+        		canRespond=true;
+        		canCancel=true;
+        	} else if (isApprover) {
+        		canRespond=true;
+        		canAccept=true;
+        		canReject=true;
+        	}
+        } else if (RequestStatus.ACCEPTED.equals(requestStatus)) {
+        	if (isRequestor) {
+        		canRespond=true;
+        		canConfirm=true;
+        		canCancel=true;
+        	} else if (isApprover) {
+        		canRespond =true;
+        	}
+        } else if (RequestStatus.CONFIRMED.equals(requestStatus)) {
+        	if (isRequestor) {
+        		canClose=true;
+        		canRespond=true;
+        	} else if (isApprover) {
+        		canRespond=true;
+        	}
+        } else if (RequestStatus.REJECTED.equals(requestStatus)) {
+        	if (isRequestor) {
+        		canClose=true;
+        	}
+        }
+   
+        uiModel.addAttribute("canRespond", canRespond);
+        uiModel.addAttribute("canAccept", canAccept);
+        uiModel.addAttribute("canConfirm", canConfirm);
+        uiModel.addAttribute("canReject", canReject);
+        uiModel.addAttribute("canCancel", canCancel);
+        uiModel.addAttribute("canClose", canClose);
+          
         
         addDateTimeFormatPatterns(uiModel);
         
@@ -63,7 +107,11 @@ public class ResponseController {
         
         String strRequestId = response.getRequestId();
        	Request request = requestService.findRequest(new BigInteger(strRequestId));
+       	String requestStatus = response.getStatus();
        	
+       	if (requestStatus!= null && requestStatus.length()>0) {
+       		request.setStatus(requestStatus);
+       	}
        	response.setRespondent(getLogonUsername());
        	response.setResponseDate(new Date());
        	response.setCreatedDate(new Date());

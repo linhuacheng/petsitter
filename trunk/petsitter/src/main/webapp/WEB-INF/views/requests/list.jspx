@@ -3,7 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_com_sjsu_petsitter_domain_Request" items="${requests}" z="7X3IRflZCZj3vinxtZ9wT8X81xo=">
-        <table:table data="${requests}" id="l_com_sjsu_petsitter_domain_Request" path="/requests" feedbackPath="/feedbacks" z="GLAao9QoiI3xWuCsM6bjaJaGJTs=" feedback="true">
+        <table:table data="${requests}" id="l_com_sjsu_petsitter_domain_Request"  delete="false"  path="/requests" feedbackPath="/feedbacks" z="GLAao9QoiI3xWuCsM6bjaJaGJTs=" feedback="true">
             <table:column id="c_com_sjsu_petsitter_domain_Request_status" property="status" z="H9TIUfaTDDFyn8u3fFBINgsLU6c="/>
             <table:column id="c_com_sjsu_petsitter_domain_Request_requestorUserName" property="requestorUserName" z="MWeKbLRn87Hc3cO3UgYg5qZv8eM="/>
             <table:column id="c_com_sjsu_petsitter_domain_Request_approverUserName" property="approverUserName" z="VT2R+0hGsTOHB2AH+93R63bF/fg="/>
