@@ -39,17 +39,26 @@ public class FeedbackServiceImpl implements FeedbackService {
     public void saveFeedbackToUser(User feedbackToUser, Feedback feedback){
 
         Set<Feedback> feedbackSet = feedbackToUser.getFeedbackSet();
-
+        double avgRanking = 0.0;
         if (feedbackSet == null){
             feedbackSet = new HashSet<Feedback>();
             feedbackToUser.setFeedbackSet(feedbackSet);
         }
+        //TODO: this logic could be intense if a user has too many feedbacks
+        // try to see if this calculation could be done by using mongo aggregate queries
+        for (Feedback oldFeedback: feedbackSet){
+            if(oldFeedback.getRating() != null){
+                avgRanking += oldFeedback.getRating();
+            }
+        }
+        avgRanking = avgRanking/feedbackSet.size();
         feedback.setFeedbackId(UUID.randomUUID().toString());
-        feedbackSet.add(feedback);
+
         feedback.setCreatedDate(new Date());
         feedback.setUpdatedDate(new Date());
         feedback.setFeedbackDate(new Date());
-
+        feedbackSet.add(feedback);
+        feedbackToUser.setAverageRating(avgRanking);
         userService.saveUser(feedbackToUser);
 
     }

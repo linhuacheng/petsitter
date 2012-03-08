@@ -63,6 +63,7 @@ public class FeedbackController {
         }
         uiModel.asMap().clear();
         PetswithUserPrinciple petswithUserPrinciple = getLogonUser();
+        feedback.setFromUserName(petswithUserPrinciple.getUsername());
         User feedbackToUser = feedbackService.getFeedbackToUser(feedback.getRequestId(), petswithUserPrinciple);
 
         feedbackService.saveFeedbackToUser(feedbackToUser, feedback);

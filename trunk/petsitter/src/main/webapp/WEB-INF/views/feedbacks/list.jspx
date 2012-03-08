@@ -2,14 +2,13 @@
 <div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_com_sjsu_petsitter_domain_Feedback" items="${feedbacks}" z="PSZomfLAAYSqnKRhKgUUIDuqLkY=">
-        <table:table data="${feedbacks}" id="l_com_sjsu_petsitter_domain_Feedback" path="/feedbacks" z="Afo1FdvTVMrHJSr21ZNoXB0O1hc=">
-            <table:column id="c_com_sjsu_petsitter_domain_Feedback_fromUserId" property="fromUserId" z="PP5jQ5/es/1TVxP1yt7vcyqqLEw="/>
-            <table:column id="c_com_sjsu_petsitter_domain_Feedback_type" property="type" z="siuW2FP/J7mfpwHJHplJHXuCQoM="/>
+    <page:list id="pl_com_sjsu_petsitter_domain_Feedback" items="${feedbacks}" z="PSZomfLAAYSqnKRhKgUUIDuqLkY=" >
+        <table:table data="${feedbacks}" id="l_com_sjsu_petsitter_domain_Feedback" path="/feedbacks" z="Afo1FdvTVMrHJSr21ZNoXB0O1hc=" create="false" update="false" delete="false" showDetail="false">
+            <table:column id="c_com_sjsu_petsitter_domain_Feedback_fromUserName" property="fromUserName" z="/nLgNavY9KYk4tLp699MtNHi/nM="/>
+            <!--<table:column id="c_com_sjsu_petsitter_domain_Feedback_type" property="type" z="siuW2FP/J7mfpwHJHplJHXuCQoM="/>-->
             <table:column id="c_com_sjsu_petsitter_domain_Feedback_rating" property="rating" z="7F9/kbn3sEQeQW/h1VnwCYXoSYI="/>
             <table:column id="c_com_sjsu_petsitter_domain_Feedback_comment" property="comment" z="UG+MSDb7RRrMW4GOPuiupCNclHc="/>
-            <table:column id="c_com_sjsu_petsitter_domain_Feedback_fromUserName" property="fromUserName" z="/nLgNavY9KYk4tLp699MtNHi/nM="/>
-            <table:column id="c_com_sjsu_petsitter_domain_Feedback_feedbackId" property="feedbackId" z="B+6FYwTVTgEN3grLIv15ablhjYY="/>
+            <!--<table:column id="c_com_sjsu_petsitter_domain_Feedback_feedbackId" property="feedbackId" z="B+6FYwTVTgEN3grLIv15ablhjYY="/>-->
         </table:table>
     </page:list>
 </div>
