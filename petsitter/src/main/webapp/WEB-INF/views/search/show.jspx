@@ -21,12 +21,26 @@
         <field:display field="city" id="s_com_sjsu_petsitter_domain_User_city" object="${user}" z="qWedG1RNxey8/mVgVOySRcCQg7Y="/>
         <field:display field="zip" id="s_com_sjsu_petsitter_domain_User_zip" object="${user}" z="fyaw6CLkUGIlqqFGGfOIH/AerDE="/>
         <field:display field="country" id="s_com_sjsu_petsitter_domain_User_country" object="${user}" z="z+Bpfk+T7Ntz5crznZ0DMjhteK4="/>
-        <div class="mainStyle">
-        <spring:message code="label_com_sjsu_petsitter_domain_user_pets"/>
-        <c:set var="petDetails" value="${user.pets}" scope="request"/>
-        <!--<c:set var="itemId" value="${petdetail.id}" scope="request"/>-->
-        <jsp:include page="../petdetails/petdetailcard.jspx">
-        </jsp:include>
-        </div>
+        <table>
+            <tr>
+                <td>
+                    <div class="mainStyle">
+                    <spring:message code="label_com_sjsu_petsitter_domain_user_pets"/>
+                    <c:set var="petDetails" value="${user.pets}" scope="request"/>
+                    <!--<c:set var="itemId" value="${petdetail.id}" scope="request"/>-->
+                    <jsp:include page="../petdetails/petdetailcard.jspx">
+                    </jsp:include>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                      <div >
+                    <c:set var="feedbacks" value="${user.feedbackSet}" scope="request"/>
+                    <jsp:include page="../feedbacks/list.jspx"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </page:show>
 </div>
