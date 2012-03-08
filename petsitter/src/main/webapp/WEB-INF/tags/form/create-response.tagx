@@ -4,8 +4,12 @@
   <jsp:directive.attribute name="id" type="java.lang.String" required="true" rtexprvalue="true" description="The identifier for this tag (do not change!)"/>
   <jsp:directive.attribute name="modelAttribute" type="java.lang.String" required="true" rtexprvalue="true" description="The name of the model attribute for form binding"/>
   <jsp:directive.attribute name="path" type="java.lang.String" required="true" rtexprvalue="true" description="Specify the relative URL path (wit leading /)" />
-  <jsp:directive.attribute name="requestStatus" type="java.lang.String" required="true" rtexprvalue="true" description="Status of associated request" />
-  <jsp:directive.attribute name="isRequestor" type="java.lang.Boolean" required="true" rtexprvalue="true" description="Is user the requestor" />
+  <jsp:directive.attribute name="respond" type="java.lang.String" required="true" rtexprvalue="true" description="Status of associated request" />
+  <jsp:directive.attribute name="accept" type="java.lang.Boolean" required="true" rtexprvalue="true" description="Is user the requestor" />
+  <jsp:directive.attribute name="reject" type="java.lang.Boolean" required="true" rtexprvalue="true" description="Is user the requestor" />
+  <jsp:directive.attribute name="cancel" type="java.lang.Boolean" required="true" rtexprvalue="true" description="Is user the requestor" />
+  <jsp:directive.attribute name="confirm" type="java.lang.Boolean" required="true" rtexprvalue="true" description="Is user the requestor" />
+  <jsp:directive.attribute name="close" type="java.lang.Boolean" required="true" rtexprvalue="true" description="Is user the requestor" />
   <jsp:directive.attribute name="compositePkField" type="java.lang.String" required="false" rtexprvalue="true" description="The field name of the composite primary key (only used if a composite PK is present in the form backing object)" />
   <jsp:directive.attribute name="multipart" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if this is a multipart form (default: false)" />
   <jsp:directive.attribute name="label" type="java.lang.String" required="false" rtexprvalue="true" description="The label used for this object, will default to a message bundle if not supplied"/>
@@ -53,18 +57,34 @@
         </c:if>
         <jsp:doBody />
         <div class="submit" id="${fn:escapeXml(id)}_respond">
+          <input id="requestStatus" type="hidden" value="Accepted"/>
+          <input id="status" type="hidden" value="Accepted"/>
+          <c:if test="${respond}">
           <spring:message code="button_respond" var="respond_button" htmlEscape="false" />
           <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
           <input id="respond" type="submit" value="${fn:escapeXml(respond_button)}"/>
+          </c:if>
+          <c:if test="${accept}">
           <spring:message code="button_accept" var="accept_button" htmlEscape="false" />
-          <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
-          <input id="accept" type="submit" value="${fn:escapeXml(accept_button)}"/>
+          <input id="accept" type="submit" value="${fn:escapeXml(accept_button)}" onClick="document.getElementById('_status_id').value='Accepted';"/>
+          </c:if>
+          <c:if test="${reject}">
           <spring:message code="button_reject" var="reject_button" htmlEscape="false" />
-          <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
-          <input id="reject" type="submit" value="${fn:escapeXml(reject_button)}"/>
+          <input id="reject" type="submit" value="${fn:escapeXml(reject_button)}" onClick="document.getElementById('_status_id').value='Rejected';"/>
+          </c:if>
+          <c:if test="${confirm}">
           <spring:message code="button_confirm" var="confirm_button" htmlEscape="false" />
-          <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
-          <input id="confirm" type="submit" value="${fn:escapeXml(confirm_button)}"/>
+          <input id="confirm" type="submit" value="${fn:escapeXml(confirm_button)}" onClick="document.getElementById('_status_id').value='Confirmed';"/>
+          </c:if>
+
+            <c:if test="${cancel}">
+          <spring:message code="button_cancel" var="cancel_button" htmlEscape="false" />
+         <input id="cancel" type="submit" value="${fn:escapeXml(cancel_button)}" onClick="document.getElementById('_status_id').value='Cancelled';"/>
+          </c:if>
+   <c:if test="${close}">
+          <spring:message code="button_close" var="close_button" htmlEscape="false" />
+          <input id="close" type="submit" value="${fn:escapeXml(close_button)}" onClick="document.getElementById('_status_id').value='Closed';"/>
+          </c:if>
         </div>        
       </form:form>
     </util:panel>

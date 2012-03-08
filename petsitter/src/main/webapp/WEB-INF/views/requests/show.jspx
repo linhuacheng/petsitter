@@ -2,7 +2,7 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:c="http://java.sun.com/jsp/jstl/core"  xmlns:spring="http://www.springframework.org/tags"   version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show-request id="ps_com_sjsu_petsitter_domain_Request" object="${request}" requestEditable="true" path="/requests" z="011RFqHEu2sB5lJ5fMyljou33ns=">
+    <page:show-request id="ps_com_sjsu_petsitter_domain_Request" object="${request}" delete="false" update="false" requestEditable="true" path="/requests" z="011RFqHEu2sB5lJ5fMyljou33ns=">
         <field:display field="status" id="s_com_sjsu_petsitter_domain_Request_status" object="${request}" z="YLCXU4IRv+0c4QAf7/xJwqsjBAY="/>
         <field:display field="requestorUserName" id="s_com_sjsu_petsitter_domain_Request_requestorUserName" object="${request}" z="K/nSErGGDwBz/DSWPrOJFMQa0CQ="/>
         <field:display field="requestorAddress" id="s_com_sjsu_petsitter_domain_Request_requestorAddress" object="${request}" z="h0nxhIfHPegenpjUsXgzNQvA7hI="/>
