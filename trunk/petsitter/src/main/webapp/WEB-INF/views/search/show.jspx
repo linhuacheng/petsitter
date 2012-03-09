@@ -21,11 +21,11 @@
         <field:display field="city" id="s_com_sjsu_petsitter_domain_User_city" object="${user}" z="qWedG1RNxey8/mVgVOySRcCQg7Y="/>
         <field:display field="zip" id="s_com_sjsu_petsitter_domain_User_zip" object="${user}" z="fyaw6CLkUGIlqqFGGfOIH/AerDE="/>
         <field:display field="country" id="s_com_sjsu_petsitter_domain_User_country" object="${user}" z="z+Bpfk+T7Ntz5crznZ0DMjhteK4="/>
-        <table>
+        <table style="border:0px;">
             <tr>
-                <td>
+                <td style="border:0px">
                     <div class="mainStyle">
-                    <spring:message code="label_com_sjsu_petsitter_domain_user_pets"/>
+                    <h2> Pets: </h2>
                     <c:set var="petDetails" value="${user.pets}" scope="request"/>
                     <!--<c:set var="itemId" value="${petdetail.id}" scope="request"/>-->
                     <jsp:include page="../petdetails/petdetailcard.jspx">
@@ -35,7 +35,7 @@
             </tr>
             <tr>
                 <td>
-                      <div >
+                    <div >
                     <c:set var="feedbacks" value="${user.feedbackSet}" scope="request"/>
                     <jsp:include page="../feedbacks/list.jspx"/>
                     </div>

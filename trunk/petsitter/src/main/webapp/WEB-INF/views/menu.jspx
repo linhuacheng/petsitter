@@ -9,7 +9,7 @@
 <!--             <menu:item id="i_user_new" messageCode="global_menu_new" url="/registration?form" z="XPuB+K+87kIVnPjO3NTedY2pzZk="/> -->
         </menu:category>
         <menu:category id="c_search" z="user-managed">
-            <menu:item id="i_search_new" messageCode="global_menu_new" url="/search" z="user-managed"/>
+            <menu:item id="i_search_new" messageCode="global_menu_search" url="/search" z="user-managed"/>
         </menu:category>
         <!--<menu:category id="c_address" render="false" z="user-managed">-->
         <!--<menu:item id="i_address_new" messageCode="global_menu_new" url="/addresses?form" z="vg+UZ0neKcizSzKiVzXeI3oY1BA="/>-->
@@ -34,9 +34,8 @@
         <!-- <menu:item id="i_response_new" messageCode="global_menu_new" url="/responses?form" z="1imwXpR33jTyqphLwLHDEP32iIo="/>-->
         <!--<menu:item id="i_response_list" messageCode="global_menu_list" url="/responses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="OcF5x3LAKfi1RTzZeNuQ7LBvBGM="/>-->
         <!-- </menu:category>-->
-        <!--<menu:category id="c_feedback" z="g08tgPCGoLqS3ONH+C6JtpoFkFo=">-->
-            <!--<menu:item id="i_feedback_new" messageCode="global_menu_new" url="/feedbacks?form" z="xEgd7/pyR/SQ73uHnpE4PkiPiuI="/>-->
-            <!--<menu:item id="i_feedback_list" messageCode="global_menu_list" url="/feedbacks?page=1&amp;size=${empty param.size ? 10 : param.size}" z="MXrAPKvVM4NdUZMOaTeIHtDMaF4="/>-->
-        <!--</menu:category>-->
+        <menu:category id="c_feedback" z="g08tgPCGoLqS3ONH+C6JtpoFkFo=">
+            <menu:item id="i_feedback_list" messageCode="global_menu_list" url="/feedbacks?page=1&amp;size=${empty param.size ? 10 : param.size}" z="MXrAPKvVM4NdUZMOaTeIHtDMaF4="/>
+        </menu:category>
     </menu:menu>
 </div>
