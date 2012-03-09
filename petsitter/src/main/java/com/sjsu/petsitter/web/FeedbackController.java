@@ -85,4 +85,23 @@ public class FeedbackController {
 
         return principal;
     }
+
+    @RequestMapping(produces = "text/html")
+    public String list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+
+        PetswithUserPrinciple petswithUserPrinciple = getLogonUser();
+        if (page != null || size != null) {
+            int sizeNo = size == null ? 10 : size.intValue();
+            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+
+            uiModel.addAttribute("feedbacks", feedbackService.getFeedbackByUserId(petswithUserPrinciple.getUserId()));
+            float nrOfPages = (float) feedbackService.countAllFeedbacks() / sizeNo;
+            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+        } else {
+            uiModel.addAttribute("feedbacks",  feedbackService.getFeedbackByUserId(petswithUserPrinciple.getUserId()));
+        }
+        addDateTimeFormatPatterns(uiModel);
+        return "feedbacks/list";
+    }
+
 }

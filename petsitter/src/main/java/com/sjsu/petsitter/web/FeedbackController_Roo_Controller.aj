@@ -27,21 +27,8 @@ privileged aspect FeedbackController_Roo_Controller {
     @Autowired
     FeedbackService FeedbackController.feedbackService;
     
-    @RequestMapping(produces = "text/html")
-    public String FeedbackController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
-            int sizeNo = size == null ? 10 : size.intValue();
-            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("feedbacks", feedbackService.findFeedbackEntries(firstResult, sizeNo));
-            float nrOfPages = (float) feedbackService.countAllFeedbacks() / sizeNo;
-            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
-        } else {
-            uiModel.addAttribute("feedbacks", feedbackService.findAllFeedbacks());
-        }
-        addDateTimeFormatPatterns(uiModel);
-        return "feedbacks/list";
-    }
-    
+
+
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String FeedbackController.update(@Valid Feedback feedback, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {

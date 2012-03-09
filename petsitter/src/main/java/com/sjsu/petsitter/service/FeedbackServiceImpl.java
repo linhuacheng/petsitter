@@ -40,24 +40,28 @@ public class FeedbackServiceImpl implements FeedbackService {
 
         Set<Feedback> feedbackSet = feedbackToUser.getFeedbackSet();
         double avgRanking = 0.0;
+        int sumRanking = 0;
         if (feedbackSet == null){
             feedbackSet = new HashSet<Feedback>();
             feedbackToUser.setFeedbackSet(feedbackSet);
         }
+        feedbackSet.add(feedback);
         //TODO: this logic could be intense if a user has too many feedbacks
         // try to see if this calculation could be done by using mongo aggregate queries
         for (Feedback oldFeedback: feedbackSet){
             if(oldFeedback.getRating() != null){
-                avgRanking += oldFeedback.getRating();
+                sumRanking = sumRanking + oldFeedback.getRating();
             }
         }
-        avgRanking = avgRanking/feedbackSet.size();
-        feedback.setFeedbackId(UUID.randomUUID().toString());
+        System.out.println("SumRanking" + sumRanking);
+        System.out.println("total" + feedbackSet.size());
 
+        avgRanking = ((sumRanking+0.0)/feedbackSet.size());
+        feedback.setFeedbackId(UUID.randomUUID().toString());
+        System.out.println("avgRanking" + avgRanking);
         feedback.setCreatedDate(new Date());
         feedback.setUpdatedDate(new Date());
         feedback.setFeedbackDate(new Date());
-        feedbackSet.add(feedback);
         feedbackToUser.setAverageRating(avgRanking);
         userService.saveUser(feedbackToUser);
 
@@ -96,5 +100,11 @@ public class FeedbackServiceImpl implements FeedbackService {
             }
         }
         return null;
+    }
+
+    public Set<Feedback> getFeedbackByUserId(BigInteger userId){
+
+        User user = userService.findUser(userId);
+        return user.getFeedbackSet();
     }
 }
