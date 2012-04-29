@@ -12,7 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Transformation;
 
-public class DrawableSlide extends Slide implements Drawable.Callback{
+public class DrawableSlide extends Slide implements Drawable.Callback {
 	private static final int IO_BUFFER_SIZE = 4096;
 	private DrawSlider dr;
 	private boolean drawableLoaded;
