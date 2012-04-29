@@ -8,10 +8,12 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.layers.repository.mongo.RooMongoEntity;
 import org.springframework.roo.addon.tostring.RooToString;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @RooJavaBean
 @RooToString
 @RooMongoEntity
+@XmlRootElement(name="user")
 public class User {
 
     @NotNull

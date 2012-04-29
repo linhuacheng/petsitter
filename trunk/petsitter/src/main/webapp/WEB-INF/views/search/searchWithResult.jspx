@@ -3,7 +3,7 @@
 
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <form:search id="fc_com_sjsu_petsitter_bean_SearchRequestBean" modelAttribute="searchRequestBean" path="/search/" label="Pet Owner" render="${empty dependencies}" z="I+G0wwPAdxroBGLv/IqxprGK9ew=">
+    <form:search id="fc_com_sjsu_petsitter_bean_SearchRequestBean" modelAttribute="searchRequestBean" path="/search" label="Pet Owner" render="${empty dependencies}" z="I+G0wwPAdxroBGLv/IqxprGK9ew=">
         <field:input id="c_com_sjsu_petsitter_bean_SearchRequestBean_petType" field="petType" />
         <field:input id="c_com_sjsu_petsitter_bean_SearchRequestBean_zip" field="zip"/>
         <field:input id="c_com_sjsu_petsitter_bean_SearchRequestBean_city" field="city"/>

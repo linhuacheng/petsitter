@@ -76,4 +76,42 @@
     </property>
   </bean>
 <bean class="com.sjsu.petsitter.web.ApplicationConversionServiceFactoryBean" id="applicationConversionService"/>
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="order" value="1"/>
+        <property name="mediaTypes">
+            <map>
+                <entry key="json" value="application/json"/>
+                <entry key="xml" value="application/xml"/>
+            </map>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
+                <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+                    <constructor-arg>
+                        <bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+                            <property name="classesToBeBound">
+                                <list>
+                                    <value>com.sjsu.petsitter.domain.User</value>
+                                    <value>com.sjsu.petsitter.bean.SearchRequestBean</value>
+                                </list>
+                                </property>
+                        </bean>
+                    </constructor-arg>
+                </bean>
+
+            </list>
+        </property>
+        <property name="ignoreAcceptHeader" value="true"/>
+    </bean>
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="order" value="2" />-->
+		<!--<property name="prefix">-->
+			<!--<value>/WEB-INF/views/</value>-->
+		<!--</property>-->
+		<!--<property name="suffix">-->
+			<!--<value>.jsp</value>-->
+		<!--</property>-->
+    <!--</bean>-->
 </beans>
