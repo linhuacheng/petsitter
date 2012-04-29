@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Welcome to Mobile PetSwitch!</string>
+    <string name="app_name">MobilePetSwitch</string>
+
+    <string name="descone">PetSwitch is designed to bring a group of pet owners to help each other in taking care of 
+        each other’s pets. The mobile application of PetSwitch uses the online application to allow users to contact 
+        and co-operate with each other in taking care of their pets. In this application users can search for the 
+        appropriate pet owners whom they can co-ordinate with to take care of the pets. They can send a request to 
+        the pet owners and respond to requests sent by other pet owners. </string>
+        
+    
+<!--     Search Tab -->
+    
+    <string name="searchby">Search Criteria</string>
+    <string name="enterkey">Enter Search Criteria</string>
+    <string name="searchbutton">Search</string>
+    <string name="planet_prompt">Choose a planet</string>
+    <string-array name="planets_array">
+        <item><i>Zip</i></item>
+        <item><i>City</i></item>
+        <item><i>Location</i></item>
+        <item><i>Pet Type</i></item>
+    </string-array>
+    
+    
+    
+<!--     Request Form Page -->
+
+	<string name="pettype"><b>Pet Type</b></string>
+	<string name="petdesc"><b>Pet Description</b></string>
+	<string name="reqstartdate"><b>Request Start Date</b></string>
+	<string name="reqenddate"><b>Request End Date</b></string>
+	<string name="req_message"><b>Message</b></string>
+	<string name="sendrequest"><b>Send Request</b></string>
+	
+	
+<!-- 	User Details after searching for pet sitters -->
+
+	<string name="label_ss_load_start">SlideShow Started Loading</string>
+    <string name="label_ss_load_end">SlideShow Ended Loading</string>
+    <string name="label_slide_anim_start">Slide Animation Started</string>
+    <string name="label_slide_anim_end">Slide Animation Ended</string>
+    <string name="userdetails">Details</string>
+
+</resources>
