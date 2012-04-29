@@ -71,4 +71,6 @@ public class User {
     private Set<Feedback> feedbackSet;
     
     private UserPreference preference;
+
+    private Long[] loc;
 }
