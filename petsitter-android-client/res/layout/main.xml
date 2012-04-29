@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    style="@style/appBG" >
+
+    <TextView
+        style="@style/CodeFont"
+        android:text="@string/hello"
+        android:gravity="center"/>
+    <View
+        android:layout_width="40sp"
+        android:layout_height="25sp" />
+    <TextView
+        style="@style/DescFont"
+        android:textSize="13dp"
+        android:gravity="center"
+        android:text="@string/descone" />
+    <View
+        android:layout_width="40sp"
+        android:layout_height="25sp" />
+    
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:layout_gravity="center"
+        android:onClick="onClickWelcome"/>
+
+</LinearLayout>
