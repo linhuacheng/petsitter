@@ -53,6 +53,16 @@
             android:label="Selected Pet Sitter"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <activity 
+            android:name=".RequestDetails"
+            android:label="Selected Pet Sitter"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity 
+            android:name=".RequestList"
+            android:label="Selected Pet Sitter"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>
