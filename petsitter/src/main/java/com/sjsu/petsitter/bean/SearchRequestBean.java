@@ -3,6 +3,7 @@ package com.sjsu.petsitter.bean;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigInteger;
 
 /**
@@ -14,6 +15,7 @@ import java.math.BigInteger;
  */
 @RooJavaBean
 @RooToString
+@XmlRootElement(name="SearchRequestBean")
 public class SearchRequestBean {
 
     private String petType;
