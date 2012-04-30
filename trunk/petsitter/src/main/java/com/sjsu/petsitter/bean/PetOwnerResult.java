@@ -1,7 +1,6 @@
 package com.sjsu.petsitter.bean;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
@@ -21,13 +20,16 @@ public class PetOwnerResult {
     private String addressLine1;
     private String addressLine2;
     private String city;
-    private String zip;
+    private String state;
+
+
+	private String zip;
     private String country;
     private String homePhone;
     private String mobile;
     private Double averageRating;
-    private int latitude;
-    private int longitude;
+    private BigDecimal latitude;
+    private BigDecimal longitude;
     	
     public String getDisplayName() {
         return displayName;
@@ -133,20 +135,28 @@ public class PetOwnerResult {
         this.averageRating = averageRating;
     }
     
-    public int getLatitude() {
+    public BigDecimal getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(int latitude) {
+	public void setLatitude(BigDecimal latitude) {
 		this.latitude = latitude;
 	}
 
-	public int getLongitude() {
+	public BigDecimal getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(int longitude) {
+	public void setLongitude(BigDecimal longitude) {
 		this.longitude = longitude;
+	}
+	
+    public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 }
