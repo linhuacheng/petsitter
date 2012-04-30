@@ -56,6 +56,6 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="@string/searchbutton"
-        android:onClick="gotoSelectedPetSitter"/>
+        android:onClick="searchPetSitter"/>
     
 </LinearLayout>
