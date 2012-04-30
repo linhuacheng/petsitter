@@ -34,7 +34,11 @@ public class MobilePetSwitchActivity extends TabActivity {
                           null)
                       .setContent(intent);
         tabHost.addTab(spec);
-
+        intent = new Intent().setClass(this, CameraPreview.class);
+        spec = tabHost.newTabSpec("capture").setIndicator("Capture Photo/Video",
+                          null)
+                      .setContent(intent);
+        tabHost.addTab(spec);
         tabHost.setCurrentTab(2);
 
     }
