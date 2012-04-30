@@ -3,7 +3,11 @@
 
     <string name="hello">Welcome to Mobile PetSwitch!</string>
     <string name="app_name">MobilePetSwitch</string>
-
+ <string name="btnIntend">Take (big) Picture</string>
+    <string name="btnIntendS">Take (small) Picture</string>
+    <string name="btnIntendV">Take Video</string>
+    <string name="cannot">Cannot</string>
+    <string name="album_name">CameraSample</string>
     <string name="descone">PetSwitch is designed to bring a group of pet owners to help each other in taking care of 
         each other’s pets. The mobile application of PetSwitch uses the online application to allow users to contact 
         and co-operate with each other in taking care of their pets. In this application users can search for the 
