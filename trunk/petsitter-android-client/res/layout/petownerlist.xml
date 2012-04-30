@@ -5,6 +5,11 @@
     android:orientation="vertical"
         style="@style/appBG"  >
     
+    <TextView
+        style="@style/DescFont"
+        android:background="#A0FF00"
+        android:text="Search Petsitters Result" />
+        
     <ListView android:id="@+id/petownerlist" 
         android:layout_height="0dp" 
         android:layout_width="fill_parent"

@@ -6,6 +6,11 @@
     android:stretchColumns="1"
         style="@style/appBG"  >
 
+   <TextView
+        style="@style/DescFont"
+        android:background="#A0FF00"
+        android:text="Sign-in" />
+        
     <TableRow>
 
         <TextView
