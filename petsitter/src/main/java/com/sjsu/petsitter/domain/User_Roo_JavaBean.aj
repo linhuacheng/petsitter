@@ -123,6 +123,14 @@ privileged aspect User_Roo_JavaBean {
         this.zip = zip;
     }
     
+    public String User.getState() {
+        return this.state;
+    }
+    
+    public void User.setState(String state) {
+        this.state = state;
+    }
+    
     public String User.getCountry() {
         return this.country;
     }
