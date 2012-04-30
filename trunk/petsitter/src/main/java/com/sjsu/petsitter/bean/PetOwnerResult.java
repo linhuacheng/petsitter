@@ -26,7 +26,9 @@ public class PetOwnerResult {
     private String homePhone;
     private String mobile;
     private Double averageRating;
-
+    private int latitude;
+    private int longitude;
+    	
     public String getDisplayName() {
         return displayName;
     }
@@ -130,4 +132,21 @@ public class PetOwnerResult {
     public void setAverageRating(Double averageRating) {
         this.averageRating = averageRating;
     }
+    
+    public int getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(int latitude) {
+		this.latitude = latitude;
+	}
+
+	public int getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(int longitude) {
+		this.longitude = longitude;
+	}
+
 }
