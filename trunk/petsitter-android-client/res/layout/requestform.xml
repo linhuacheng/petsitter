@@ -66,13 +66,27 @@
     	<EditText
 	        android:id="@+id/req_startdate"
 	        style="@style/TextFieldStyle" 
-    	    android:layout_weight="0.40" />
+    	    android:layout_weight="0.27" />
+    	
+    	<ImageButton 
+    	    android:id="@+id/select_start_date"
+    	    android:layout_width="0dip"
+    	    android:layout_height="40dp"
+    	    android:layout_weight="0.10"
+    	    android:src="@drawable/calender_month"/>
     	
     	<EditText
 	        android:id="@+id/req_starttime"
 	        style="@style/TextFieldStyle" 
-    	    android:layout_weight="0.25"
+    	    android:layout_weight="0.18"
 	        android:inputType="text"/>
+    	
+    	<ImageButton 
+    	    android:id="@+id/select_start_time"
+    	    android:layout_width="0dip"
+    	    android:layout_height="40dp"
+    	    android:layout_weight="0.10"
+    	    android:src="@drawable/clock"/>
 	
 	</LinearLayout>
 	
@@ -96,12 +110,26 @@
     	<EditText
 	        android:id="@+id/req_enddate"
 	        style="@style/TextFieldStyle" 
-    	    android:layout_weight="0.40" />
+    	    android:layout_weight="0.27" />
+    	
+    	<ImageButton 
+    	    android:id="@+id/select_end_date"
+    	    android:layout_width="0dip"
+    	    android:layout_height="40dp"
+    	    android:layout_weight="0.10"
+    	    android:src="@drawable/calender_month"/>
     	
     	<EditText
 	        android:id="@+id/req_endtime"
 	        style="@style/TextFieldStyle" 
-    	    android:layout_weight="0.25" />
+    	    android:layout_weight="0.18" />
+    	
+    	<ImageButton 
+    	    android:id="@+id/select_end_time"
+    	    android:layout_width="0dip"
+    	    android:layout_height="40dp"
+    	    android:layout_weight="0.10"
+    	    android:src="@drawable/clock"/>
 	
 	</LinearLayout>
 	
