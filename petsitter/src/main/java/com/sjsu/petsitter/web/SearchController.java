@@ -3,6 +3,7 @@ package com.sjsu.petsitter.web;
 import com.sjsu.petsitter.bean.PetOwnerResult;
 import com.sjsu.petsitter.bean.PetswithUserPrinciple;
 import com.sjsu.petsitter.bean.SearchRequestBean;
+import com.sjsu.petsitter.domain.AddressLoc;
 import com.sjsu.petsitter.domain.PetDetail;
 import com.sjsu.petsitter.domain.User;
 import com.sjsu.petsitter.service.UserService;
@@ -87,6 +88,7 @@ public class SearchController {
             petOwnerResult.setDisplayName(user.getDisplayName());
             petOwnerResult.setAverageRating(user.getAverageRating());
             petOwnerResult.setCity(user.getCity());
+            petOwnerResult.setState(user.getState());
 
             petOwnerResult.setCountry(user.getCountry());
             petOwnerResult.setEmail(user.getEmail());
@@ -96,6 +98,11 @@ public class SearchController {
             petOwnerResult.setZip(user.getZip());
             petOwnerResult.setMobile(user.getMobile());
             petOwnerResult.setHomePhone(user.getHomePhone());
+            AddressLoc location = user.getAddressLoc();
+            if (location !=null) {
+            	petOwnerResult.setLatitude(location.getLat());
+            	petOwnerResult.setLongitude(location.getLon());
+            }
             petOwnerResults.add(petOwnerResult);
         }
         uiModel.addAttribute("petOwners", petOwnerResults);
