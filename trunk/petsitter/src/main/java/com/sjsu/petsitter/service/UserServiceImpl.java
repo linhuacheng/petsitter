@@ -1,8 +1,12 @@
 package com.sjsu.petsitter.service;
 
 
+import com.google.code.geocoder.model.LatLng;
 import com.sjsu.petsitter.bean.SearchRequestBean;
+import com.sjsu.petsitter.domain.AddressLoc;
 import com.sjsu.petsitter.domain.User;
+import com.sjsu.petsitter.repository.UserRepository;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +25,9 @@ public class UserServiceImpl implements UserService {
     public static final String PROP_PASSWORD = "password";
     @Autowired
     MongoTemplate mongoTemplate;
+    
+    @Autowired
+    UserRepository userRepository;
 
     /**
      * finds user who are also pet owners by passed in search request bean
@@ -61,5 +68,20 @@ public class UserServiceImpl implements UserService {
     public User findByUserNameAndPassword(String userName, String password) {
         Query query = new Query(Criteria.where(PROP_USER_NAME).is(userName).andOperator(Criteria.where(PROP_PASSWORD).is(password)));
         return mongoTemplate.findOne(query,User.class);
+    }
+    
+    public void saveUser(User user) {
+    	String address = user.getAddressLine1() + " " + user.getAddressLine2() + ", " +user.getCity() + ", " +user.getState() + ", " + user.getCountry();
+    	LatLng location = GeocodingService.getLocation(address); 
+    	
+    	if (location != null) {
+    		AddressLoc loc = new AddressLoc();
+    		loc.setLat(location.getLat());
+    		loc.setLon(location.getLng());
+    		
+    		user.setAddressLoc(loc);
+    	}
+    	
+        userRepository.save(user);
     }
 }

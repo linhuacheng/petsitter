@@ -53,6 +53,9 @@ public class User {
 
     @Size(max = 50)
     private String zip;
+    
+    @Size(max = 50)
+    private String state;
 
     @Size(max = 100)
     private String country;
@@ -73,4 +76,14 @@ public class User {
     private UserPreference preference;
 
     private Long[] loc;
+    
+	private AddressLoc addressLoc;
+	
+    public AddressLoc getAddressLoc() {
+		return addressLoc;
+	}
+
+	public void setAddressLoc(AddressLoc addressLoc) {
+		this.addressLoc = addressLoc;
+	}
 }

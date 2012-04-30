@@ -21,6 +21,7 @@
         <field:textarea field="addressLine1" id="c_com_sjsu_petsitter_domain_User_addressLine1" z="YvyaHUcnuS0isxvOgrcqmrbRS2Q="/>
         <field:textarea field="addressLine2" id="c_com_sjsu_petsitter_domain_User_addressLine2" z="UR59OPdV/fTWb8njCxYquV2eF5s="/>
         <field:input field="city" id="c_com_sjsu_petsitter_domain_User_city" z="vGHsin0CLc++tDDet643ntGKcsM="/>
+        <field:input field="state" id="c_com_sjsu_petsitter_domain_User_state" z="vGHsin0CLc++tDDet643asdntGKcsM="/>
         <field:input field="zip" id="c_com_sjsu_petsitter_domain_User_zip" z="bqii6wF4bW+bItseR+45Rqrqr2s="/>
         <field:input field="country" id="c_com_sjsu_petsitter_domain_User_country" z="Bm8kOpHfkoIcSDn4MyHthDuLPG4="/>
         <field:input field="homePhone" id="c_com_sjsu_petsitter_domain_User_homePhone" z="lDCYIVKCve494tBHaha8TdHlwas="/>
