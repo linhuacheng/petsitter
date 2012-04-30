@@ -3,7 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:paddingRight="10dip"
-    android:stretchColumns="1" >
+    android:stretchColumns="1"
+        style="@style/appBG"  >
 
     <TableRow>
 
