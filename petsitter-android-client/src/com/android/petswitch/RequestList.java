@@ -12,6 +12,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.android.petswitch.R;
+import com.android.petswitch.adapter.RequestListAdapter;
 
 public class RequestList extends Activity {
 	public void onCreate(Bundle icicle) {
