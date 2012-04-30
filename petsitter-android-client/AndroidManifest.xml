@@ -39,6 +39,11 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity 
+            android:name=".MapsTrialActivity"
+            android:label="maps"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity 
             android:name=".SearchActivity"
             android:label="Search Pet Sitters"
             android:theme="@android:style/Theme.NoTitleBar" >
