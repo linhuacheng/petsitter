@@ -21,10 +21,22 @@
         android:layout_width="40sp"
         android:layout_height="25sp" />
     
+    <TextView  android:id="@+id/welcomeUser"
+        style="@style/DescFont"
+        android:textSize="13dp"
+        android:gravity="center"/>
+    
     <Button android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OK"
         android:layout_gravity="center"
         android:onClick="onClickWelcome"/>
+    
+    <Button android:id="@+id/welcomeUserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign-in"
+        android:layout_gravity="center"
+        android:onClick="onClickSetUser"/>
 
 </LinearLayout>

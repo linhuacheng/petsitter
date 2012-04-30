@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingRight="10dip"
+    android:stretchColumns="1" >
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/propertyDetail_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            android:text="Name"
+            android:textSize="20px"
+            android:textStyle="bold" />
+
+        <EditText android:id="@+id/name_box" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/propertyDetail_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            android:text="Password"
+            android:textSize="20px"
+            android:textStyle="bold" />
+
+        <EditText android:id="@+id/password_box"
+            android:password="true" />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/welcomeUserButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="onClickWelcome"
+            android:text="Sign-in" />
+    </TableRow>
+
+</TableLayout>
