@@ -1,5 +1,6 @@
 package com.android.petswitch.dto;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public class PetOwnerResult {
@@ -17,8 +18,9 @@ public class PetOwnerResult {
     private String homePhone;
     private String mobile;
     private Double averageRating;
-    private int latitude;
-    private int longitude;
+    private String state;
+    private BigDecimal latitude;
+    private BigDecimal longitude;
 
     public String getDisplayName() {
         return displayName;
@@ -123,21 +125,30 @@ public class PetOwnerResult {
     public void setAverageRating(Double averageRating) {
         this.averageRating = averageRating;
     }
-    
-    public int getLatitude() {
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public BigDecimal getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(int latitude) {
+	public void setLatitude(BigDecimal latitude) {
 		this.latitude = latitude;
 	}
 
-	public int getLongitude() {
+	public BigDecimal getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(int longitude) {
+	public void setLongitude(BigDecimal longitude) {
 		this.longitude = longitude;
 	}
+    
 
 }

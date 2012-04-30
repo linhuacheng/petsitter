@@ -98,16 +98,12 @@ public class SearchPetOwnerAdapter extends BaseAdapter {
 
 			String address = new StringBuilder()
 					.append(isNotEmpty(petOwner.getAddressLine1()) ? petOwner
-							.getAddressLine1() : "")
-					.append(" ")
-					.append(isNotEmpty(petOwner.getAddressLine2()) ? petOwner
-							.getAddressLine2() : "")
-					.append(" ")
-					.append(isNotEmpty(petOwner.getCity()) ? petOwner.getCity()
-							: "")
-					.append(" ")
-					.append(isNotEmpty(petOwner.getZip()) ? petOwner.getZip()
-							: "").append(" ").toString();
+							.getAddressLine1() : "")					
+					.append(isNotEmpty(petOwner.getAddressLine2()) ? ( " " + petOwner.getAddressLine2()) : "")
+					.append(isNotEmpty(petOwner.getCity()) ? ( ", " + petOwner.getCity())
+							: "")					
+					.append(isNotEmpty(petOwner.getState()) ? ( ", " + petOwner.getState())
+							: "").toString();
 
 			userNameText.setText("Username: " + petOwners.get(position).getDisplayName());
 			userPhoneText.setText("Phone: " + phone);
