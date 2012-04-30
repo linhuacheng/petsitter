@@ -38,6 +38,16 @@
             android:label="Search Pet Sitters"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+         <activity 
+            android:name=".SearchOwnerResultActivity"
+            android:label="Search Pet Sitters Result"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity 
+            android:name=".SignInActivity"
+            android:label="Sign In"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>        
         <activity 
             android:name=".RequestResponseActivity"
             android:label="Request Response"
