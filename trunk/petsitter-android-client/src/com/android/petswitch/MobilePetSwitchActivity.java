@@ -29,7 +29,7 @@ public class MobilePetSwitchActivity extends TabActivity {
         tabHost.addTab(spec);
 
         // Do the same for the other tabs
-        intent = new Intent().setClass(this, RequestResponseActivity.class);
+        intent = new Intent().setClass(this, RequestList.class);
         spec = tabHost.newTabSpec("reqres").setIndicator("Request/Response",
                           null)
                       .setContent(intent);
