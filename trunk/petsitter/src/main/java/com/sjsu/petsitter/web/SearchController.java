@@ -85,6 +85,7 @@ public class SearchController {
         List<PetOwnerResult> petOwnerResults = new ArrayList<PetOwnerResult>();
         for (User user: userList){
             PetOwnerResult petOwnerResult = new PetOwnerResult();
+            petOwnerResult.setUserName(user.getUserName());
             petOwnerResult.setAddressLine1(user.getAddressLine1());
             petOwnerResult.setAddressLine2(user.getAddressLine2());
             petOwnerResult.setDisplayName(user.getDisplayName());
