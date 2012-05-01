@@ -11,6 +11,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.android.petswitch.adapter.SearchPetOwnerAdapter;
+import com.android.petswitch.dto.PetOwnerResult;
 import com.android.petswitch.dto.SearchRequestBean;
 import com.android.petswitch.util.ApplicationConstants;
 
@@ -43,8 +44,26 @@ public class SearchOwnerResultActivity extends Activity {
 		ownerList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				
+				System.out.println("Entering onClick of SearchOwnerResultActivity");
+				PetOwnerResult petOwnerDetail = (PetOwnerResult) parent.getItemAtPosition(position);
 				Intent intent = new Intent(view.getContext(),
 						SelectedPetSitter.class);
+				
+				String displayName = petOwnerDetail.getDisplayName();
+				System.out.println("Display Name of the user ... "+displayName);
+				System.out.println("userName is .... "+petOwnerDetail.getUserName());
+				
+				intent.putExtra("userName", petOwnerDetail.getUserName());
+				intent.putExtra("displayName",displayName);
+				intent.putExtra("phoneNo", petOwnerDetail.getMobile());
+				intent.putExtra("address1", petOwnerDetail.getAddressLine1());
+				intent.putExtra("address2", petOwnerDetail.getAddressLine2());
+				intent.putExtra("city", petOwnerDetail.getCity());
+				intent.putExtra("state", petOwnerDetail.getState());
+				intent.putExtra("zip", petOwnerDetail.getZip());
+				
+				System.out.println("Starting the activity");
 				// intent.putExtra(ItemAdapter.ITEM_INDEX, position);
 				startActivity(intent);
 			}
