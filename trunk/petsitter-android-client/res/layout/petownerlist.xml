@@ -8,7 +8,7 @@
     <TextView
         style="@style/DescFont"
         android:background="#A0FF00"
-        android:text="Search Petsitters Result" />
+        android:text="Search Petsitter Result" />
         
     <ListView android:id="@+id/petownerlist" 
         android:layout_height="0dp" 
