@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
@@ -75,11 +76,11 @@ public class UserServiceImpl implements UserService {
     	LatLng location = GeocodingService.getLocation(address); 
     	
     	if (location != null) {
-    		AddressLoc loc = new AddressLoc();
-    		loc.setLat(location.getLat());
-    		loc.setLon(location.getLng());
-    		
-    		user.setAddressLoc(loc);
+    		Double[] loc = new Double[2];
+    		loc [AddressLoc.LONGITUDE_IDX] = location.getLng().doubleValue();
+    		loc [AddressLoc.LATITUDE_IDX] = location.getLat().doubleValue();
+
+    		user.setLoc(loc);
     	}
     	
         userRepository.save(user);
