@@ -8,13 +8,18 @@ import com.sjsu.petsitter.domain.User;
 import com.sjsu.petsitter.repository.UserRepository;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.geo.Circle;
+import org.springframework.data.mongodb.core.geo.Point;
+import org.springframework.data.mongodb.core.index.GeospatialIndex;
+import org.springframework.data.mongodb.core.index.IndexDefinition;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
@@ -24,6 +29,13 @@ public class UserServiceImpl implements UserService {
     public static final String PROP_ZIP = "zip";
     public static final String PROP_CITY = "city";
     public static final String PROP_PASSWORD = "password";
+    public static final double RADIUS = 30;
+    //1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA
+    public static final Double[] Amphitheatre_1600_Pkwy_Mountain_View_CA_94043 = new Double[]{-122.08530320,37.42114440};
+    //"160 N Main St, Milpitas, CA 95035, USA
+    public static final Double[] NMainSt_160_Milpitas_CA_95035 = new Double[]{-121.9068760, 37.4327710};
+    Log log = LogFactory.getLog(UserServiceImpl.class);
+
     @Autowired
     MongoTemplate mongoTemplate;
     
@@ -39,6 +51,15 @@ public class UserServiceImpl implements UserService {
      */
     public List<User> findPetOwners(SearchRequestBean searchRequestBean,int firstResult, int maxResults){
         Query query = null;
+        //searchRequestBean.setNearLoc(Amphitheatre_1600_Pkwy_Mountain_View_CA_94043);
+        if (searchRequestBean.getNearLoc() != null && searchRequestBean.getNearLoc().length > 0
+                && searchRequestBean.getNearLoc()[0] != null &&
+                searchRequestBean.getNearLoc()[1] != null){
+
+            Circle circle = new Circle(searchRequestBean.getNearLoc()[0], searchRequestBean.getNearLoc()[1], RADIUS);
+            //Point point = new Point(searchRequestBean.getNearLoc()[0], searchRequestBean.getNearLoc()[1]);
+            query = new Query(Criteria.where("loc").within(circle)).limit(maxResults).skip(firstResult);
+        }
         if (StringUtils.isNotBlank(searchRequestBean.getPetType())){
 
             query = new Query(Criteria.where(PROP_PREFERENCE_PET_TYPE).regex(searchRequestBean.getPetType(), "i")
@@ -72,9 +93,29 @@ public class UserServiceImpl implements UserService {
     }
     
     public void saveUser(User user) {
-    	String address = user.getAddressLine1() + " " + user.getAddressLine2() + ", " +user.getCity() + ", " +user.getState() + ", " + user.getCountry();
-    	LatLng location = GeocodingService.getLocation(address); 
+
+       updateLocationInformation(user);
     	
+        userRepository.save(user);
+    }
+
+    public User updateUser(User user) {
+
+        updateLocationInformation(user);
+        return userRepository.save(user);
+    }
+
+    private void updateLocationInformation(User user){
+        IndexDefinition indexDef = new GeospatialIndex("loc");
+        mongoTemplate.ensureIndex(indexDef, User.class);
+        String address = user.getAddressLine1() + " " + user.getAddressLine2() + ", " +user.getCity() + ", " +user.getState() + ", " + user.getCountry();
+        LatLng location  = null;
+        try {
+    	    location = GeocodingService.getLocation(address);
+        } catch (Exception e){
+            log.error("Error in getting geocoding information address" + address, e);
+        }
+
     	if (location != null) {
     		Double[] loc = new Double[2];
     		loc [AddressLoc.LONGITUDE_IDX] = location.getLng().doubleValue();
@@ -82,7 +123,5 @@ public class UserServiceImpl implements UserService {
 
     		user.setLoc(loc);
     	}
-    	
-        userRepository.save(user);
     }
 }
