@@ -81,6 +81,24 @@ public void savePetDetailToUser(PetDetail petdetail){
 		
     }
     
+    
+    public List<PetDetail> findPetDetailsByUserName(String userName){
+		
+		Set<PetDetail> pets = new HashSet<PetDetail>();
+		Query query = new Query(Criteria.where("userName").is(userName));
+		User user = mongoTemplate.findOne(query, User.class);
+		if(user.getPets()!=null)
+		{
+			pets = user.getPets();
+			
+		}
+		
+		List<PetDetail> list = new ArrayList<PetDetail>(pets);
+		return list;
+		
+    }
+    
+    
     public void deletePetDetailByUser(String petId)
     {
     	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

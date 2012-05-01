@@ -13,5 +13,6 @@ public interface PetDetailService {
     public void savePetDetailToUser(PetDetail petdetail);
     public void deletePetDetailByUser(String petId);
     public List<PetDetail> findPetDetailsByUser();
+    public List<PetDetail> findPetDetailsByUserName(String userName);
     public void updatePetIdByUser(PetDetail petDetail);
 }
