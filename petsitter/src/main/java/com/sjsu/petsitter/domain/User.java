@@ -1,6 +1,5 @@
 package com.sjsu.petsitter.domain;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 import javax.persistence.ManyToOne;

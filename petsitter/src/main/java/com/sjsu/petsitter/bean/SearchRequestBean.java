@@ -24,6 +24,7 @@ public class SearchRequestBean {
     private Integer page;
     private Integer size;
     private BigInteger loggedOnUserId;
+    private Double[] nearLoc;
 
     public String getPetType() {
         return petType;
@@ -72,5 +73,13 @@ public class SearchRequestBean {
 
     public void setLoggedOnUserId(BigInteger loggedOnUserId) {
         this.loggedOnUserId = loggedOnUserId;
+    }
+
+    public Double[] getNearLoc() {
+        return nearLoc;
+    }
+
+    public void setNearLoc(Double[] nearLoc) {
+        this.nearLoc = nearLoc;
     }
 }

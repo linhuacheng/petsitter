@@ -16,5 +16,5 @@ privileged aspect UserService_Roo_Service {
     public abstract List<User> UserService.findAllUsers();    
     public abstract List<User> UserService.findUserEntries(int firstResult, int maxResults);    
     public abstract void UserService.saveUser(User user);    
-    public abstract User UserService.updateUser(User user);    
+
 }
