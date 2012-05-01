@@ -1,5 +1,6 @@
 package com.sjsu.petsitter.domain;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import javax.persistence.ManyToOne;
@@ -75,15 +76,13 @@ public class User {
     
     private UserPreference preference;
 
-    private Long[] loc;
+    private Double[] loc;
     
-	private AddressLoc addressLoc;
-	
-    public AddressLoc getAddressLoc() {
-		return addressLoc;
+	public Double[] getLoc() {
+		return loc;
 	}
 
-	public void setAddressLoc(AddressLoc addressLoc) {
-		this.addressLoc = addressLoc;
+	public void setLoc(Double[] loc) {
+		this.loc = loc;
 	}
 }

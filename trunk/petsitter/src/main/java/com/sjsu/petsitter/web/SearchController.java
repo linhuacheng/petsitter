@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
+
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,10 +100,10 @@ public class SearchController {
             petOwnerResult.setZip(user.getZip());
             petOwnerResult.setMobile(user.getMobile());
             petOwnerResult.setHomePhone(user.getHomePhone());
-            AddressLoc location = user.getAddressLoc();
-            if (location !=null) {
-            	petOwnerResult.setLatitude(location.getLat());
-            	petOwnerResult.setLongitude(location.getLon());
+            Double[] location = user.getLoc();
+            if (location !=null && location.length==2) {
+            	petOwnerResult.setLatitude(location[AddressLoc.LATITUDE_IDX]);
+            	petOwnerResult.setLongitude(location[AddressLoc.LONGITUDE_IDX]);
             }
             petOwnerResults.add(petOwnerResult);
         }
