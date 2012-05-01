@@ -12,6 +12,7 @@ import java.math.BigInteger;
  */
 public class PetOwnerResult {
 
+	private String userName;
     private String displayName;
     private BigInteger id;
     private String firstName;
@@ -31,7 +32,15 @@ public class PetOwnerResult {
     private Double latitude;
     private Double longitude;
     	
-    public String getDisplayName() {
+    public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getDisplayName() {
         return displayName;
     }
 
