@@ -46,34 +46,20 @@ public class MapsTrialActivity extends MapActivity {
     	setContentView(R.layout.mapslayout);
     	
     	
-    	user_lat = getIntent().getExtras().getDouble("latitude");
-    	user_lon = getIntent().getExtras().getDouble("longitude");
+    	user_lat = (getIntent().getExtras().getDouble("latitude")) * constMultiplier;
+    	user_lon = (getIntent().getExtras().getDouble("longitude")) * constMultiplier;
+    	System.out.println("Latitude in maps activity is................."+user_lat);
+        System.out.println("Longitude in maps activity is................."+user_lon);
     	address1 = getIntent().getStringExtra("address1");  
     	address2 = getIntent().getStringExtra("address2");
     	
-    	selectedLat = (int) user_lat*constMultiplier;
-    	selectedLng = (int) user_lon*constMultiplier;
+    	selectedLat = (int) user_lat;
+    	selectedLng = (int) user_lon;
     	
     	
-//        Context context = null;
-//        EditText text = new EditText(context);
-//        String value = text.getText().toString();
-//        Geocoder geoCoder = null;
-//        int selectedLat = 0,selectedLng = 0;
-//        
-//        List<Address> addressList = null;
-//		try {
-//			addressList = geoCoder.getFromLocationName(value, 1);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//        Address address = addressList.get(0);
-//        if(address.hasLatitude() && address.hasLongitude()){
-//            selectedLat = (int) address.getLatitude();
-//            selectedLng = (int) address.getLongitude();
-//        }
-        
+
+       System.out.println("Latitude is................."+selectedLat);
+       System.out.println("Longitude is................."+selectedLng);
         MapView mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         List<Overlay> mapOverlays = mapView.getOverlays();
