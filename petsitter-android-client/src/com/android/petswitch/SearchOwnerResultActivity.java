@@ -62,6 +62,8 @@ public class SearchOwnerResultActivity extends Activity {
 				intent.putExtra("city", petOwnerDetail.getCity());
 				intent.putExtra("state", petOwnerDetail.getState());
 				intent.putExtra("zip", petOwnerDetail.getZip());
+				intent.putExtra("latitude", petOwnerDetail.getLatitude());
+				intent.putExtra("longitude", petOwnerDetail.getLongitude());
 				
 				System.out.println("Starting the activity");
 				// intent.putExtra(ItemAdapter.ITEM_INDEX, position);
