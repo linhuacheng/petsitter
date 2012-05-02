@@ -46,6 +46,10 @@ public class SelectedPetSitter extends Activity {
 	private String state;
 	private String zip;
 	private String user_name;
+	private double latitude;
+	private double longitude;
+	private String full_address1;
+	private String full_address2;
 	
 	List<PetDetailBean> userPetDetails = new ArrayList<PetDetailBean>(); 
 	PetDetailBean pdb = new PetDetailBean();
@@ -68,6 +72,9 @@ public class SelectedPetSitter extends Activity {
         petDesc = (TextView) findViewById(R.id.pet_desc);
         
         user_name = getIntent().getStringExtra("userName");
+        latitude = getIntent().getExtras().getDouble("latitude");
+        latitude = getIntent().getExtras().getDouble("longitude");
+        
         System.out.println("user_name is ... "+user_name);
      // the thread handler for asynchronous fetching of data
      		threadHandler = new Handler() {
@@ -118,6 +125,8 @@ public class SelectedPetSitter extends Activity {
         state = ", "+getIntent().getStringExtra("state");
         zip = " "+getIntent().getStringExtra("zip");
         
+        full_address1 = address1+address2;
+        full_address2 = city+state+zip;
         
         userName.setText(display_name);
         phoneNo.setText(phone_no);
@@ -136,6 +145,10 @@ public class SelectedPetSitter extends Activity {
     
     public void callMap(View v){
     	Intent i = new Intent(SelectedPetSitter.this, MapsTrialActivity.class);
+    	i.putExtra("latitude", latitude);
+    	i.putExtra("longitude", longitude);
+    	i.putExtra("address1", full_address1);
+    	i.putExtra("address2", full_address2);
         startActivity(i);
     }
     
