@@ -4,7 +4,6 @@
 package com.sjsu.petsitter.domain;
 
 import com.sjsu.petsitter.domain.Response;
-import java.math.BigInteger;
 import java.util.Date;
 
 privileged aspect Response_Roo_JavaBean {
@@ -87,6 +86,22 @@ privileged aspect Response_Roo_JavaBean {
     
     public void Response.setUpdatedDate(Date updatedDate) {
         this.updatedDate = updatedDate;
+    }
+    
+    public String Response.getFileName() {
+        return this.fileName;
+    }
+    
+    public void Response.setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+    
+    public String Response.getFileType() {
+        return this.fileType;
+    }
+    
+    public void Response.setFileType(String fileType) {
+        this.fileType = fileType;
     }
     
 }
