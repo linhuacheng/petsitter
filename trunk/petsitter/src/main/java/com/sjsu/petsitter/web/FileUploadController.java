@@ -4,7 +4,6 @@ import com.sjsu.petsitter.bean.FileUploadBean;
 import com.sjsu.petsitter.domain.Request;
 import com.sjsu.petsitter.domain.Response;
 import com.sjsu.petsitter.service.RequestService;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.joda.time.format.DateTimeFormat;
