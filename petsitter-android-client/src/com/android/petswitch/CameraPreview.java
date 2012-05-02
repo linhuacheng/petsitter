@@ -231,9 +231,9 @@ public class CameraPreview extends Activity {
 		mImageBitmap = null;
 		mVideoUri = null;
 
-		Button picBtn = (Button) findViewById(R.id.btnIntend);
-		setBtnListenerOrDisable(picBtn, mTakePicOnClickListener,
-				MediaStore.ACTION_IMAGE_CAPTURE);
+//		Button picBtn = (Button) findViewById(R.id.btnIntend);
+//		setBtnListenerOrDisable(picBtn, mTakePicOnClickListener,
+//				MediaStore.ACTION_IMAGE_CAPTURE);
 
 		Button picSBtn = (Button) findViewById(R.id.btnIntendS);
 		setBtnListenerOrDisable(picSBtn, mTakePicSOnClickListener,
@@ -253,12 +253,12 @@ public class CameraPreview extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
-		case ACTION_TAKE_PHOTO_B: {
-			if (resultCode == RESULT_OK) {
-				handleBigCameraPhoto();
-			}
-			break;
-		} // ACTION_TAKE_PHOTO_B
+//		case ACTION_TAKE_PHOTO_B: {
+//			if (resultCode == RESULT_OK) {
+//				handleBigCameraPhoto();
+//			}
+//			break;
+//		} // ACTION_TAKE_PHOTO_B
 
 		case ACTION_TAKE_PHOTO_S: {
 			if (resultCode == RESULT_OK) {
