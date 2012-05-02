@@ -72,8 +72,14 @@ public class SelectedPetSitter extends Activity {
         petDesc = (TextView) findViewById(R.id.pet_desc);
         
         user_name = getIntent().getStringExtra("userName");
+        
+        
         latitude = getIntent().getExtras().getDouble("latitude");
-        latitude = getIntent().getExtras().getDouble("longitude");
+        longitude = getIntent().getExtras().getDouble("longitude");
+//       
+        
+        System.out.println("Latitude in search is................."+latitude);
+        System.out.println("Longitude in search is................."+longitude);
         
         System.out.println("user_name is ... "+user_name);
      // the thread handler for asynchronous fetching of data
@@ -147,6 +153,8 @@ public class SelectedPetSitter extends Activity {
     	Intent i = new Intent(SelectedPetSitter.this, MapsTrialActivity.class);
     	i.putExtra("latitude", latitude);
     	i.putExtra("longitude", longitude);
+    	System.out.println("Latitude before calling maps activity is................."+latitude);
+        System.out.println("Longitude before calling maps activity is................."+longitude);
     	i.putExtra("address1", full_address1);
     	i.putExtra("address2", full_address2);
         startActivity(i);
