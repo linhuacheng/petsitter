@@ -104,8 +104,6 @@ public class SelectedPetSitter extends Activity {
      		
         
         displayName = getIntent().getStringExtra("displayName");
-        SelectedPetSitterDetails petSitterDetail = new SelectedPetSitterDetails();
-        petOwnerDetail = petSitterDetail.getPetOwner();
         
         userName = (TextView) findViewById(R.id.user_name);
         phoneNo = (TextView) findViewById(R.id.phone_no);
