@@ -29,13 +29,32 @@ import com.google.android.maps.OverlayItem;
 
 public class MapsTrialActivity extends MapActivity {
     /** Called when the activity is first created. */
-	int selectedLat = 19240000,selectedLng = -99120000;
+//	int selectedLat = 19240000,selectedLng = -99120000;
+
+	int constMultiplier = 1000000;
+	private int selectedLat;
+	private int selectedLng;
+	private double user_lat;
+	private double user_lon;
+	private String address1;
+	private String address2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
     	setContentView(R.layout.mapslayout);
+    	
+    	
+    	user_lat = getIntent().getExtras().getDouble("latitude");
+    	user_lon = getIntent().getExtras().getDouble("longitude");
+    	address1 = getIntent().getStringExtra("address1");  
+    	address2 = getIntent().getStringExtra("address2");
+    	
+    	selectedLat = (int) user_lat*constMultiplier;
+    	selectedLng = (int) user_lon*constMultiplier;
+    	
+    	
 //        Context context = null;
 //        EditText text = new EditText(context);
 //        String value = text.getText().toString();
@@ -61,7 +80,7 @@ public class MapsTrialActivity extends MapActivity {
         Drawable drawable = this.getResources().getDrawable(R.drawable.ic_launcher);
         HelloItemizedOverlay itemizedoverlay = new HelloItemizedOverlay(drawable, this);
         GeoPoint point = new GeoPoint(selectedLat,selectedLng);
-        OverlayItem overlayitem = new OverlayItem(point, "Hola, Mundo!", "I'm in Mexico City!");
+        OverlayItem overlayitem = new OverlayItem(point, address1, address2);
         itemizedoverlay.addOverlay(overlayitem);
         mapOverlays.add(itemizedoverlay);
     }
