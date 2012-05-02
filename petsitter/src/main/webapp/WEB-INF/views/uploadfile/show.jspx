@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_sjsu_petsitter_bean_FileUploadBean" object="${fileUploadBean}" path="/fileUploadBean" z="v5UKgMqx4OgXGCOvSggYvRy05wU=">
+        <field:display field="userFileName" id="s_com_sjsu_petsitter_bean_FileUploadBean_originalfilename" object="${fileUploadBean}" z="3HI85UTBu+BOU4jgGKgkflX+3g4="/>
+        <field:display field="fileName" id="s_com_sjsu_petsitter_bean_FileUploadBean_filename" object="${fileUploadBean}" z="SsQzABe2FKKkSzAvDWcrrAh8wwA="/>
+    </page:show>
+</div>

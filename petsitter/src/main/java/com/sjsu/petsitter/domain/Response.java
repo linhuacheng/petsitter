@@ -42,4 +42,9 @@ public class Response {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     private Date updatedDate;
+
+    private String fileName;
+
+    private String fileType;
+
 }

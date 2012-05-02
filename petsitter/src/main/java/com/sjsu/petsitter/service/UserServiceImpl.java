@@ -58,7 +58,8 @@ public class UserServiceImpl implements UserService {
 
             Circle circle = new Circle(searchRequestBean.getNearLoc()[0], searchRequestBean.getNearLoc()[1], RADIUS);
             //Point point = new Point(searchRequestBean.getNearLoc()[0], searchRequestBean.getNearLoc()[1]);
-            query = new Query(Criteria.where("loc").within(circle)).limit(maxResults).skip(firstResult);
+            query = new Query(Criteria.where("loc").within(circle).and("id").ne(searchRequestBean.getLoggedOnUserId()))
+                    .limit(maxResults).skip(firstResult);
         }
         if (StringUtils.isNotBlank(searchRequestBean.getPetType())){
 
