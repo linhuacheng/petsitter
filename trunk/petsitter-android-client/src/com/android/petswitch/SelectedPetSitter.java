@@ -41,7 +41,6 @@ public class SelectedPetSitter extends Activity {
 	private TextView petType;
 	private TextView petDesc;
 
-	private String lastSelectedButton = null;
 	private String display_name;
 	private String phone_no;
 	private String address1;
@@ -154,7 +153,6 @@ public class SelectedPetSitter extends Activity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo){
 
-    	lastSelectedButton = "phone";	// if first phone number is clicked, set lastSelectedButton to "phone"
 			menu.setHeaderTitle("Menu");
 			menu.add(0, v.getId(), 0, "Send SMS");
 			menu.add(0, v.getId(), 0, "Call Pet Sitter");
@@ -180,14 +178,14 @@ public class SelectedPetSitter extends Activity {
 	public void sendSMS(int rid)
 	{
 		Intent i = new Intent(SelectedPetSitter.this, SendSMSActivity.class);    // call SendSMSActivity activity when Send SMS option is selected 
-        i.putExtra("phone_no", "5556");  //phone_no
+        i.putExtra("phone_no", phone_no);  //phone_no
 		startActivity(i);
 	}
 
 	public void callOwner(int rid)
 	{
 		Intent phoneCall = new Intent(Intent.ACTION_CALL);	// call ACTION_CALL intent when Call option is selected
-		phoneCall.setData(Uri.parse("tel:"+"5556"));					
+		phoneCall.setData(Uri.parse("tel:"+phone_no));					
 		startActivity(phoneCall);
 	}
 
