@@ -4,6 +4,10 @@ import java.math.BigInteger;
 import java.util.Date;
 
 public class RequestResponseDetail {
+    public static final String IREQ="ireq";
+	public static final String IRES="ires";
+	public static final String OREQ="oreq";
+	public static final String ORES="ores";
 
 	private String comment;
 	private String status;
@@ -17,7 +21,12 @@ public class RequestResponseDetail {
     private String requesterPhoneNumber;
     private String approverPhoneNumber;
     private BigInteger requestId;
-	
+	private String type;
+    private String contentType;
+    private String fileName;
+
+
+
 	public String getComment() {
 		return comment;
 	}
@@ -96,5 +105,29 @@ public class RequestResponseDetail {
 
     public void setRequestId(BigInteger requestId) {
         this.requestId = requestId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }
