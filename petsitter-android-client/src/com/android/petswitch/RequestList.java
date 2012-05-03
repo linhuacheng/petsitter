@@ -32,29 +32,38 @@ public class RequestList extends Activity {
 
 				System.out.println("Entering onClick of RequestList");
 				RequestResponseDetail requestResponseDetail = (RequestResponseDetail) parent.getItemAtPosition(position);
-				
-				Intent intent = new Intent(view.getContext(),
-						RequestDetails.class);
-				
-				System.out.println("Requestor userName is .... "+requestResponseDetail.getRequestorUserName());
-				
-				if(requestResponseDetail.getRequestorUserName().equalsIgnoreCase(prefs.getString(ApplicationConstants.USERNAME, "")));
-				{
-					intent.putExtra("userName", requestResponseDetail.getApproverUserName());
+				if (RequestResponseDetail.IREQ.equalsIgnoreCase(requestResponseDetail.getType()) || 
+						RequestResponseDetail.OREQ.equalsIgnoreCase(requestResponseDetail.getType())){
+					Intent intent = new Intent(view.getContext(),
+							RequestDetails.class);
 					
-					//intent.putExtra("phoneNo", requestResponseDetail.getMobile());  -- should get it from server
+					System.out.println("Requestor userName is .... "+requestResponseDetail.getRequestorUserName());
 					
-					intent.putExtra("petType", requestResponseDetail.getPetType());
-					intent.putExtra("reqStartDate", requestResponseDetail.getRequestStartDate());
-					intent.putExtra("reqEndDate", requestResponseDetail.getRequestEndDate());
-					intent.putExtra("comment", requestResponseDetail.getComment());
-					intent.putExtra("status", requestResponseDetail.getStatus());
+					if(requestResponseDetail.getRequestorUserName().equalsIgnoreCase(prefs.getString(ApplicationConstants.USERNAME, "")));
+					{
+						intent.putExtra("userName", requestResponseDetail.getApproverUserName());
+						
+						//intent.putExtra("phoneNo", requestResponseDetail.getMobile());  -- should get it from server
+						
+						intent.putExtra("petType", requestResponseDetail.getPetType());
+						intent.putExtra("reqStartDate", requestResponseDetail.getRequestStartDate());
+						intent.putExtra("reqEndDate", requestResponseDetail.getRequestEndDate());
+						intent.putExtra("comment", requestResponseDetail.getComment());
+						intent.putExtra("status", requestResponseDetail.getStatus());
+					}
+					System.out.println("Starting the activity");
+					// intent.putExtra(ItemAdapter.ITEM_INDEX, position);
+					startActivity(intent);
+	//				Intent showDetail = new Intent(RequestList.this, RequestDetails.class);
+	//				startActivity(showDetail);
+				} else if (RequestResponseDetail.IRES.equalsIgnoreCase(requestResponseDetail.getType()) || 
+						RequestResponseDetail.ORES.equalsIgnoreCase(requestResponseDetail.getType())){
+					Intent intent = new Intent(view.getContext(),
+							ImageGalleryActivity.class);
+					intent.putExtra("type", "image");
+					intent.putExtra("fileName", requestResponseDetail.getFileName());
+					startActivity(intent);
 				}
-				System.out.println("Starting the activity");
-				// intent.putExtra(ItemAdapter.ITEM_INDEX, position);
-				startActivity(intent);
-//				Intent showDetail = new Intent(RequestList.this, RequestDetails.class);
-//				startActivity(showDetail);
 			}
 
 		});

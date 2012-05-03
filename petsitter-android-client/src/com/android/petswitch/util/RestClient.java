@@ -1,12 +1,14 @@
 package com.android.petswitch.util;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -30,6 +32,9 @@ import org.apache.http.protocol.HTTP;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 
 public class RestClient {
 
@@ -50,20 +55,24 @@ public class RestClient {
 	private String password;
 
 	protected Context context;
+	private ByteArrayOutputStream byteArrayStream;
 
 	public RestClient(String url) {
 		this.url = url;
 		params = new ArrayList<NameValuePair>();
 		headers = new ArrayList<NameValuePair>();
 	}
-	
-	public RestClient (SharedPreferences pref, String url) {
+
+	public RestClient(SharedPreferences pref, String url) {
 		this(url);
-		
-		addBasicAuthentication(pref.getString(ApplicationConstants.USERNAME, ""), pref.getString(ApplicationConstants.PASSWORD, ""));
+
+		addBasicAuthentication(
+				pref.getString(ApplicationConstants.USERNAME, ""),
+				pref.getString(ApplicationConstants.PASSWORD, ""));
 	}
-	
-	//Be warned that this is sent in clear text, don't use basic auth unless you have to.
+
+	// Be warned that this is sent in clear text, don't use basic auth unless
+	// you have to.
 	public void addBasicAuthentication(String user, String pass) {
 		authentication = true;
 		username = user;
@@ -78,34 +87,35 @@ public class RestClient {
 		params.add(new BasicNameValuePair(name, value));
 	}
 
-	public void execute(RequestMethod method)
-	    throws Exception {
+	public void execute(RequestMethod method) throws Exception {
 		switch (method) {
-			case GET: {
-				HttpGet request = new HttpGet(url + addGetParams());
-				request = (HttpGet) addHeaderParams(request);
-				executeRequest(request, url);
-				break;
-			}
-			case POST: {
-				HttpPost request = new HttpPost(url);
-				request = (HttpPost) addHeaderParams(request);
-				request = (HttpPost) addBodyParams(request);
-				executeRequest(request, url);
-				break;
-			}
-			case PUT: {
-				HttpPut request = new HttpPut(url);
-				request = (HttpPut) addHeaderParams(request);
-				request = (HttpPut) addBodyParams(request);
-				executeRequest(request, url);
-				break;
-			}
-			case DELETE: {
-				HttpDelete request = new HttpDelete(url);
-				request = (HttpDelete) addHeaderParams(request);
-				executeRequest(request, url);
-			}
+		case GET: {
+			HttpGet request = new HttpGet(url + addGetParams());
+			Log.i(getClass().getName(), "Path: " + request.getURI().getRawPath());
+			Log.i(getClass().getName(), "query: " + request.getURI().getQuery());
+			request = (HttpGet) addHeaderParams(request);
+			executeRequest(request, url);
+			break;
+		}
+		case POST: {
+			HttpPost request = new HttpPost(url);
+			request = (HttpPost) addHeaderParams(request);
+			request = (HttpPost) addBodyParams(request);
+			executeRequest(request, url);
+			break;
+		}
+		case PUT: {
+			HttpPut request = new HttpPut(url);
+			request = (HttpPut) addHeaderParams(request);
+			request = (HttpPut) addBodyParams(request);
+			executeRequest(request, url);
+			break;
+		}
+		case DELETE: {
+			HttpDelete request = new HttpDelete(url);
+			request = (HttpDelete) addHeaderParams(request);
+			executeRequest(request, url);
+		}
 		}
 	}
 
@@ -147,8 +157,7 @@ public class RestClient {
 		return request;
 	}
 
-	private String addGetParams()
-	    throws Exception {
+	private String addGetParams() throws Exception {
 		StringBuffer combinedParams = new StringBuffer();
 		if (!params.isEmpty()) {
 			combinedParams.append("?");
@@ -193,19 +202,56 @@ public class RestClient {
 		HttpResponse httpResponse;
 
 		try {
+			Log.i(getClass().getName(), "Url:" + url);
 			httpResponse = client.execute(request);
 			responseCode = httpResponse.getStatusLine().getStatusCode();
 			message = httpResponse.getStatusLine().getReasonPhrase();
-
+			Log.i(getClass().getName(), "message:" + message);
+			Log.i(getClass().getName(), "responseCode:" + responseCode);
 			HttpEntity entity = httpResponse.getEntity();
-
+			Log.i(getClass().getName(), "entity:" + entity);
 			if (entity != null) {
 
 				InputStream instream = entity.getContent();
-				response = convertStreamToString(instream);
+				Header header = entity.getContentType();
+				Log.i(getClass().getName(), "Header" + header);
+				Log.i(getClass().getName(), "Header value" + header.getValue());
+				if (header.getValue().contains("text/html")
+						|| header.getValue().contains(
+								"application/json")) {
+					response = convertStreamToString(instream);
+				} else {
+
+					byteArrayStream = new ByteArrayOutputStream();
+
+					// this is storage overwritten on each iteration with bytes
+					int bufferSize = 1024;
+					byte[] buffer = new byte[bufferSize];
+
+					// we need to know how may bytes were read to write them to
+					// the byteBuffer
+					int len = 0;
+					while ((len = instream.read(buffer)) != -1) {
+						byteArrayStream.write(buffer, 0, len);
+					}
+
+					// and then we can return your byte array.
+					
+
+					//bitmap = BitmapFactory.decodeStream(instream);
+
+					// Log.i(RestClient.class.getName(), "External storage Dir:"
+					// + externalStorageDir.getPath());
+					//
+					//
+					// Log.i(RestClient.class.getName(), path);
+
+				}
 
 				// Closing the input stream will trigger connection release
 				instream.close();
+			} else {
+				Log.i(getClass().getName(),"Response is null"); 
 			}
 
 		} catch (ClientProtocolException e) {
@@ -237,5 +283,9 @@ public class RestClient {
 			}
 		}
 		return sb.toString();
+	}
+
+	public ByteArrayOutputStream getByteArrayStream() {
+		return byteArrayStream;
 	}
 }
