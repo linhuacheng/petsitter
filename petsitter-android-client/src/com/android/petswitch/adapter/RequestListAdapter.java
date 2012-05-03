@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,64 +32,101 @@ public class RequestListAdapter extends BaseAdapter {
 	private List<RequestResponseDetail> requestDetails;
 	private SharedPreferences preference;
 	private Handler threadHandler;
-	
+
 	public RequestListAdapter(Context ctx, SharedPreferences prefs) {
 		this.context = ctx;
 		preference = prefs;
 		requestDetails = new ArrayList<RequestResponseDetail>();
-		
+
 		// the thread handler for asynchronous fetching of data
-				threadHandler = new Handler() {
+		threadHandler = new Handler() {
 
-					public void handleMessage(Message msg) {
+			public void handleMessage(Message msg) {
 
-						requestDetails = (List<RequestResponseDetail>) msg.obj;
-						if (requestDetails.size() ==0) {
-							Toast.makeText(context, "No Requests found, please try again.",
-									Toast.LENGTH_LONG).show();
-						}
-						
-						notifyDataSetChanged();
-						// activity.setProgressBarIndeterminateVisibility(false);
-					}
-				};
+				requestDetails = (List<RequestResponseDetail>) msg.obj;
+				if (requestDetails.size() == 0) {
+					Toast.makeText(context,
+							"No Requests found, please try again.",
+							Toast.LENGTH_LONG).show();
+				}
 
-				new DataThread().start();
-		
+				notifyDataSetChanged();
+				// activity.setProgressBarIndeterminateVisibility(false);
+			}
+		};
+
+		new DataThread().start();
+
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
-		
+		View rowView = inflater.inflate(R.layout.rowlayout, parent,
+				false);
+
 		TextView textView = (TextView) rowView.findViewById(R.id.label);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-		
+
 		RequestResponseDetail reqDetails = new RequestResponseDetail();
 		reqDetails = requestDetails.get(position);
-		
-		
-//		textView.setText(reqDetails.getRequest());
-		
+
+		// textView.setText(reqDetails.getRequest());
+
 		String approverUserName = reqDetails.getApproverUserName();
 		String requestorUserName = reqDetails.getRequestorUserName();
-		
-		String currentUser = preference.getString(ApplicationConstants.USERNAME, "");
-		
-		if (currentUser.equalsIgnoreCase(approverUserName)) {
+
+		String currentUser = preference.getString(
+				ApplicationConstants.USERNAME, "");
+
+		if (RequestResponseDetail.IREQ.equalsIgnoreCase(reqDetails.getType())) {
 			imageView.setImageResource(R.drawable.receive_icon);
-			textView.setText("Received request to petsit "+reqDetails.getPetType());
-		} else {
+			textView.setText("From:" + reqDetails.getRequestorUserName());
+			ViewGroup viewGroup = (ViewGroup)rowView.findViewById(R.id.linearLabel);
+			addTextView(viewGroup, "StartDate:" + reqDetails.getRequestStartDate() + " EndDate:" + reqDetails.getRequestEndDate());
+			addTextView(viewGroup, "PetType: " + reqDetails.getPetType());
+		} else if (RequestResponseDetail.OREQ.equalsIgnoreCase(reqDetails
+				.getType())) {
 			imageView.setImageResource(R.drawable.send_icon);
-			textView.setText("Sent request to petsit "+reqDetails.getPetType());
+			textView.setText("To:" + reqDetails.getApproverUserName());
+			ViewGroup viewGroup = (ViewGroup)rowView.findViewById(R.id.linearLabel);
+			addTextView(viewGroup, "StartDate:" + reqDetails.getRequestStartDate() + " EndDate:" + reqDetails.getRequestEndDate());
+			addTextView(viewGroup, "PetType: " + reqDetails.getPetType());
+		} else if (RequestResponseDetail.IRES.equalsIgnoreCase(reqDetails
+				.getType())
+				|| RequestResponseDetail.ORES.equalsIgnoreCase(reqDetails
+						.getType())) {
+			if (reqDetails.getContentType() ==null) {
+				reqDetails.setContentType("");
+			}
+			if (reqDetails.getContentType().toLowerCase()
+					.matches("img|jpg|png|bmp")) {
+				imageView.setImageResource(R.drawable.img_icon);
+			} else if (reqDetails.getContentType().toLowerCase()
+					.matches("mp3|mp4|3gp|avi")){
+				imageView.setImageResource(R.drawable.video_icon);
+			} else{
+				imageView.setImageResource(R.drawable.text_icon);
+			}
+			textView.setText("From: " + reqDetails.getRequestorUserName());
+			ViewGroup viewGroup = (ViewGroup)rowView.findViewById(R.id.linearLabel);
+			addTextView(viewGroup, "ResponseDate:" + reqDetails.getRequestStartDate());
+			addTextView(viewGroup, reqDetails.getComment());
+
 		}
 
 		return rowView;
-		
-	}
 
+	}
+	private void addTextView(ViewGroup viewGroup, String text){
+
+		TextView textView = new TextView(viewGroup.getContext());
+		textView.setTextSize(10);
+		textView.setText(text);
+		viewGroup.addView(textView);
+
+	}
 	public int getCount() {
 		// TODO Auto-generated method stub
 		return requestDetails.size();
@@ -103,7 +141,7 @@ public class RequestListAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		return position;
 	}
-	
+
 	class DataThread extends Thread {
 
 		private static final String INNER_TAG = "DataThread";
@@ -127,21 +165,21 @@ public class RequestListAdapter extends BaseAdapter {
 				Log.i(INNER_TAG, jsonResult);
 				Gson gson = new Gson();
 				System.out.println("Before fromJson");
-				RequestResponseDetailRest restResponse = gson.fromJson(jsonResult,
-						RequestResponseDetailRest.class);
+				RequestResponseDetailRest restResponse = gson.fromJson(
+						jsonResult, RequestResponseDetailRest.class);
 				System.out.println("After fromJson");
-				System.out.println("restResponse..............."+restResponse);
-				if ( restResponse.getRequestResponseDetails() != null)
-				{
+				System.out
+						.println("restResponse..............." + restResponse);
+				if (restResponse.getRequestResponseDetails() != null) {
 					requestDetails = restResponse.getRequestResponseDetails();
-					System.out.println("Request Response output size .... "+requestDetails.size());
+					System.out.println("Request Response output size .... "
+							+ requestDetails.size());
 				}
-					
+
 			} catch (Exception e) {
 				Log.e(INNER_TAG, e.toString());
 			}
 
-			
 			Log.i(INNER_TAG,
 					"Done parsing items, send a message to the handler");
 
