@@ -100,7 +100,10 @@ public class RequestController {
         }
         uiModel.asMap().clear();
 
-        System.out.println(httpServletRequest.getParameter("fromJson"));
+
+        if (httpServletRequest.getParameter("fromJson") != null) {
+
+                    System.out.println(httpServletRequest.getParameter("fromJson"));
         String[] substr_start = null;
         String[] substr_end = null;
         String start_date = httpServletRequest.getParameter("startDate");
@@ -129,7 +132,7 @@ public class RequestController {
         System.out.println("Approver User Name is... " + httpServletRequest.getParameter("userName"));
         System.out.println(httpServletRequest.getParameter("petType"));
 
-        if (httpServletRequest.getParameter("fromJson") != null) {
+
             System.out.println("start of set methods...");
 
             User approver = userService.findUserByUserName(httpServletRequest.getParameter("userName"));
