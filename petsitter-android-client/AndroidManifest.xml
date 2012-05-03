@@ -93,6 +93,12 @@
             android:label="Image Gallery"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        
+		<activity
+            android:name=".SendSMSActivity"
+            android:label="Send SMS"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>
