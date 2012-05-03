@@ -27,7 +27,11 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:background="@drawable/rounded_edittext"
-            android:gravity="left"/>
+            android:gravity="left"
+             android:textColor="#000000"
+        android:typeface="normal"
+        android:textStyle="bold"
+        android:textSize="15sp"/>
         
     </LinearLayout>
 
@@ -56,7 +60,11 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:background="@drawable/rounded_edittext"
-            android:gravity="left"/>
+            android:gravity="left"
+             android:textColor="#000000"
+        android:typeface="normal"
+        android:textStyle="bold"
+        android:textSize="15sp"/>
         
     </LinearLayout>
     
@@ -87,7 +95,11 @@
             android:paddingBottom="10dp"
             android:background="@drawable/rounded_edittext"
             
-            android:gravity="left"/>
+            android:gravity="left"
+             android:textColor="#000000"
+        android:typeface="normal"
+        android:textStyle="bold"
+        android:textSize="15sp"/>
         
     </LinearLayout>
     
@@ -117,7 +129,10 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:background="@drawable/rounded_edittext"
-            
+             android:textColor="#000000"
+        android:typeface="normal"
+        android:textStyle="bold"
+        android:textSize="15sp"
             android:gravity="left"/>
         
     </LinearLayout>
@@ -148,7 +163,10 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:background="@drawable/rounded_edittext"
-           
+            android:textColor="#000000"
+        android:typeface="normal"
+        android:textStyle="bold"
+        android:textSize="15sp"
             android:gravity="left|top"/>
         
     </LinearLayout>
@@ -157,16 +175,18 @@
                 android:layout_width="40sp"
                 android:layout_height="50sp" />
     
-     <View
-                android:layout_width="40sp"
-                android:layout_height="50sp" />
+     
      
     <TextView 
             android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/DescFont"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+             android:textColor="#000000"
+        android:typeface="normal"
+        android:textStyle="bold"
+        android:textSize="15sp"/>
     
     
     <LinearLayout 
