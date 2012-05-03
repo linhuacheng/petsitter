@@ -13,11 +13,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -139,7 +141,9 @@ public class SelectedPetSitter extends Activity {
         full_address2 = city+state+zip;
         
         userName.setText(display_name);
-        phoneNo.setText(phone_no);
+        SpannableString content = new SpannableString(phone_no);
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        phoneNo.setText(content);
         address.setText(address1+address2+city+state+zip);
         
         registerForContextMenu(phoneNo);
