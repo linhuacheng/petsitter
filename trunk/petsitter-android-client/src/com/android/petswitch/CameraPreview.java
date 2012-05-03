@@ -47,6 +47,7 @@ import android.widget.ImageView;
 import android.widget.VideoView;
 
 import com.android.petswitch.adapter.RequestPickerAdapter;
+import com.android.petswitch.dto.RequestResponseDetail;
 import com.android.petswitch.util.ApplicationConstants;
 import com.android.petswitch.util.CustomMultiPartEntity;
 import com.android.petswitch.util.CustomMultiPartEntity.ProgressListener;
@@ -83,8 +84,10 @@ public class CameraPreview extends Activity {
 
 	private SharedPreferences mPrefs;
 	
-	private String mPhoneNo;
+	private RequestResponseDetail mRequestResponseDetail;
 	private EditText mComment;
+	
+	private  RequestPickerAdapter adapter;
 
 	/* Photo album for this application */
 	private String getAlbumName() {
@@ -248,42 +251,22 @@ public class CameraPreview extends Activity {
 
 		// List items
 
-		final CharSequence[] items = { "John - dog", "Peter - cat",
-				"Mike - cow" };
 		// Prepare the list dialog box
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
 		// Set its title
 		builder.setTitle("Share to...");
 
-		RequestPickerAdapter adapter = new RequestPickerAdapter(this, mPrefs);
+		 adapter = new RequestPickerAdapter(this, mPrefs);
 
 		// Set the list items and assign with the click listener
 		builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
 			// Click listener
 			public void onClick(DialogInterface dialog, int item) {
+				mRequestResponseDetail = (RequestResponseDetail) adapter.getItem(item);
+				
 				new HttpMultipartPost().execute();
-				/*
-				 * Uri fileUri = null; // if there is an image, upload the image
-				 * if (mImageBitmap != null) { fileUri =
-				 * Uri.parse(mCurrentPhotoPath);
-				 * Toast.makeText(getApplicationContext(), mCurrentPhotoPath,
-				 * Toast.LENGTH_SHORT).show(); // else upload the video } else {
-				 * fileUri = mVideoUri; Toast.makeText(getApplicationContext(),
-				 * mVideoUri.getPath(), Toast.LENGTH_SHORT).show(); } // Upload
-				 * image here
-				 * 
-				 * //Toast.makeText(getApplicationContext(), items[item],
-				 * Toast.LENGTH_SHORT).show();
-				 * //Toast.makeText(getApplicationContext(), fileUri.getPath(),
-				 * Toast.LENGTH_SHORT).show();
-				 * 
-				 * //selectedPath = getPath(fileUri); String requestId =
-				 * "4f59bf26b90826a089786c41"; FileInfo info = new
-				 * FileInfo(fileUri.getPath(), "name" + fileUri.getPath(),
-				 * "descript"+fileUri.getPath() ); doFileUpload(info,
-				 * requestId);
-				 */
+				
 			}
 		});
 
@@ -527,9 +510,9 @@ public class CameraPreview extends Activity {
 				 } 
 				 Log.i(TAG, "File path: " + fileUri.getPath());
 				// We use FileBody to transfer an image
-				multipartContent.addPart("requestId", new StringBody(""));
+				multipartContent.addPart("requestId", new StringBody(mRequestResponseDetail.getRequestId().toString()));
 				multipartContent.addPart("fileName", new StringBody(""));
-				multipartContent.addPart("comment", new StringBody(""));
+				multipartContent.addPart("comment", new StringBody(mComment.getText().toString()));
 				multipartContent.addPart("file", new FileBody(new File(fileUri.getPath())));
 				totalSize = multipartContent.getContentLength();
  
@@ -563,7 +546,7 @@ public class CameraPreview extends Activity {
 				// Get reference to the SmsManager that manages SMS operations such as sending text messages.
 				SmsManager smsManager = SmsManager.getDefault();
 				// send the text message passing the phone number and message
-				smsManager.sendTextMessage(mPhoneNo, null, mComment.getText().toString(), null, null);
+				smsManager.sendTextMessage(mRequestResponseDetail.getRequesterPhoneNumber(), null, mComment.getText().toString(), null, null);
 				mComment.setText("");
 			  } catch (Exception e) {
 				Log.e(TAG, "Error sending SMS", e);
