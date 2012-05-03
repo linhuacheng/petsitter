@@ -21,5 +21,8 @@ public class RestClientFactory {
         return new RestClient (pref, ApplicationConstants.REQUESTS_URL);
 	}
 	
+	public static RestClient getUploadFileClient(SharedPreferences pref) {
+        return new RestClient (pref, ApplicationConstants.UPLOAD_FILE_URL);
+	}
 	//SEND_REQUEST_JSON_URL
 }
