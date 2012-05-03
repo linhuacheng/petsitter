@@ -104,7 +104,7 @@ public class RequestController {
         String[] substr_start = null;
         String[] substr_end = null;
         String start_date = httpServletRequest.getParameter("startDate");
-        ;
+
         String end_date = httpServletRequest.getParameter("endDate");
         substr_start = start_date.split("/");
         substr_end = end_date.split("/");
@@ -270,7 +270,9 @@ public class RequestController {
         for (Request request : requests) {
 
             RequestResponseDetail reqResDetail = new RequestResponseDetail();
-            reqResDetail.setPetType(request.getRequestorPet().getPetType());
+            if (request.getRequestorPet() != null){
+                reqResDetail.setPetType(request.getRequestorPet().getPetType());
+            }
             reqResDetail.setComment(request.getComment());
             reqResDetail.setStatus(request.getStatus());
             reqResDetail.setRequestorUserName(request.getRequestorUserName());
@@ -307,18 +309,35 @@ public class RequestController {
             reqResDetail.setApproverPhoneNumber(request.getApproverAddress().getMobile());
             reqResDetail.setRequesterPhoneNumber(request.getRequestorAddress().getMobile());
             reqResDetail.setRequestId(request.getId());
+            if (request.getApproverUserName().equalsIgnoreCase(getLogonUsername())) {
+                reqResDetail.setType(RequestResponseDetail.IREQ);
+            } else {
+                reqResDetail.setType(RequestResponseDetail.OREQ);
+            }
             requestResponseDetails.add(reqResDetail);
 
 
-//            if (request.getReponses() != null && request.getReponses().size() > 0){
-//                for (Response response: request.getReponses()) {
-//                    RequestResponseDetail responseDetail = new RequestResponseDetail();
-//                    reqResDetail.setApproverUserName(response.getRespondent());
-//                    response.getUpdatedDate();
-//                    response.getFileName();
-//
-//                }
-//            }
+            if (request.getReponses() != null && request.getReponses().size() > 0) {
+                for (Response response : request.getReponses()) {
+                    RequestResponseDetail responseDetail = new RequestResponseDetail();
+                    responseDetail.setRequestorUserName(response.getRespondent());
+                    if (response.getRespondent().equalsIgnoreCase(getLogonUsername())) {
+                        responseDetail.setType(RequestResponseDetail.ORES);
+                    } else {
+                        responseDetail.setType(RequestResponseDetail.IRES);
+                    }
+                    responseDetail.setRequestStartDate(sdf.format(response.getUpdatedDate()));
+                    responseDetail.setRequestId(request.getId());
+                    responseDetail.setFileName(response.getFileName());
+                    String contentType = "";
+                    if(response.getContentType() != null){
+                           contentType = response.getContentType();
+                    }
+                    responseDetail.setContentType(contentType);
+                    responseDetail.setComment(response.getComment());
+                    requestResponseDetails.add(responseDetail);
+                }
+            }
         }
 
         uiModel.addAttribute("requestResponseDetails", requestResponseDetails);

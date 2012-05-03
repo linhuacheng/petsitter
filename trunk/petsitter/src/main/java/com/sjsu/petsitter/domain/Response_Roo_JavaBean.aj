@@ -96,12 +96,12 @@ privileged aspect Response_Roo_JavaBean {
         this.fileName = fileName;
     }
     
-    public String Response.getFileType() {
-        return this.fileType;
+    public String Response.getContentType() {
+        return this.contentType;
     }
     
-    public void Response.setFileType(String fileType) {
-        this.fileType = fileType;
+    public void Response.setContentType(String fileType) {
+        this.contentType = fileType;
     }
     
 }

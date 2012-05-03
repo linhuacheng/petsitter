@@ -141,7 +141,8 @@ public class FileUploadController {
         response.setCreatedDate(new Date());
         response.setUpdatedDate(new Date());
         response.setComment("New File Uploaded " + "\"" + fileUploadBean.getOriginalFileName() + "\"");
-        response.setFileType(FilenameUtils.getExtension(fileUploadBean.getFileName()));
+        String extension = FilenameUtils.getExtension(fileUploadBean.getFileName());
+        response.setContentType(extension);
         response.setFileName(fileUploadBean.getFileName());
         List<Response> responses = request.getReponses();
         if (responses == null) {

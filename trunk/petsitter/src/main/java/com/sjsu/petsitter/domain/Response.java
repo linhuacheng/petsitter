@@ -45,6 +45,6 @@ public class Response {
 
     private String fileName;
 
-    private String fileType;
+    private String contentType;
 
 }
