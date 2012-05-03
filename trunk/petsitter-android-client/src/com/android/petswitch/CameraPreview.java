@@ -6,25 +6,54 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.VideoView;
 
+import com.android.petswitch.adapter.RequestPickerAdapter;
+import com.android.petswitch.util.ApplicationConstants;
+import com.android.petswitch.util.CustomMultiPartEntity;
+import com.android.petswitch.util.CustomMultiPartEntity.ProgressListener;
+
 public class CameraPreview extends Activity {
+
+	private static String TAG = "ShareMedia";
 
 	private static final int ACTION_TAKE_PHOTO_B = 1;
 	private static final int ACTION_TAKE_PHOTO_S = 2;
@@ -44,8 +73,18 @@ public class CameraPreview extends Activity {
 
 	private static final String JPEG_FILE_PREFIX = "IMG_";
 	private static final String JPEG_FILE_SUFFIX = ".jpg";
+	
+	private static final String VID_FILE_PREFIX = "VID_";
+	private static final String VID_FILE_SUFFIX = ".3gp";
+
+	private String selectedPath = "";
 
 	private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
+
+	private SharedPreferences mPrefs;
+	
+	private String mPhoneNo;
+	private EditText mComment;
 
 	/* Photo album for this application */
 	private String getAlbumName() {
@@ -89,9 +128,27 @@ public class CameraPreview extends Activity {
 		return imageF;
 	}
 
+	private File createVideoFile() throws IOException {
+		// Create an image file name
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+				.format(new Date());
+		String imageFileName = VID_FILE_PREFIX + timeStamp + "_";
+		File albumF = getAlbumDir();
+		File imageF = File.createTempFile(imageFileName,VID_FILE_SUFFIX, albumF);
+		return imageF;
+	}
+
 	private File setUpPhotoFile() throws IOException {
 
 		File f = createImageFile();
+		mCurrentPhotoPath = f.getAbsolutePath();
+
+		return f;
+	}
+
+	private File setUpVideoFile() throws IOException {
+
+		File f = createVideoFile();
 		mCurrentPhotoPath = f.getAbsolutePath();
 
 		return f;
@@ -148,6 +205,7 @@ public class CameraPreview extends Activity {
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
 		switch (actionCode) {
+		case ACTION_TAKE_PHOTO_S:
 		case ACTION_TAKE_PHOTO_B:
 			File f = null;
 
@@ -172,12 +230,72 @@ public class CameraPreview extends Activity {
 
 	private void dispatchTakeVideoIntent() {
 		Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+
+		File f;
+		try {
+			f = setUpVideoFile();
+
+			mCurrentPhotoPath = f.getAbsolutePath();
+			takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		startActivityForResult(takeVideoIntent, ACTION_TAKE_VIDEO);
 	}
 
+	private void dispatchShareFileIntent() {
+
+		// List items
+
+		final CharSequence[] items = { "John - dog", "Peter - cat",
+				"Mike - cow" };
+		// Prepare the list dialog box
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+		// Set its title
+		builder.setTitle("Share to...");
+
+		RequestPickerAdapter adapter = new RequestPickerAdapter(this, mPrefs);
+
+		// Set the list items and assign with the click listener
+		builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+			// Click listener
+			public void onClick(DialogInterface dialog, int item) {
+				new HttpMultipartPost().execute();
+				/*
+				 * Uri fileUri = null; // if there is an image, upload the image
+				 * if (mImageBitmap != null) { fileUri =
+				 * Uri.parse(mCurrentPhotoPath);
+				 * Toast.makeText(getApplicationContext(), mCurrentPhotoPath,
+				 * Toast.LENGTH_SHORT).show(); // else upload the video } else {
+				 * fileUri = mVideoUri; Toast.makeText(getApplicationContext(),
+				 * mVideoUri.getPath(), Toast.LENGTH_SHORT).show(); } // Upload
+				 * image here
+				 * 
+				 * //Toast.makeText(getApplicationContext(), items[item],
+				 * Toast.LENGTH_SHORT).show();
+				 * //Toast.makeText(getApplicationContext(), fileUri.getPath(),
+				 * Toast.LENGTH_SHORT).show();
+				 * 
+				 * //selectedPath = getPath(fileUri); String requestId =
+				 * "4f59bf26b90826a089786c41"; FileInfo info = new
+				 * FileInfo(fileUri.getPath(), "name" + fileUri.getPath(),
+				 * "descript"+fileUri.getPath() ); doFileUpload(info,
+				 * requestId);
+				 */
+			}
+		});
+
+		AlertDialog alert = builder.create();
+
+		alert.show();
+	}
+
 	private void handleSmallCameraPhoto(Intent intent) {
-		Bundle extras = intent.getExtras();
-		mImageBitmap = (Bitmap) extras.get("data");
+		Log.i(TAG, "Photo path: " + mCurrentPhotoPath);
+		mImageBitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
+
 		mImageView.setImageBitmap(mImageBitmap);
 		mVideoUri = null;
 		mImageView.setVisibility(View.VISIBLE);
@@ -202,21 +320,27 @@ public class CameraPreview extends Activity {
 		mImageView.setVisibility(View.INVISIBLE);
 	}
 
-	Button.OnClickListener mTakePicOnClickListener = new Button.OnClickListener() {
+	ImageButton.OnClickListener mTakePicOnClickListener = new ImageButton.OnClickListener() {
 		public void onClick(View v) {
 			dispatchTakePictureIntent(ACTION_TAKE_PHOTO_B);
 		}
 	};
 
-	Button.OnClickListener mTakePicSOnClickListener = new Button.OnClickListener() {
+	ImageButton.OnClickListener mTakePicSOnClickListener = new ImageButton.OnClickListener() {
 		public void onClick(View v) {
 			dispatchTakePictureIntent(ACTION_TAKE_PHOTO_S);
 		}
 	};
 
-	Button.OnClickListener mTakeVidOnClickListener = new Button.OnClickListener() {
+	ImageButton.OnClickListener mTakeVidOnClickListener = new ImageButton.OnClickListener() {
 		public void onClick(View v) {
 			dispatchTakeVideoIntent();
+		}
+	};
+
+	ImageButton.OnClickListener mShareFileOnClickListener = new ImageButton.OnClickListener() {
+		public void onClick(View v) {
+			dispatchShareFileIntent();
 		}
 	};
 
@@ -224,16 +348,20 @@ public class CameraPreview extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.capturepreview);
+		setContentView(R.layout.share_media);
 
 		mImageView = (ImageView) findViewById(R.id.imageView1);
 		mVideoView = (VideoView) findViewById(R.id.videoView1);
 		mImageBitmap = null;
 		mVideoUri = null;
 
-//		Button picBtn = (Button) findViewById(R.id.btnIntend);
-//		setBtnListenerOrDisable(picBtn, mTakePicOnClickListener,
-//				MediaStore.ACTION_IMAGE_CAPTURE);
+		mComment = (EditText) findViewById(R.id.comment_text);
+		
+		mPrefs = getSharedPreferences(ApplicationConstants.USER_PREF, 0);
+
+		// Button picBtn = (Button) findViewById(R.id.btnIntend);
+		// setBtnListenerOrDisable(picBtn, mTakePicOnClickListener,
+		// MediaStore.ACTION_IMAGE_CAPTURE);
 
 		Button picSBtn = (Button) findViewById(R.id.btnIntendS);
 		setBtnListenerOrDisable(picSBtn, mTakePicSOnClickListener,
@@ -243,22 +371,26 @@ public class CameraPreview extends Activity {
 		setBtnListenerOrDisable(vidBtn, mTakeVidOnClickListener,
 				MediaStore.ACTION_VIDEO_CAPTURE);
 
+		Button shareBtn = (Button) findViewById(R.id.btnIntendShare);
+		shareBtn.setOnClickListener(mShareFileOnClickListener);
+
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
 			mAlbumStorageDirFactory = new FroyoAlbumDirFactory();
 		} else {
 			mAlbumStorageDirFactory = new BaseAlbumDirFactory();
 		}
+
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
-//		case ACTION_TAKE_PHOTO_B: {
-//			if (resultCode == RESULT_OK) {
-//				handleBigCameraPhoto();
-//			}
-//			break;
-//		} // ACTION_TAKE_PHOTO_B
+		// case ACTION_TAKE_PHOTO_B: {
+		// if (resultCode == RESULT_OK) {
+		// handleBigCameraPhoto();
+		// }
+		// break;
+		// } // ACTION_TAKE_PHOTO_B
 
 		case ACTION_TAKE_PHOTO_S: {
 			if (resultCode == RESULT_OK) {
@@ -333,10 +465,127 @@ public class CameraPreview extends Activity {
 		if (isIntentAvailable(this, intentName)) {
 			btn.setOnClickListener(onClickListener);
 		} else {
-			btn.setText(getText(R.string.cannot).toString() + " "
-					+ btn.getText());
+			// btn.setText(getText(R.string.cannot).toString() + " "
+			// + btn.getText());
 			btn.setClickable(false);
 		}
 	}
 
+	public String getPath(Uri uri) {
+		String[] projection = { MediaStore.Images.Media.DATA };
+		Cursor cursor = managedQuery(uri, projection, null, null, null);
+		int column_index = cursor
+				.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+		cursor.moveToFirst();
+		return cursor.getString(column_index);
+	}
+
+	private ProgressDialog mProgressDialog;
+	public static final int DIALOG_UPLOAD_PROGRESS = 0;
+
+	class HttpMultipartPost extends AsyncTask<String, Integer, String> {
+		// ProgressDialog pd;
+		long totalSize;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			showDialog(DIALOG_UPLOAD_PROGRESS);
+
+		}
+
+		@Override
+		protected String doInBackground(String... arg0)
+		{
+			HttpClient httpClient = new DefaultHttpClient();
+			HttpContext httpContext = new BasicHttpContext();
+			HttpPost httpPost = new HttpPost(ApplicationConstants.UPLOAD_FILE_URL);
+ 
+			try
+			{
+				
+				UsernamePasswordCredentials creds = new UsernamePasswordCredentials(
+						mPrefs.getString(ApplicationConstants.USERNAME, ""), mPrefs.getString(ApplicationConstants.PASSWORD, ""));
+				httpPost.addHeader(new BasicScheme().authenticate(creds, httpPost));
+						
+				CustomMultiPartEntity multipartContent = new CustomMultiPartEntity(new ProgressListener()
+				{
+					public void transferred(long num)
+					{
+						publishProgress((int) ((num / (float) totalSize) * 100));
+					}
+				});
+ 
+				 Uri fileUri = null; // if there is an image, upload the image
+				 if (mImageBitmap != null) { 
+					 fileUri = Uri.parse(mCurrentPhotoPath);
+				     //Toast.makeText(getApplicationContext(), mCurrentPhotoPath,Toast.LENGTH_SHORT).show();
+				     // else upload the video 
+				 } else {
+					 fileUri = mVideoUri; 
+					// Toast.makeText(getApplicationContext(), mVideoUri.getPath(), Toast.LENGTH_SHORT).show(); 
+				 } 
+				 Log.i(TAG, "File path: " + fileUri.getPath());
+				// We use FileBody to transfer an image
+				multipartContent.addPart("requestId", new StringBody(""));
+				multipartContent.addPart("fileName", new StringBody(""));
+				multipartContent.addPart("comment", new StringBody(""));
+				multipartContent.addPart("file", new FileBody(new File(fileUri.getPath())));
+				totalSize = multipartContent.getContentLength();
+ 
+				Log.i(TAG, "Posting file");
+				// Send it
+				httpPost.setEntity(multipartContent);
+				HttpResponse response = httpClient.execute(httpPost, httpContext);
+				String serverResponse = EntityUtils.toString(response.getEntity());
+
+				Log.i(TAG, serverResponse);
+				return null;
+			}
+ 
+			catch (Exception e)
+			{
+				System.out.println(e);
+				Log.e(TAG, e.toString(), e);
+			}
+			return null;
+		}
+
+		@Override
+		protected void onProgressUpdate(Integer... progress) {
+			mProgressDialog.setProgress((int) (progress[0]));
+		}
+
+		@Override
+		protected void onPostExecute(String ui) {
+			
+			try {
+				// Get reference to the SmsManager that manages SMS operations such as sending text messages.
+				SmsManager smsManager = SmsManager.getDefault();
+				// send the text message passing the phone number and message
+				smsManager.sendTextMessage(mPhoneNo, null, mComment.getText().toString(), null, null);
+				mComment.setText("");
+			  } catch (Exception e) {
+				Log.e(TAG, "Error sending SMS", e);
+				e.printStackTrace();
+			  }
+			dismissDialog(DIALOG_UPLOAD_PROGRESS);
+			// pd.dismiss();
+		}
+	}
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		switch (id) {
+		case DIALOG_UPLOAD_PROGRESS: // we set this to 0
+			mProgressDialog = new ProgressDialog(this);
+			mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+			mProgressDialog.setMessage("Uploading file...");
+			mProgressDialog.setCancelable(false);
+			mProgressDialog.show();
+			return mProgressDialog;
+		default:
+			return null;
+		}
+	}
 }
