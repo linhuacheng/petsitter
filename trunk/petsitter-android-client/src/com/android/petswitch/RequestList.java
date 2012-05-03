@@ -1,31 +1,27 @@
 package com.android.petswitch;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.android.petswitch.R;
 import com.android.petswitch.adapter.RequestListAdapter;
+import com.android.petswitch.dto.PetOwnerResult;
+import com.android.petswitch.dto.RequestResponseDetail;
+import com.android.petswitch.util.ApplicationConstants;
 
 public class RequestList extends Activity {
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.requestresponselist);
 		ListView reqreslist = (ListView) findViewById(R.id.reqreslist);
-		List<RequestResponseDetails> reqDetails = new ArrayList<RequestResponseDetails>();
-		String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-				"Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-				"Linux", "OS/2" };
-		SetRequestDetails srd = new SetRequestDetails();
-		reqDetails = srd.setRequestDetails();
-		RequestListAdapter adapter = new RequestListAdapter(this, reqDetails);
+		
+		final SharedPreferences prefs = getSharedPreferences(ApplicationConstants.USER_PREF, 0);
+		RequestListAdapter adapter = new RequestListAdapter(this, prefs);
 		reqreslist.setAdapter(adapter);
 		
 		reqreslist.setOnItemClickListener(new OnItemClickListener() {
@@ -34,8 +30,31 @@ public class RequestList extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				Intent showDetail = new Intent(RequestList.this, RequestDetails.class);
-				startActivity(showDetail);
+				System.out.println("Entering onClick of RequestList");
+				RequestResponseDetail requestResponseDetail = (RequestResponseDetail) parent.getItemAtPosition(position);
+				
+				Intent intent = new Intent(view.getContext(),
+						RequestDetails.class);
+				
+				System.out.println("Requestor userName is .... "+requestResponseDetail.getRequestorUserName());
+				
+				if(requestResponseDetail.getRequestorUserName().equalsIgnoreCase(prefs.getString(ApplicationConstants.USERNAME, "")));
+				{
+					intent.putExtra("userName", requestResponseDetail.getApproverUserName());
+					
+					//intent.putExtra("phoneNo", requestResponseDetail.getMobile());  -- should get it from server
+					
+					intent.putExtra("petType", requestResponseDetail.getPetType());
+					intent.putExtra("reqStartDate", requestResponseDetail.getRequestStartDate());
+					intent.putExtra("reqEndDate", requestResponseDetail.getRequestEndDate());
+					intent.putExtra("comment", requestResponseDetail.getComment());
+					intent.putExtra("status", requestResponseDetail.getStatus());
+				}
+				System.out.println("Starting the activity");
+				// intent.putExtra(ItemAdapter.ITEM_INDEX, position);
+				startActivity(intent);
+//				Intent showDetail = new Intent(RequestList.this, RequestDetails.class);
+//				startActivity(showDetail);
 			}
 
 		});
