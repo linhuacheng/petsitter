@@ -112,7 +112,7 @@ public class RequestPickerAdapter extends BaseAdapter {
 			
 			String currentUser = preference.getString(ApplicationConstants.USERNAME, "");
 			
-			/*
+			
 			try {
 				client.execute(RequestMethod.GET);
 
@@ -146,7 +146,9 @@ public class RequestPickerAdapter extends BaseAdapter {
 			} catch (Exception e) {
 				Log.e(INNER_TAG, e.toString());
 			}
-*/
+
+			
+			/*
 			
 			requestDetails = new ArrayList<RequestResponseDetail>();
 			RequestResponseDetail r1 = new RequestResponseDetail();
@@ -161,7 +163,7 @@ public class RequestPickerAdapter extends BaseAdapter {
 			
 			requestDetails.add(r1);
 			requestDetails.add(r2);
-			
+			*/
 			
 			Log.i(INNER_TAG,
 					"Done parsing items, send a message to the handler");
