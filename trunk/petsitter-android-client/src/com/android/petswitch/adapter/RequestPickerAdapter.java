@@ -135,7 +135,7 @@ public class RequestPickerAdapter extends BaseAdapter {
 					requestDetails = new ArrayList<RequestResponseDetail>();
 					for (RequestResponseDetail req: tempDetails) {
 						String approverUserName = req.getApproverUserName();
-						if (!currentUser.equalsIgnoreCase(approverUserName)) {
+						if (currentUser.equalsIgnoreCase(approverUserName)) {
 							requestDetails.add(req);
 						}						
 					}
