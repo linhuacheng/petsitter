@@ -14,6 +14,9 @@ public class MobilePetSwitchActivity extends TabActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tabs);
         
+//        System.out.println(getIntent().getPackage());
+        
+       
         Resources res = getResources(); // Resource object to get Drawables
         TabHost tabHost = getTabHost();  // The activity TabHost
         TabHost.TabSpec spec;  // Resusable TabSpec for each tab
@@ -39,7 +42,11 @@ public class MobilePetSwitchActivity extends TabActivity {
         		res.getDrawable(R.drawable.movie))
                       .setContent(intent);
         tabHost.addTab(spec);
-        tabHost.setCurrentTab(0);
+        
+//        if(getIntent().getExtras().getInt("currentTab")==1)
+//        	tabHost.setCurrentTab(1);
+//        else
+        	tabHost.setCurrentTab(0);
 
     }
 }

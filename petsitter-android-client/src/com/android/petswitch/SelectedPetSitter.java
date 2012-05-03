@@ -45,7 +45,7 @@ public class SelectedPetSitter extends Activity {
 	private String city;
 	private String state;
 	private String zip;
-	private String user_name;
+	private static String user_name;
 	private double latitude;
 	private double longitude;
 	private String full_address1;
@@ -81,7 +81,7 @@ public class SelectedPetSitter extends Activity {
         System.out.println("Latitude in search is................."+latitude);
         System.out.println("Longitude in search is................."+longitude);
         
-        System.out.println("user_name is ... "+user_name);
+        System.out.println("user_name before thread handler is ... "+user_name);
      // the thread handler for asynchronous fetching of data
      		threadHandler = new Handler() {
 
@@ -112,6 +112,8 @@ public class SelectedPetSitter extends Activity {
 				}
      		};
 
+     		System.out.println("user_name after thread handler is ... "+user_name);
+     		
      		System.out.println("Starting Data Thread");
      		new DataThread().start();
      		
@@ -146,6 +148,7 @@ public class SelectedPetSitter extends Activity {
             petDesc.setText(pdb.getPetDesc());
         }
         
+        System.out.println("User Name at the end of onCreate Method is..."+user_name);
         
     }
     
@@ -227,6 +230,7 @@ public class SelectedPetSitter extends Activity {
 	public void gotoRequestForm(View v)
 	{
 		Intent i = new Intent(this, RequestForm.class);
+		i.putExtra("approverUserName", user_name);//getIntent().getStringExtra("userName")
 		startActivity(i);
 		
 	}
