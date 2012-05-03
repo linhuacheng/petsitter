@@ -149,6 +149,8 @@ public class FileUploadController {
         }
         responses.add(response);
         request.setReponses(responses);
+        request.setUpdatedDate(new Date());
+
         requestService.saveRequest(request);
     }
 

@@ -1,5 +1,6 @@
 package com.sjsu.petsitter.bean;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 public class RequestResponseDetail {
@@ -13,6 +14,9 @@ public class RequestResponseDetail {
 	private String requestStartDate;
 	private String requestEndDate;
 	private String petType;
+    private String requesterPhoneNumber;
+    private String approverPhoneNumber;
+    private BigInteger requestId;
 	
 	public String getComment() {
 		return comment;
@@ -69,7 +73,28 @@ public class RequestResponseDetail {
 		this.petType = petType;
 	}
 
-	
-	
 
+    public String getRequesterPhoneNumber() {
+        return requesterPhoneNumber;
+    }
+
+    public void setRequesterPhoneNumber(String requesterPhoneNumber) {
+        this.requesterPhoneNumber = requesterPhoneNumber;
+    }
+
+    public String getApproverPhoneNumber() {
+        return approverPhoneNumber;
+    }
+
+    public void setApproverPhoneNumber(String approverPhoneNumber) {
+        this.approverPhoneNumber = approverPhoneNumber;
+    }
+
+    public BigInteger getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(BigInteger requestId) {
+        this.requestId = requestId;
+    }
 }
