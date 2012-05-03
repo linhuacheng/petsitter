@@ -6,6 +6,8 @@ import com.sjsu.petsitter.domain.Response;
 import com.sjsu.petsitter.service.RequestService;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,7 +50,7 @@ import java.util.UUID;
 @Controller
 @RooWebScaffold(path = "uploadfile", formBackingObject = FileUploadBean.class)
 public class FileUploadController {
-
+    Log log = LogFactory.getLog(FileUploadController.class);
     @Value("#{storageproperties.filePath}")
     private String STORAGE_PATH;
 
@@ -110,7 +112,20 @@ public class FileUploadController {
     @RequestMapping(params = "fileName", method=RequestMethod.GET)
     public void show(@Param("fileName") String fileName, Model uiModel,HttpServletResponse res) throws Exception{
         addDateTimeFormatPatterns(uiModel);
+        log.info("fileName" + fileName);
         File file = new File(STORAGE_PATH + fileName);
+        log.info("storage path:" + STORAGE_PATH);
+        log.info("File exists:" + file.exists());
+        log.info("File absolute path:" + file.getAbsolutePath());
+        log.info("File name:" + file.getName());
+        res.setHeader("Cache-Control", "no-store");
+        res.setHeader("Pragma", "no-cache");
+        res.setDateHeader("Expires", 0);
+        if (FilenameUtils.getExtension(fileName) != null && FilenameUtils.getExtension(fileName).matches("3gp|mp4|mp3|avi")) {
+            res.setContentType("video/"+ FilenameUtils.getExtension(fileName));
+        } else {
+            res.setContentType("image/jpg");
+        }
         ServletOutputStream ostream = res.getOutputStream();
         IOUtils.copy(new FileInputStream(file), ostream);
     }
