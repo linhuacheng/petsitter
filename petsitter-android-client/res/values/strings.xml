@@ -56,4 +56,11 @@
     <string name="share">Share</string>
     <string name="pick_request">Share to</string>  
 
+    
+    <!--     Send SMS  -->
+    
+    <string name="sms_content_label">Message Body</string>
+    <string name="sms_send_message">Send</string>
+    
+    
 </resources>
