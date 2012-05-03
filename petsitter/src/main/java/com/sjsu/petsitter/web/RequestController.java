@@ -1,14 +1,15 @@
 package com.sjsu.petsitter.web;
 
-import com.sjsu.petsitter.domain.Address;
-import com.sjsu.petsitter.domain.Request;
-import com.sjsu.petsitter.domain.User;
-import com.sjsu.petsitter.service.UserService;
-import com.sjsu.petsitter.util.RequestStatus;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +20,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.sjsu.petsitter.bean.RequestResponseDetail;
+import com.sjsu.petsitter.domain.Address;
+import com.sjsu.petsitter.domain.Request;
+import com.sjsu.petsitter.domain.User;
+import com.sjsu.petsitter.service.UserService;
+import com.sjsu.petsitter.util.RequestStatus;
 
 @RequestMapping("/requests")
 @Controller
@@ -82,13 +90,80 @@ public class RequestController {
         return username;
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
+    @SuppressWarnings("deprecation")
+	@RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String create(@Valid Request request, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, request);
             return "requests/create";
         }
         uiModel.asMap().clear();
+        
+        System.out.println(httpServletRequest.getParameter("fromJson"));
+        String[] substr_start = null;
+        String[] substr_end = null;
+        String start_date = httpServletRequest.getParameter("startDate");;
+        String end_date = httpServletRequest.getParameter("endDate");
+        substr_start = start_date.split("/");
+        substr_end = end_date.split("/");
+        
+        int smonth = 0;
+        int sdate = 0;
+        int syear = 0;
+        int emonth = 0;
+        int edate = 0;
+        int eyear = 0;
+        
+        syear = Integer.parseInt(substr_start[2]);
+        System.out.println("Year is .... "+syear);
+        smonth = Integer.parseInt(substr_start[0]);
+        sdate = Integer.parseInt(substr_start[1]);
+        
+        eyear = Integer.parseInt(substr_end[2]);
+        emonth = Integer.parseInt(substr_end[0]);
+        edate = Integer.parseInt(substr_end[1]);
+        
+        
+        System.out.println("Approver User Name is... "+httpServletRequest.getParameter("userName"));
+        System.out.println(httpServletRequest.getParameter("petType"));
+        
+        if(httpServletRequest.getParameter("fromJson")!=null)
+        {
+        	System.out.println("start of set methods...");
+        	
+        	User approver = userService.findUserByUserName(httpServletRequest.getParameter("userName"));
+            Address approverAddress = getAddress(approver);
+            
+            System.out.println("Approver User Display Name is... "+approver.getDisplayName());
+            User requestor = userService.findUserByUserName(getLogonUsername());
+            Address requestorAddress = getAddress(requestor);
+            
+            request.setComment(httpServletRequest.getParameter("message"));
+            request.setStatus("New");
+//            request.setRequestorId(requestor.getId());
+            request.setRequestorUserName(requestor.getUserName());
+//            request.setApproverId(approver.getId());
+            request.setApproverUserName(approver.getUserName());
+            request.setApproverAddress(approverAddress);
+            request.setRequestorAddress(requestorAddress);
+            request.setCreatedDate(new Date());
+            request.setUpdatedDate(new Date());
+            
+            final Calendar c = Calendar.getInstance();
+            c.set(syear, smonth-1, sdate);
+            request.setRequestStartDate(c.getTime());
+            c.set(eyear,emonth-1,edate);
+            request.setRequestEndDate(c.getTime());
+            
+            
+            request.setRequestorPet(petDetailService.findPetDetailByPetType(httpServletRequest.getParameter("petType")));
+            System.out.println("End of set methods...");
+            requestService.saveRequest(request);
+            return "redirect:/requests/" + encodeUrlPathSegment(request.getId().toString(), httpServletRequest);
+        	
+        }
+        
+        
         User approver = userService.findUser(new BigInteger(request.getApproverId()));
         Address approverAddress = getAddress(approver);
         User requestor = userService.findUser(new BigInteger(request.getRequestorId()));
@@ -115,4 +190,62 @@ public class RequestController {
         addDateTimeFormatPatterns(uiModel);
         return "requests/list";
     }
+    
+    
+    @RequestMapping(value="simple", produces = "application/json")
+    public String listRequests(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+
+    	int sizeNo = size == null ? 10 : size.intValue();
+        final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+        float nrOfPages = (float) requestService.countAllRequests() / sizeNo;
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        List<Request> requests = new ArrayList<Request>();
+        List<RequestResponseDetail> requestResponseDetails = new ArrayList<RequestResponseDetail>();
+       	requests = requestService.findAllMyRequests(getLogonUsername());
+       	System.out.println(requests.size());
+        for (Request request: requests){
+        		
+        		RequestResponseDetail reqResDetail = new RequestResponseDetail();
+        		reqResDetail.setPetType(request.getRequestorPet().getPetType());
+        		reqResDetail.setComment(request.getComment());
+        		reqResDetail.setStatus(request.getStatus());
+        		reqResDetail.setRequestorUserName(request.getRequestorUserName());
+        		reqResDetail.setApproverUserName(request.getApproverUserName());
+        		
+        		if(request.getRequestStartDate()==null)
+        			reqResDetail.setRequestStartDate(sdf.format(new Date()));
+    			else
+    				reqResDetail.setRequestStartDate(sdf.format(request.getRequestStartDate()));
+        		
+        		if(request.getRequestEndDate()==null)
+        			reqResDetail.setRequestEndDate(sdf.format(new Date()));
+    			else
+    				reqResDetail.setRequestEndDate(sdf.format(request.getRequestEndDate()));
+        		
+//        		reqResDetail.setRequestStartDate(sdf.format(request.getRequestStartDate()));
+//        		reqResDetail.setRequestEndDate(sdf.format(request.getRequestEndDate()));
+        		
+//        		System.out.println("Request Start Date is .... "+request.getRequestStartDate());
+        		
+//        		try{
+        		
+        			
+//        		}
+//        		catch (Exception e) {
+//        		      e.printStackTrace();
+//        		    }
+//        		System.out.println("Request End Date is .... "+sdf.format(request.getRequestEndDate()));
+        		
+        		reqResDetail.setRequestorAddress("abc");
+        		reqResDetail.setApproverAddress("abc");
+        		requestResponseDetails.add(reqResDetail);
+        }
+        	
+        uiModel.addAttribute("requestResponseDetails", requestResponseDetails);
+        	
+//        addDateTimeFormatPatterns(uiModel);
+        return "requests/list";
+    }
+    
 }
