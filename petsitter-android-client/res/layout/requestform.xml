@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/backgroundwithlight" >
+
+    <LinearLayout 
+ 	   android:layout_width="match_parent"
+ 	   android:layout_height="wrap_content"
+ 	   android:orientation="horizontal" >
+    
+ 	   <TextView
+ 	       android:layout_width="0dip"
+   		   android:layout_height="40dp"
+   		   android:layout_weight="0.35"
+   	 	   android:text="@string/pettype"
+   	 	   style="@style/DescFont"/>
+
+       <EditText
+	       android:id="@+id/pet_type"
+	       style="@style/TextFieldStyle" 
+	       android:background="@drawable/rounded_edittext"
+           android:layout_weight="0.65" />
+       
+	</LinearLayout>
+	
+    <View
+           android:layout_width="40sp"
+           android:layout_height="10sp" />
+
+    <LinearLayout 
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+    
+	    <TextView
+    	    android:layout_width="0dip"
+        	android:layout_height="wrap_content"
+   		    android:layout_weight="0.35"
+   	        android:text="@string/petdesc"
+   	        style="@style/DescFont"/>
+
+    	<EditText
+	        android:id="@+id/pet_description" 
+        	style="@style/TextFieldStyle"
+        	android:background="@drawable/rounded_edittext"
+    	    android:layout_weight="0.65" />
+	
+	</LinearLayout>
+	
+    <View
+           android:layout_width="40sp"
+           android:layout_height="10sp" />
+    
+    <LinearLayout 
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+    
+	    <TextView
+    	    android:layout_width="0dip"
+        	android:layout_height="wrap_content"
+   		    android:layout_weight="0.35"
+   	        android:text="@string/reqstartdate"
+   	        android:layout_gravity="top"
+   	        style="@style/DescFont"/>
+
+    	<EditText
+	        android:id="@+id/req_startdate"
+	        style="@style/TextFieldStyle"
+	        android:background="@drawable/rounded_edittext" 
+    	    android:layout_weight="0.27" />
+    	
+    	<ImageButton 
+    	    android:id="@+id/select_start_date"
+    	    android:layout_width="0dip"
+    	    android:layout_height="40dp"
+    	    android:layout_weight="0.10"
+    	    android:src="@drawable/calender_month"/>
+    	
+    	<EditText
+	        android:id="@+id/req_starttime"
+	        style="@style/TextFieldStyle"
+	        android:background="@drawable/rounded_edittext" 
+    	    android:layout_weight="0.18"
+	        android:inputType="text"/>
+    	
+    	<ImageButton 
+    	    android:id="@+id/select_start_time"
+    	    android:layout_width="0dip"
+    	    android:layout_height="40dp"
+    	    android:layout_weight="0.10"
+    	    android:src="@drawable/clock"/>
+	
+	</LinearLayout>
+	
+    
+    <View
+           android:layout_width="40sp"
+           android:layout_height="10sp" />
+	
+    <LinearLayout 
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+    
+	    <TextView
+    	    android:layout_width="0dip"
+        	android:layout_height="wrap_content"
+   		    android:layout_weight="0.35"
+   	        android:text="@string/reqenddate"
+   	        style="@style/DescFont"/>
+
+    	<EditText
+	        android:id="@+id/req_enddate"
+	        style="@style/TextFieldStyle"
+	        android:background="@drawable/rounded_edittext" 
+    	    android:layout_weight="0.27" />
+    	
+    	<ImageButton 
+    	    android:id="@+id/select_end_date"
+    	    android:layout_width="0dip"
+    	    android:layout_height="40dp"
+    	    android:layout_weight="0.10"
+    	    android:src="@drawable/calender_month"/>
+    	
+    	<EditText
+	        android:id="@+id/req_endtime"
+	        style="@style/TextFieldStyle" 
+	        android:background="@drawable/rounded_edittext"
+    	    android:layout_weight="0.18" />
+    	
+    	<ImageButton 
+    	    android:id="@+id/select_end_time"
+    	    android:layout_width="0dip"
+    	    android:layout_height="40dp"
+    	    android:layout_weight="0.10"
+    	    android:src="@drawable/clock"/>
+	
+	</LinearLayout>
+	
+    <View
+           android:layout_width="40sp"
+           android:layout_height="10sp" />
+    
+    <LinearLayout 
+ 	   android:layout_width="match_parent"
+ 	   android:layout_height="wrap_content"
+ 	   android:orientation="horizontal" >
+    
+ 	   <TextView
+ 	       android:layout_width="0dip"
+   		   android:layout_height="wrap_content"
+   		   android:layout_weight="0.35"
+   	 	   android:text="@string/req_message"
+   	 	   style="@style/DescFont"/>
+
+       <EditText
+	       android:id="@+id/request_message"
+           android:layout_weight="0.65"
+           style="@style/MultiTextFieldStyle"
+           android:background="@drawable/rounded_edittext" />
+       
+	</LinearLayout>
+    
+    <View
+           android:layout_width="40sp"
+           android:layout_height="20sp" />
+    
+    <Button 
+        android:id="@+id/req_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/sendrequest"
+        android:background="@drawable/rounded_edittext"
+        android:padding="10dp" />
+    
+</LinearLayout>

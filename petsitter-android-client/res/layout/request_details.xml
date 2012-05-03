@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/backgroundwithlight" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:orientation="vertical">
+        
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:gravity="left"
+            style="@style/DescFont"
+            android:text="@string/pettype"/>
+        
+        <TextView 
+            android:id="@+id/pet_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="left"/>
+        
+    </LinearLayout>
+
+    <View
+                android:layout_width="40sp"
+                android:layout_height="10sp" />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:gravity="left"
+            style="@style/DescFont"
+            android:text="SENT TO"/>
+        
+        <TextView 
+            android:id="@+id/pet_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="left"/>
+        
+    </LinearLayout>
+    
+    <View
+                android:layout_width="40sp"
+                android:layout_height="10sp" />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:gravity="left"
+            style="@style/DescFont"
+            
+            android:text="@string/reqstartdate"/>
+        
+        <TextView 
+            android:id="@+id/req_start_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/rounded_edittext"
+            
+            android:gravity="left"/>
+        
+    </LinearLayout>
+    
+    <View
+                android:layout_width="40sp"
+                android:layout_height="10sp" />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            
+            android:gravity="left"
+            style="@style/DescFont"
+            android:text="@string/reqenddate"/>
+        
+        <TextView 
+            android:id="@+id/req_end_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/rounded_edittext"
+            
+            android:gravity="left"/>
+        
+    </LinearLayout>
+    
+    <View
+                android:layout_width="40sp"
+                android:layout_height="10sp" />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:gravity="left|top"
+            style="@style/DescFont"
+            
+            android:text="@string/req_message"/>
+        
+        <TextView 
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/rounded_edittext"
+           
+            android:gravity="left|top"/>
+        
+    </LinearLayout>
+    
+    <View
+                android:layout_width="40sp"
+                android:layout_height="50sp" />
+    
+     <View
+                android:layout_width="40sp"
+                android:layout_height="50sp" />
+     
+    <TextView 
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/DescFont"
+            android:layout_gravity="center"/>
+    
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+        <Button 
+            android:id="@+id/accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp"
+            android:text="APPROVE"/>
+        
+        <Button 
+            android:id="@+id/reject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp"
+            android:text="REJECT"/>
+        
+    </LinearLayout>
+    
+</LinearLayout>
