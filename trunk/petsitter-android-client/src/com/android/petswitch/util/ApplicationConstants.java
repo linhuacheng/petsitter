@@ -19,6 +19,9 @@ public class ApplicationConstants {
 	
 	public static String UPLOAD_FILE_URL = APPLICATION_HOST
 			+ "/petsitter/uploadfile";
+	
+	public static String DOWNLOAD_FILE_URL = APPLICATION_HOST
+	+ "/petsitter/uploadfile";
 
 	public static String DATE_FORMAT = "MM/dd/yyyy";
 	
