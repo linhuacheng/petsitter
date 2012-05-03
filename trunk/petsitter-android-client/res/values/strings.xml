@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Welcome to Mobile PetSwitch!</string>
+    <string name="hello">WELCOME TO PETSWITCH!</string>
     <string name="app_name">MobilePetSwitch</string>
  
     <string name="btnIntendS">TAKE PICTURE</string>
@@ -18,7 +18,8 @@
         
     
 <!--     Search Tab -->
-    
+    <string name="slogan">
+       <i><b><marquee behaviour="alternate">Bringing a Pet Owner Like You... To You!!!</marquee></b></i></string>
     <string name="searchby">SEARCH BY</string>
     <string name="enterkey">ENTER KEY</string>
     <string name="searchbutton">   SEARCH   </string>
