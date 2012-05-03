@@ -9,11 +9,15 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,14 +34,14 @@ import com.google.gson.Gson;
 public class SelectedPetSitter extends Activity {
 	
 	private Handler threadHandler;
-	private String displayName;
 	private TextView userName;
 	private TextView phoneNo;
 	private TextView address;
 	private TextView petName;
 	private TextView petType;
 	private TextView petDesc;
-	
+
+	private String lastSelectedButton = null;
 	private String display_name;
 	private String phone_no;
 	private String address1;
@@ -118,7 +122,6 @@ public class SelectedPetSitter extends Activity {
      		new DataThread().start();
      		
         
-        displayName = getIntent().getStringExtra("displayName");
         
         userName = (TextView) findViewById(R.id.user_name);
         phoneNo = (TextView) findViewById(R.id.phone_no);
@@ -140,17 +143,57 @@ public class SelectedPetSitter extends Activity {
         phoneNo.setText(phone_no);
         address.setText(address1+address2+city+state+zip);
         
-        if(userPetDetails.size()!=0)
-        {
-        	pdb = userPetDetails.get(0);
-        	petName.setText(pdb.getPetName());
-            petType.setText(pdb.getPetType());
-            petDesc.setText(pdb.getPetDesc());
-        }
+        registerForContextMenu(phoneNo);
         
         System.out.println("User Name at the end of onCreate Method is..."+user_name);
         
     }
+    
+    
+    
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo){
+
+    	lastSelectedButton = "phone";	// if first phone number is clicked, set lastSelectedButton to "phone"
+			menu.setHeaderTitle("Menu");
+			menu.add(0, v.getId(), 0, "Send SMS");
+			menu.add(0, v.getId(), 0, "Call Pet Sitter");
+		
+		super.onCreateContextMenu(menu, v, menuInfo);
+		
+		// Set the menu options 
+		
+		
+    }
+	
+	
+	@Override  
+	public boolean onContextItemSelected(MenuItem item) { 
+		
+		// call respective functions when an option in the menu is selected
+	    if(item.getTitle()=="Send SMS"){sendSMS(item.getItemId());}
+	    else if(item.getTitle()=="Call Pet Sitter"){callOwner(item.getItemId());}
+	    else {return false;}  
+	return true;  
+	}  
+	
+	public void sendSMS(int rid)
+	{
+		Intent i = new Intent(SelectedPetSitter.this, SendSMSActivity.class);    // call SendSMSActivity activity when Send SMS option is selected 
+        i.putExtra("phone_no", "5556");  //phone_no
+		startActivity(i);
+	}
+
+	public void callOwner(int rid)
+	{
+		Intent phoneCall = new Intent(Intent.ACTION_CALL);	// call ACTION_CALL intent when Call option is selected
+		phoneCall.setData(Uri.parse("tel:"+"5556"));					
+		startActivity(phoneCall);
+	}
+
+	
+	
+	
     
     public void callMap(View v){
     	Intent i = new Intent(SelectedPetSitter.this, MapsTrialActivity.class);
