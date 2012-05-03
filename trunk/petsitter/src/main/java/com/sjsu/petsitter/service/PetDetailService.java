@@ -10,6 +10,7 @@ import com.sjsu.petsitter.domain.PetDetail;
 public interface PetDetailService {
 	
     public PetDetail findPetDetailByPetId(String petId);
+    public PetDetail findPetDetailByPetType(String petType);
     public void savePetDetailToUser(PetDetail petdetail);
     public void deletePetDetailByUser(String petId);
     public List<PetDetail> findPetDetailsByUser();

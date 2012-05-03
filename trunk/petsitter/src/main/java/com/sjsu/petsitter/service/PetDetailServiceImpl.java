@@ -41,6 +41,24 @@ public class PetDetailServiceImpl implements PetDetailService {
         return pet;
     }
     
+    public PetDetail findPetDetailByPetType(String petType) {
+    	
+        Query query = new Query(Criteria.where("pets.petType").is(petType));
+
+//      return userRepository.findPetOwnerByPetType(searchRequestBean.getPetType()
+//              , new org.springframework.data.domain.PageRequest(firstResult / maxResults, maxResults));
+        User user = mongoTemplate.findOne(query, User.class);
+        PetDetail pet = null;
+        if (user != null && user.getPets()!=null) {
+	        for (PetDetail petDetail: user.getPets()) {
+	        	if (petDetail.getPetType().equals(petType)) {
+	        		pet =  petDetail;
+	        	}
+	        }
+        }
+        return pet;
+    }
+    
 public void savePetDetailToUser(PetDetail petdetail){
     	
     	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
