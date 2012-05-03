@@ -15,7 +15,7 @@ public class ApplicationConstants {
 			+ "/petsitter/requests/";
 	
 	public static String REQUESTS_URL = APPLICATION_HOST
-			+ "/petsitter/requests/simple.json";
+			+ "/petsitter/requests/requestresponse.json";
 	
 	public static String UPLOAD_FILE_URL = APPLICATION_HOST
 			+ "/petsitter/uploadfile";

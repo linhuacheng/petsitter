@@ -140,7 +140,7 @@ public class SearchPetOwnerAdapter extends BaseAdapter {
 				if ( restResponse.getPetOwners() != null)
 					petOwners = restResponse.getPetOwners();
 			} catch (Exception e) {
-				Log.e(INNER_TAG, e.toString());
+				Log.e(INNER_TAG, e.toString(), e);
 			}
 
 			
