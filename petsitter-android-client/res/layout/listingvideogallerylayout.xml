@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dip">
+<Gallery  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/imageGalleryView"
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
+    android:columnWidth="90dp"
+    android:numColumns="auto_fit"
+    android:verticalSpacing="10dp"
+    android:horizontalSpacing="10dp"
+    android:spacing="3dip"
+    android:stretchMode="columnWidth"
+    android:gravity="center"
+   
+/>
+<Button 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/downloadButton"
+	android:spacing="3dip"
+    android:text="Download"
+    />
+<TextView
+    android:id="@+id/lbMediaName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="15dip"
+    android:textStyle="bold" />
+<VideoView 
+   android:layout_height="fill_parent"
+   android:layout_width="fill_parent" 
+   android:id="@+id/videoView" />
+</LinearLayout>
