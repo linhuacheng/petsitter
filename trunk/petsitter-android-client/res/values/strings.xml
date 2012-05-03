@@ -6,6 +6,7 @@
  
     <string name="btnIntendS">Take Picture</string>
     <string name="btnIntendV">Take Video</string>
+    <string name="btnIntendShare">Share</string>
     <string name="cannot">Cannot</string>
     <string name="album_name">CameraSample</string>
     <string name="descone">PetSwitch is designed to bring a group of pet owners to help each other in taking care of 
@@ -47,5 +48,11 @@
     <string name="label_slide_anim_start">Slide Animation Started</string>
     <string name="label_slide_anim_end">Slide Animation Ended</string>
     <string name="userdetails">Details</string>
+    
+    <string name="comment">Comment:</string>
+    <string name="take_photo">Take a photo</string>
+    <string name="take_video">Take a video</string>
+    <string name="share">Share</string>
+    <string name="pick_request">Share to</string>    
 
 </resources>
