@@ -33,6 +33,12 @@
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+        
         />
  	<View
            android:layout_width="40sp"
@@ -50,14 +56,19 @@
    		   
    		   style="@style/DescFont"
 		   android:padding="5dp"
-   	 	   android:text="@string/enterkey"/>
+   	 	   android:text="@string/enterkey"
+   	 	   />
 
        <EditText
            android:id="@+id/searchkey"
            style="@style/DescFont"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           
+           android:background="@drawable/rounded_edittext"
+           android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
             />
     
     </LinearLayout>
