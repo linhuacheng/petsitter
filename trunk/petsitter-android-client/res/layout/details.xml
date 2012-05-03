@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/com.android.petswitch"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/backgroundwithlight">
+
+    <TextView
+        style="@style/DescFont"
+        android:background="#ABABAB"
+        android:text="@string/userdetails" />
+    
+
+                <View
+                android:layout_width="40sp"
+                android:layout_height="10sp" />
+    
+    
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/userpic"
+            android:layout_width="80sp"
+            android:layout_height="80sp"
+            android:paddingLeft="5sp"
+            android:paddingRight="5sp"
+            android:src="@drawable/nophoto_user" />
+        
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5sp"
+            android:orientation="vertical" >
+
+<!--             <View -->
+<!--                 android:layout_width="40sp" -->
+<!--                 android:layout_height="20sp" /> -->
+
+            <TextView
+                android:id="@+id/user_name"
+                style="@style/DescFont" />
+
+            <TextView
+                android:id="@+id/phone_no"
+                style="@style/DescFont" />
+
+            <TextView
+                android:id="@+id/user_address"
+                style="@style/DescFont" />
+            
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="callMap"
+                android:src="@drawable/maps_alt"
+                android:background="@drawable/rounded_edittext"
+                android:layout_gravity="right"/>
+            
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="40sp"
+        android:layout_height="10sp" />
+
+    <TextView
+        style="@style/DescFont"
+        android:background="#ABABAB"
+        android:text="PET DETAILS" />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/butt_slide_main_prev"
+            android:layout_width="30sp"
+            android:layout_height="120sp"
+            android:src="@drawable/arrow_left" />
+        
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" >
+        <com.android.petswitch.SlideShow
+            android:id="@+id/slide_show"
+            android:layout_width="80sp"
+            android:layout_height="70sp"
+            custom:startIndex="2" />
+        <Button android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="VIEW"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+       
+        /> 
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/butt_slide_main_next"
+            android:layout_width="30sp"
+            android:layout_height="120sp"
+            android:src="@drawable/arrow_right" />
+        <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <View
+                android:layout_width="40sp"
+                android:layout_height="20sp" />
+
+            <TextView
+                android:id="@+id/pet_name"
+                style="@style/DescFont"/>
+            
+            
+<!--                 android:text="Name: Mickey"  -->
+
+            <TextView
+                android:id="@+id/pet_type"
+                style="@style/DescFont" />
+
+            
+<!--                 android:text="Type: Dog" -->
+                
+                
+            <TextView
+                android:id="@+id/pet_desc"
+                style="@style/DescFont" />
+        
+<!--                 android:text="Description: Tall,labrador,Obidient " -->
+                
+                
+    </LinearLayout>
+    </LinearLayout>
+   <View
+           android:layout_width="40sp"
+           android:layout_height="20sp" />
+   <View
+           android:layout_width="40sp"
+           android:layout_height="20sp" />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:gravity="center">
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="REQUEST SWITCH"
+        android:onClick="gotoRequestForm"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/rounded_edittext"
+        />
+</LinearLayout>
+</LinearLayout>

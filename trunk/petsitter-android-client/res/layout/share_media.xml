@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100" 
+    android:background="@drawable/backgroundwithlight">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        
+        android:text="@string/comment"
+        android:textColor="#000000" 
+        android:background="#ABABAB" 
+        />
+<View
+                android:layout_width="40sp"
+                android:layout_height="10sp" />
+    <EditText
+             android:id="@+id/comment_text"
+        style="@style/MultiTextFieldStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:lines="3"
+        
+        android:background="@drawable/rounded_edittext"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dip"
+        android:weightSum="1" >
+
+        <!-- <Button android:text="@string/btnIntend" android:id="@+id/btnIntend" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_width="0dp" -->
+        <!-- android:layout_weight="1" /> -->
+
+        <Button
+            android:id="@+id/btnIntendS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/take_photo"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+        android:background="@drawable/rounded_edittext" />
+
+        <Button
+            android:id="@+id/btnIntendV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/take_video"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+        android:background="@drawable/rounded_edittext"  />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="95"
+        android:orientation="horizontal"
+        android:paddingTop="10dip"
+        android:weightSum="10" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:visibility="visible" />
+
+        <VideoView
+            android:id="@+id/videoView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnIntendShare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:text="@string/share" 
+        android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+        android:background="@drawable/rounded_edittext" />
+
+</LinearLayout>
