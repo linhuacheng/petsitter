@@ -11,14 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.petswitch.R;
-import com.android.petswitch.dto.PetOwnerResult;
 import com.android.petswitch.dto.RequestResponseDetail;
 import com.android.petswitch.dto.RequestResponseDetailRest;
 import com.android.petswitch.util.ApplicationConstants;
@@ -33,11 +31,12 @@ public class RequestListAdapter extends BaseAdapter {
 	private SharedPreferences preference;
 	private Handler threadHandler;
 
+	
 	public RequestListAdapter(Context ctx, SharedPreferences prefs) {
 		this.context = ctx;
 		preference = prefs;
 		requestDetails = new ArrayList<RequestResponseDetail>();
-
+		
 		// the thread handler for asynchronous fetching of data
 		threadHandler = new Handler() {
 
@@ -84,15 +83,15 @@ public class RequestListAdapter extends BaseAdapter {
 			imageView.setImageResource(R.drawable.receive_icon);
 			textView.setText("From:" + reqDetails.getRequestorUserName());
 			ViewGroup viewGroup = (ViewGroup)rowView.findViewById(R.id.linearLabel);
-			addTextView(viewGroup, "StartDate:" + reqDetails.getRequestStartDate() + " EndDate:" + reqDetails.getRequestEndDate());
-			addTextView(viewGroup, "PetType: " + reqDetails.getPetType());
+			addTextView(viewGroup, "Start Date:" + reqDetails.getRequestStartDate() + " End Date:" + reqDetails.getRequestEndDate());
+			addTextView(viewGroup, "Pet Type: " + reqDetails.getPetType());
 		} else if (RequestResponseDetail.OREQ.equalsIgnoreCase(reqDetails
 				.getType())) {
 			imageView.setImageResource(R.drawable.send_icon);
 			textView.setText("To:" + reqDetails.getApproverUserName());
 			ViewGroup viewGroup = (ViewGroup)rowView.findViewById(R.id.linearLabel);
-			addTextView(viewGroup, "StartDate:" + reqDetails.getRequestStartDate() + " EndDate:" + reqDetails.getRequestEndDate());
-			addTextView(viewGroup, "PetType: " + reqDetails.getPetType());
+			addTextView(viewGroup, "Start Date:" + reqDetails.getRequestStartDate() + " End Date:" + reqDetails.getRequestEndDate());
+			addTextView(viewGroup, "Pet Type: " + reqDetails.getPetType());
 		} else if (RequestResponseDetail.IRES.equalsIgnoreCase(reqDetails
 				.getType())
 				|| RequestResponseDetail.ORES.equalsIgnoreCase(reqDetails
@@ -111,7 +110,7 @@ public class RequestListAdapter extends BaseAdapter {
 			}
 			textView.setText("From: " + reqDetails.getRequestorUserName());
 			ViewGroup viewGroup = (ViewGroup)rowView.findViewById(R.id.linearLabel);
-			addTextView(viewGroup, "ResponseDate:" + reqDetails.getRequestStartDate());
+			addTextView(viewGroup, "Response Date:" + reqDetails.getRequestStartDate());
 			addTextView(viewGroup, reqDetails.getComment());
 
 		}
@@ -123,6 +122,7 @@ public class RequestListAdapter extends BaseAdapter {
 
 		TextView textView = new TextView(viewGroup.getContext());
 		textView.setTextSize(10);
+		textView.setTextAppearance(context, R.style.TextFieldStyle);
 		textView.setText(text);
 		viewGroup.addView(textView);
 
@@ -189,4 +189,6 @@ public class RequestListAdapter extends BaseAdapter {
 			threadHandler.sendMessage(dataMsg);
 		}
 	}
+	
+
 }
