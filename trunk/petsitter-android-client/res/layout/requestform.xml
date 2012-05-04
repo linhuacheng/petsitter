@@ -175,7 +175,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="@string/sendrequest"
-        android:background="@drawable/rounded_edittext"
+         android:background="@drawable/green_button"
         android:padding="10dp" />
     
 </LinearLayout>

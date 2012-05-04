@@ -200,7 +200,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/green_button"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
             android:padding="10dp"
             android:text="APPROVE"/>
         
@@ -209,8 +211,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
             android:gravity="center"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/green_button"
             android:padding="10dp"
             android:text="REJECT"/>
         
