@@ -88,5 +88,19 @@
         android:onClick="searchPetSitter"
         android:background="@drawable/green_button"
         />
+    <View
+           android:layout_width="40sp"
+           android:layout_height="20sp" />
+    
+    <Button 
+        android:id="@+id/search_nearby_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/searchNearbybutton"
+        android:onClick="searchNearbyPetSitter"
+        android:background="@drawable/green_button"
+        />
     
 </LinearLayout>
