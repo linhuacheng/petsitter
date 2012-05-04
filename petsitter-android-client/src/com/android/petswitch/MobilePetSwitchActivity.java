@@ -27,19 +27,19 @@ public class MobilePetSwitchActivity extends TabActivity {
 
         // Initialize a TabSpec for each tab and add it to the TabHost
         spec = tabHost.newTabSpec("search").setIndicator("",
-        		res.getDrawable(R.drawable.search)) 
+        		res.getDrawable(R.drawable.dog_search_trans)) 
                       .setContent(intent);
         tabHost.addTab(spec);
 
         // Do the same for the other tabs
         intent = new Intent().setClass(this, RequestList.class);
         spec = tabHost.newTabSpec("reqres").setIndicator(null,
-        		res.getDrawable(R.drawable.mail_green))
+        		res.getDrawable(R.drawable.dog_with_message_trans))
                       .setContent(intent);
         tabHost.addTab(spec);
         intent = new Intent().setClass(this, CameraPreview.class);
         spec = tabHost.newTabSpec("capture").setIndicator("",
-        		res.getDrawable(R.drawable.movie))
+        		res.getDrawable(R.drawable.dog_camera_trans))
                       .setContent(intent);
         tabHost.addTab(spec);
         
