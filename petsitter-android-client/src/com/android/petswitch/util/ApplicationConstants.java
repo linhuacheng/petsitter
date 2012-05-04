@@ -28,7 +28,7 @@ public class ApplicationConstants {
 
 	public static String DATE_FORMAT = "MM/dd/yyyy";
 	
-	public static String DATE_FORMAT_PRETTY = "MM/dd/yyyy";
+	public static String DATE_FORMAT_PRETTY = "EEE, MMM d, yyyy";
 	
 	public static String USERNAME = "userName";
 	public static String PASSWORD = "password";

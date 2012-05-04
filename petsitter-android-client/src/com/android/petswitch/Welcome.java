@@ -32,10 +32,10 @@ public class Welcome extends Activity {
     	TextView welcomeUser = (TextView) findViewById(R.id.welcomeUser);
     	Button signIn = (Button) findViewById(R.id.welcomeUserButton);
     	if (username == null || username.length() ==0) {
-    		welcomeUser.setText("Please sign in");
+    		welcomeUser.setText("PLEASE SIGN IN");
     	} else {
-    		welcomeUser.setText("Welcome " +  username + "!");
-    		signIn.setText("Switch user");
+    		welcomeUser.setText("WELCOME " +  username + "!");
+    		signIn.setText("SIGN IN AS DIFFERENT USER");
     	}
     }
 	

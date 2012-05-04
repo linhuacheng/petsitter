@@ -563,7 +563,7 @@ public class CameraPreview extends Activity {
 		case DIALOG_UPLOAD_PROGRESS: // we set this to 0
 			mProgressDialog = new ProgressDialog(this);
 			mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			mProgressDialog.setMessage("Uploading file...");
+			mProgressDialog.setMessage("UPLOADING FILE...");
 			mProgressDialog.setCancelable(false);
 			mProgressDialog.show();
 			return mProgressDialog;
