@@ -59,7 +59,7 @@ public class SendSMSActivity extends Activity{
 
 
         
-        TextView b = (TextView) findViewById(R.id.close_sms);
+        Button b = (Button) findViewById(R.id.back_sendsms);
 		
 		// set the on click listener for "Back to listings"
 	      b.setOnClickListener(new View.OnClickListener() {
