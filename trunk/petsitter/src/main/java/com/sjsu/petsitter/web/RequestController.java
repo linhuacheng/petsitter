@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -207,6 +209,8 @@ public class RequestController {
         List<Request> requests = new ArrayList<Request>();
         List<RequestResponseDetail> requestResponseDetails = new ArrayList<RequestResponseDetail>();
         requests = requestService.findAllMyRequests(getLogonUsername());
+        
+        
         System.out.println(requests.size());
         for (Request request : requests) {
 
@@ -269,6 +273,20 @@ public class RequestController {
         List<Request> requests = new ArrayList<Request>();
         List<RequestResponseDetail> requestResponseDetails = new ArrayList<RequestResponseDetail>();
         requests = requestService.findAllMyRequests(getLogonUsername());
+        
+        Collections.sort(requests, new Comparator(){
+			 
+            public int compare(Object o1, Object o2) {
+                Request p1 = (Request) o1;
+                Request p2 = (Request) o2;
+               return p1.getUpdatedDate().compareTo(p2.getUpdatedDate());
+            }
+ 
+        });
+		
+		Collections.reverse(requests);
+        
+        
         System.out.println(requests.size());
         for (Request request : requests) {
 
@@ -347,6 +365,32 @@ public class RequestController {
 
 //        addDateTimeFormatPatterns(uiModel);
         return "requests/list";
+    }
+    
+    
+    
+    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
+    public String update(@Valid Request request, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+        if (bindingResult.hasErrors()) {
+            populateEditForm(uiModel, request);
+            return "requests/update";
+        }
+        uiModel.asMap().clear();
+        
+        if (httpServletRequest.getParameter("fromJson") != null) {
+        	
+        	System.out.println("Request is from ... "+httpServletRequest.getParameter("fromJson"));
+        	String status = httpServletRequest.getParameter("result");
+        	System.out.println("Request is ... "+status);
+        	String requestId = httpServletRequest.getParameter("requestId");
+        	
+        	requestService.updateRequestStatus(status, requestId);
+        }
+        else{
+        	requestService.updateRequest(request);
+        }
+        
+        return "redirect:/requests/" + encodeUrlPathSegment(request.getId().toString(), httpServletRequest);
     }
 
 }
