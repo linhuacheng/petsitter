@@ -20,7 +20,9 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +45,8 @@ public class SelectedPetSitter extends Activity {
 	private TextView petType;
 	private TextView petDesc;
 
+	private LinearLayout l;
+	
 	private String display_name;
 	private String phone_no;
 	private String address1;
@@ -72,12 +76,9 @@ public class SelectedPetSitter extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details);
         System.out.println("Entered SelectedPetSitter...");
-        petName = (TextView) findViewById(R.id.pet_name);
-        petType = (TextView) findViewById(R.id.pet_type);
-        petDesc = (TextView) findViewById(R.id.pet_desc);
         
         user_name = getIntent().getStringExtra("userName");
-        
+        l = (LinearLayout) findViewById(R.id.pet_details);
         
         latitude = getIntent().getExtras().getDouble("latitude");
         longitude = getIntent().getExtras().getDouble("longitude");
@@ -100,10 +101,14 @@ public class SelectedPetSitter extends Activity {
      				} else {
      				      if(userPetDetails.size()!=0)
      				        {
-     				        	pdb = userPetDetails.get(0);
-     				        	petName.setText(pdb.getPetName());
-     				            petType.setText(pdb.getPetType());
-     				            petDesc.setText(pdb.getPetDesc());
+     				    	 for(int i = 0; i<userPetDetails.size();i++)
+    				    	  {
+    				    		 PetDetailBean pdb1 = new PetDetailBean();
+    				    		 pdb1 = userPetDetails.get(i);
+    				    		 addTextView(l, pdb1.getPetType()+" - "+pdb1.getPetName());
+//    				    		 addTextView(l, pdb1.getPetDesc());
+    				    		 addTextView(l,"");
+    				    	  }
      				        }
      				}
      				
@@ -148,10 +153,47 @@ public class SelectedPetSitter extends Activity {
         
         registerForContextMenu(phoneNo);
         
+        Button b = (Button) findViewById(R.id.back_details);
+		
+		// set the on click listener for "Back to listings"
+	    b.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View arg0) {
+	         
+	        // when "back to listings" is clicked, go back to the real estate listings	 
+	         setResult(RESULT_OK);
+	         finish();
+	         } 
+	      });
+	    
+	    Button toSearch = (Button) findViewById(R.id.search_details);
+		
+		// set the on click listener for "Back to listings"
+	    toSearch.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View arg0) {
+	         
+	        	 Intent i = new Intent(SelectedPetSitter.this, MobilePetSwitchActivity.class);
+	        	 startActivity(i);
+	         } 
+	      });
+	    
+
+        
+        
         System.out.println("User Name at the end of onCreate Method is..."+user_name);
         
     }
     
+    
+    private void addTextView(LinearLayout l, String text){
+
+		TextView textView = new TextView(this);
+		textView.setTextSize(10);
+		textView.setTextAppearance(this.getBaseContext(), R.style.DescFont);
+		textView.setText(text);
+		l.setDividerPadding(1);
+		l.addView(textView);
+
+	}
     
     
     @Override
