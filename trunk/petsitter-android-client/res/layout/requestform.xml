@@ -5,47 +5,62 @@
     android:orientation="vertical"
     android:background="@drawable/backgroundwithlight" >
 
+    
+     <RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="40dp"
+    android:background="@drawable/title_bar">
+
+        <Button
+        android:id="@+id/back_requestform"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:background="@drawable/back_button"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp" />
+
+      
+</RelativeLayout>
+    
+     <View
+           android:layout_width="40sp"
+           android:layout_height="20sp" />
+    
     <LinearLayout 
  	   android:layout_width="match_parent"
  	   android:layout_height="wrap_content"
- 	   android:orientation="horizontal" >
+ 	   android:orientation="vertical" >
     
  	   <TextView
- 	       android:layout_width="0dip"
-   		   android:layout_height="40dp"
-   		   android:layout_weight="0.35"
    	 	   android:text="@string/pettype"
    	 	   style="@style/DescFont"/>
 
        <EditText
 	       android:id="@+id/pet_type"
 	       style="@style/TextFieldStyle" 
-	       android:background="@drawable/rounded_edittext"
-           android:layout_weight="0.65" />
+	       android:background="@drawable/rounded_edittext" />
        
 	</LinearLayout>
 	
     <View
            android:layout_width="40sp"
-           android:layout_height="10sp" />
+           android:layout_height="30sp" />
 
     <LinearLayout 
     	android:layout_width="match_parent"
     	android:layout_height="wrap_content"
-    	android:orientation="horizontal" >
+    	android:orientation="vertical" >
     
 	    <TextView
-    	    android:layout_width="0dip"
-        	android:layout_height="wrap_content"
-   		    android:layout_weight="0.35"
    	        android:text="@string/petdesc"
    	        style="@style/DescFont"/>
 
     	<EditText
 	        android:id="@+id/pet_description" 
         	style="@style/TextFieldStyle"
-        	android:background="@drawable/rounded_edittext"
-    	    android:layout_weight="0.65" />
+        	android:background="@drawable/rounded_edittext" />
 	
 	</LinearLayout>
 	
@@ -53,44 +68,46 @@
            android:layout_width="40sp"
            android:layout_height="10sp" />
     
+    
+    <TextView
+   	        android:text="@string/reqstartdate"
+   	        android:layout_gravity="top"
+   	        style="@style/DescFont"/>
+    
+    
     <LinearLayout 
     	android:layout_width="match_parent"
     	android:layout_height="wrap_content"
     	android:orientation="horizontal" >
     
-	    <TextView
-    	    android:layout_width="0dip"
-        	android:layout_height="wrap_content"
-   		    android:layout_weight="0.35"
-   	        android:text="@string/reqstartdate"
-   	        android:layout_gravity="top"
-   	        style="@style/DescFont"/>
-
+	    
     	<EditText
 	        android:id="@+id/req_startdate"
+	        android:layout_width="0dp"
 	        style="@style/TextFieldStyle"
-	        android:background="@drawable/rounded_edittext" 
-    	    android:layout_weight="0.27" />
+	        android:layout_weight="0.4"
+	        android:background="@drawable/rounded_edittext" />
     	
     	<ImageButton 
     	    android:id="@+id/select_start_date"
-    	    android:layout_width="0dip"
-    	    android:layout_height="40dp"
-    	    android:layout_weight="0.10"
+    	    android:layout_width="0dp"
+    	    android:layout_height="35dp"
+    	    android:layout_weight="0.15"
     	    android:src="@drawable/calender_month"/>
     	
     	<EditText
 	        android:id="@+id/req_starttime"
+	        android:layout_width="0dp"
 	        style="@style/TextFieldStyle"
+	        android:layout_weight="0.3"
 	        android:background="@drawable/rounded_edittext" 
-    	    android:layout_weight="0.18"
 	        android:inputType="text"/>
     	
     	<ImageButton 
     	    android:id="@+id/select_start_time"
-    	    android:layout_width="0dip"
-    	    android:layout_height="40dp"
-    	    android:layout_weight="0.10"
+    	    android:layout_width="0dp"
+    	    android:layout_height="35dp"
+    	    android:layout_weight="0.15"
     	    android:src="@drawable/clock"/>
 	
 	</LinearLayout>
@@ -100,42 +117,37 @@
            android:layout_width="40sp"
            android:layout_height="10sp" />
 	
+     <TextView
+   	        android:text="@string/reqenddate"
+   	        style="@style/DescFont"/>
+    
+    
     <LinearLayout 
     	android:layout_width="match_parent"
     	android:layout_height="wrap_content"
     	android:orientation="horizontal" >
     
-	    <TextView
-    	    android:layout_width="0dip"
-        	android:layout_height="wrap_content"
-   		    android:layout_weight="0.35"
-   	        android:text="@string/reqenddate"
-   	        style="@style/DescFont"/>
-
+	   
     	<EditText
 	        android:id="@+id/req_enddate"
 	        style="@style/TextFieldStyle"
-	        android:background="@drawable/rounded_edittext" 
-    	    android:layout_weight="0.27" />
+	        android:background="@drawable/rounded_edittext" />
     	
     	<ImageButton 
     	    android:id="@+id/select_end_date"
-    	    android:layout_width="0dip"
-    	    android:layout_height="40dp"
-    	    android:layout_weight="0.10"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="35dp"
     	    android:src="@drawable/calender_month"/>
     	
     	<EditText
 	        android:id="@+id/req_endtime"
 	        style="@style/TextFieldStyle" 
-	        android:background="@drawable/rounded_edittext"
-    	    android:layout_weight="0.18" />
+	        android:background="@drawable/rounded_edittext" />
     	
     	<ImageButton 
     	    android:id="@+id/select_end_time"
-    	    android:layout_width="0dip"
-    	    android:layout_height="40dp"
-    	    android:layout_weight="0.10"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="35dp"
     	    android:src="@drawable/clock"/>
 	
 	</LinearLayout>
@@ -147,18 +159,14 @@
     <LinearLayout 
  	   android:layout_width="match_parent"
  	   android:layout_height="wrap_content"
- 	   android:orientation="horizontal" >
+ 	   android:orientation="vertical" >
     
  	   <TextView
- 	       android:layout_width="0dip"
-   		   android:layout_height="wrap_content"
-   		   android:layout_weight="0.35"
    	 	   android:text="@string/req_message"
    	 	   style="@style/DescFont"/>
 
        <EditText
 	       android:id="@+id/request_message"
-           android:layout_weight="0.65"
            style="@style/MultiTextFieldStyle"
            android:background="@drawable/rounded_edittext" />
        
