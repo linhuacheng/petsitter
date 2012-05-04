@@ -1,23 +1,17 @@
 package com.sjsu.petsitter.service;
 
 
-import com.sjsu.petsitter.service.RequestService;
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.List;
-import com.sjsu.petsitter.domain.PetDetail;
-import com.sjsu.petsitter.domain.Request;
-import com.sjsu.petsitter.domain.User;
-import com.sjsu.petsitter.repository.RequestRepository;
-import com.sjsu.petsitter.service.RequestServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.OrQuery;
+
+import com.sjsu.petsitter.domain.Request;
+import com.sjsu.petsitter.repository.RequestRepository;
 
 public class RequestServiceImpl implements RequestService {
 	
@@ -68,5 +62,18 @@ public class RequestServiceImpl implements RequestService {
     	Query query=   new Query(new Criteria().orOperator(Criteria.where("requestorUserName").is(userName),Criteria.where("approverUserName").is(userName)));
 
     	return mongoTemplate.find(query, Request.class);
+    }
+    
+    public Request updateRequestStatus(String status, String requestId)
+    {
+    	BigInteger reqId = new BigInteger(requestId);
+    	
+		Request request = findRequest(reqId);   
+
+		request.setStatus(status);
+		request.setUpdatedDate(new Date());
+		
+		return updateRequest(request);
+    	
     }
 }
