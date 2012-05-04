@@ -50,6 +50,7 @@ public class RequestList extends Activity {
 						intent.putExtra("reqEndDate", requestResponseDetail.getRequestEndDate());
 						intent.putExtra("comment", requestResponseDetail.getComment());
 						intent.putExtra("status", requestResponseDetail.getStatus());
+						intent.putExtra("requestId", requestResponseDetail.getRequestId().toString());
 					}
 					System.out.println("Starting the activity");
 					// intent.putExtra(ItemAdapter.ITEM_INDEX, position);
