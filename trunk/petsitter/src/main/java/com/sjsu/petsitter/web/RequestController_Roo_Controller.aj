@@ -47,16 +47,7 @@ privileged aspect RequestController_Roo_Controller {
         return "requests/show";
     }
     
-    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String RequestController.update(@Valid Request request, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, request);
-            return "requests/update";
-        }
-        uiModel.asMap().clear();
-        requestService.updateRequest(request);
-        return "redirect:/requests/" + encodeUrlPathSegment(request.getId().toString(), httpServletRequest);
-    }
+    
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String RequestController.updateForm(@PathVariable("id") BigInteger id, Model uiModel) {
