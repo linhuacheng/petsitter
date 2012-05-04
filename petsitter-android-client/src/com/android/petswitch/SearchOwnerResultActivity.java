@@ -1,5 +1,7 @@
 package com.android.petswitch;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,7 +21,11 @@ public class SearchOwnerResultActivity extends Activity {
 	
 	public static String SEARCH_TYPE = "SEARCH_TYPE";
 	public static String SEARCH_KEY = "SEARCH_KEY";
+	public static String SEARCH_NEARBY_LON = "SEARCH_NEARBY_LON";
+	public static String SEARCH_NEARBY_LAT = "SEARCH_NEARBY_LAT";
 
+	private SearchPetOwnerAdapter searchAdapter;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,18 +34,31 @@ public class SearchOwnerResultActivity extends Activity {
 		Bundle extras = getIntent().getExtras();
 		String searchType = extras.getString(SEARCH_TYPE);
 		String searchKey = extras.getString(SEARCH_KEY);
+		String searchNearbyLon = extras.getString(SEARCH_NEARBY_LON);
+		String searchNearbyLat = extras.getString(SEARCH_NEARBY_LAT);
+		
+		
+		
 		
 		SearchRequestBean searchCriteria = new SearchRequestBean();
 		searchCriteria.addCriteria(searchType, searchKey);
+		
+		if (searchNearbyLon != null && searchNearbyLon.length()>0 && searchNearbyLat != null && searchNearbyLat.length()>0) {
+			Double[] nearLoc = new Double[2];
+			nearLoc[0] = new Double(searchNearbyLon);
+			nearLoc[1] = new Double(searchNearbyLat);
+			searchCriteria.setNearLoc(nearLoc);
+		}
+		
 		
 		SharedPreferences prefs = getSharedPreferences(
 				ApplicationConstants.USER_PREF, 0);
 		// set the data adapter that will retrieve the data
 		ListView ownerList = (ListView) findViewById(R.id.petownerlist);
-		final SearchPetOwnerAdapter searchAdapter = new SearchPetOwnerAdapter(
+		searchAdapter = new SearchPetOwnerAdapter(
 				this, searchCriteria, prefs);
-		ownerList.setAdapter(searchAdapter);
-
+		ownerList.setAdapter(searchAdapter);		
+		
 		// on click go to the view item widget
 		ownerList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -77,6 +96,12 @@ public class SearchOwnerResultActivity extends Activity {
 
 	public void gotoSelectedPetSitter(View v) {
 		Intent i = new Intent(this, SelectedPetSitter.class);
+		startActivity(i);
+	}
+	
+	public void onClickViewMap(View v) {
+		Intent i = new Intent(this, MapPetOwnersActivity.class);
+		i.putExtra(MapPetOwnersActivity.PET_OWNERS, (ArrayList<PetOwnerResult>)searchAdapter.getPetOwners());
 		startActivity(i);
 	}
 }

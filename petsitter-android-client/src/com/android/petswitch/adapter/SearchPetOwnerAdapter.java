@@ -66,6 +66,10 @@ public class SearchPetOwnerAdapter extends BaseAdapter {
 	public Object getItem(int position) {
 		return petOwners.get(position);
 	}
+	
+	public List<PetOwnerResult> getPetOwners() {
+		return petOwners;
+	}
 
 	public long getItemId(int position) {
 		return petOwners.get(position).getId().longValue();

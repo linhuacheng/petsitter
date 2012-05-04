@@ -9,7 +9,17 @@ public class SearchRequestBean {
 	private String city;
 	private Integer page;
 	private Integer size;
+	public Double[] getNearLoc() {
+		return nearLoc;
+	}
+
+	public void setNearLoc(Double[] nearLoc) {
+		this.nearLoc = nearLoc;
+	}
+
+
 	private String loggedOnUserId;
+	private Double[] nearLoc;
 
 	public String getPetType() {
 		return petType;
@@ -69,10 +79,19 @@ public class SearchRequestBean {
 		if (zip != null && zip.length() >0) {
 			client.addParam("zip", zip);			
 		}
+		
+		if (nearLoc != null && nearLoc.length >0) {
+			client.addParam("nearLoc", nearLoc[0].toString());
+			client.addParam("nearLoc", nearLoc[1].toString());
+		}
 	}
 	
 	
 	public void addCriteria(String name, String value) {
+		if (name == null || name.length() ==0) {
+			return;
+		}
+		
 		if ("PETTYPE".equalsIgnoreCase(name.replace(" ", ""))) {
 			this.setPetType(value);
 		}
