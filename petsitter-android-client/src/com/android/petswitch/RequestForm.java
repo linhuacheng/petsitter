@@ -118,6 +118,18 @@ public class RequestForm extends Activity {
         });
         
 
+        Button b = (Button) findViewById(R.id.back_requestform);
+		
+		// set the on click listener for "Back to listings"
+	    b.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View arg0) {
+	         
+	        // when "back to listings" is clicked, go back to the real estate listings	 
+	         setResult(RESULT_OK);
+	         finish();
+	         } 
+	      });
+        
         // add a click listener to the button
         mPickDate_start.setOnClickListener(new View.OnClickListener() {
             @SuppressWarnings("deprecation")
