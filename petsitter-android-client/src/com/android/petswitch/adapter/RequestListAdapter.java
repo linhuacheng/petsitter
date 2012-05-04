@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -124,6 +125,7 @@ public class RequestListAdapter extends BaseAdapter {
 		textView.setTextSize(10);
 		textView.setTextAppearance(context, R.style.TextFieldStyle);
 		textView.setText(text);
+		textView.setTextColor(Color.WHITE);
 		viewGroup.addView(textView);
 
 	}
