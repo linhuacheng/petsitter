@@ -1,6 +1,7 @@
 package com.android.petswitch.adapter;
 
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class RequestPickerAdapter extends BaseAdapter {
 	private List<RequestResponseDetail> requestDetails;
 	private SharedPreferences preference;
 	private Handler threadHandler;
+	private SimpleDateFormat formatter = new SimpleDateFormat(ApplicationConstants.DATE_FORMAT_PRETTY);
 	
 	public RequestPickerAdapter(Context ctx, SharedPreferences prefs) {
 		this.context = ctx;
@@ -70,14 +72,19 @@ public class RequestPickerAdapter extends BaseAdapter {
 		reqDetails = requestDetails.get(position);
 		
 		
-//		textView.setText(reqDetails.getRequest());
+		//	textView.setText(reqDetails.getRequest());
 		
 		String approverUserName = reqDetails.getApproverUserName();
 		String requestorUserName = reqDetails.getRequestorUserName();
 		
 		String currentUser = preference.getString(ApplicationConstants.USERNAME, "");
 		
-		textView.setText(requestorUserName + " - " + reqDetails.getRequestStartDate());
+		String name = approverUserName;
+		if (currentUser.equalsIgnoreCase(approverUserName)) {
+			name = requestorUserName;
+		}
+				
+		textView.setText(name + " on " + formatter.format(reqDetails.getRequestStartDateD()));
 		
 
 		return rowView;
@@ -108,7 +115,7 @@ public class RequestPickerAdapter extends BaseAdapter {
 			Log.i(INNER_TAG, "Start parsing items");
 
 			RestClient client = RestClientFactory
-					.getListRequestClient(preference);
+					.getRequestPickerClient(preference);
 			
 			String currentUser = preference.getString(ApplicationConstants.USERNAME, "");
 			
@@ -134,10 +141,7 @@ public class RequestPickerAdapter extends BaseAdapter {
 					List<RequestResponseDetail> tempDetails = restResponse.getRequestResponseDetails();
 					requestDetails = new ArrayList<RequestResponseDetail>();
 					for (RequestResponseDetail req: tempDetails) {
-						String approverUserName = req.getApproverUserName();
-						if (currentUser.equalsIgnoreCase(approverUserName)) {
-							requestDetails.add(req);
-						}						
+						requestDetails.add(req);										
 					}
 					
 					System.out.println("Request Response output size .... "+requestDetails.size());
