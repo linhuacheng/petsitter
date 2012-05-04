@@ -14,7 +14,8 @@ public interface RequestService {
     public abstract List<Request> findAllRequests();    
     public abstract List<Request> findRequestEntries(int firstResult, int maxResults);    
     public abstract void saveRequest(Request request);    
-    public abstract Request updateRequest(Request request);    
+    public abstract Request updateRequest(Request request); 
+    public abstract Request updateRequestStatus(String status, String requestId);
     
     public abstract List<Request>findAllMyRequests(String userName);   
     public abstract List<Request> findMyRequestEntries(String userName, int firstResult, int maxResults);    
