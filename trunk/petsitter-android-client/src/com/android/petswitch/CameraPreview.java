@@ -1,6 +1,9 @@
 package com.android.petswitch;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,6 +31,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -71,10 +75,11 @@ public class CameraPreview extends Activity {
 	private Uri mVideoUri;
 
 	private String mCurrentPhotoPath;
+	private String mCurrentVideoPath;
 
 	private static final String JPEG_FILE_PREFIX = "IMG_";
 	private static final String JPEG_FILE_SUFFIX = ".jpg";
-	
+
 	private static final String VID_FILE_PREFIX = "VID_";
 	private static final String VID_FILE_SUFFIX = ".3gp";
 
@@ -83,11 +88,11 @@ public class CameraPreview extends Activity {
 	private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
 
 	private SharedPreferences mPrefs;
-	
+
 	private RequestResponseDetail mRequestResponseDetail;
 	private EditText mComment;
-	
-	private  RequestPickerAdapter adapter;
+
+	private RequestPickerAdapter adapter;
 
 	/* Photo album for this application */
 	private String getAlbumName() {
@@ -137,7 +142,8 @@ public class CameraPreview extends Activity {
 				.format(new Date());
 		String imageFileName = VID_FILE_PREFIX + timeStamp + "_";
 		File albumF = getAlbumDir();
-		File imageF = File.createTempFile(imageFileName,VID_FILE_SUFFIX, albumF);
+		File imageF = File.createTempFile(imageFileName, VID_FILE_SUFFIX,
+				albumF);
 		return imageF;
 	}
 
@@ -234,16 +240,16 @@ public class CameraPreview extends Activity {
 	private void dispatchTakeVideoIntent() {
 		Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 
-		File f;
-		try {
-			f = setUpVideoFile();
+		// File f;
+		// try {
+		// f = setUpVideoFile();
 
-			mCurrentPhotoPath = f.getAbsolutePath();
-			takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// mCurrentPhotoPath = f.getAbsolutePath();
+		// takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+		// } catch (IOException e) {
+		// TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 		startActivityForResult(takeVideoIntent, ACTION_TAKE_VIDEO);
 	}
 
@@ -257,16 +263,17 @@ public class CameraPreview extends Activity {
 		// Set its title
 		builder.setTitle("Share to...");
 
-		 adapter = new RequestPickerAdapter(this, mPrefs);
+		adapter = new RequestPickerAdapter(this, mPrefs);
 
 		// Set the list items and assign with the click listener
 		builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
 			// Click listener
 			public void onClick(DialogInterface dialog, int item) {
-				mRequestResponseDetail = (RequestResponseDetail) adapter.getItem(item);
-				
+				mRequestResponseDetail = (RequestResponseDetail) adapter
+						.getItem(item);
+
 				new HttpMultipartPost().execute();
-				
+
 			}
 		});
 
@@ -298,6 +305,37 @@ public class CameraPreview extends Activity {
 	private void handleCameraVideo(Intent intent) {
 		mVideoUri = intent.getData();
 		mVideoView.setVideoURI(mVideoUri);
+
+		try {
+
+			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+					.format(new Date());
+			mCurrentVideoPath = VID_FILE_PREFIX + timeStamp
+					+ VID_FILE_SUFFIX;
+
+			AssetFileDescriptor videoAsset = getContentResolver()
+					.openAssetFileDescriptor(mVideoUri, "r");
+			FileInputStream fis = videoAsset.createInputStream();
+			File tmpFile = setUpVideoFile();
+			//File tmpFile = new File(Environment.getExternalStorageDirectory(),
+				//	mCurrentVideoPath);
+			FileOutputStream fos = new FileOutputStream(tmpFile);
+			byte[] buf = new byte[1024];
+			int len;
+			while ((len = fis.read(buf)) > 0) {
+				fos.write(buf, 0, len);
+			}
+			fis.close();
+			fos.close();
+
+			mCurrentVideoPath = tmpFile.getAbsolutePath();
+		} catch (IOException e) {
+			Log.e(TAG, "error while writing video", e);
+			e.printStackTrace();
+		}
+
+		// mCurrentPhotoPath = f.getAbsolutePath();
+
 		mImageBitmap = null;
 		mVideoView.setVisibility(View.VISIBLE);
 		mImageView.setVisibility(View.INVISIBLE);
@@ -339,7 +377,7 @@ public class CameraPreview extends Activity {
 		mVideoUri = null;
 
 		mComment = (EditText) findViewById(R.id.comment_text);
-		
+
 		mPrefs = getSharedPreferences(ApplicationConstants.USER_PREF, 0);
 
 		// Button picBtn = (Button) findViewById(R.id.btnIntend);
@@ -478,56 +516,62 @@ public class CameraPreview extends Activity {
 		}
 
 		@Override
-		protected String doInBackground(String... arg0)
-		{
+		protected String doInBackground(String... arg0) {
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpContext httpContext = new BasicHttpContext();
-			HttpPost httpPost = new HttpPost(ApplicationConstants.UPLOAD_FILE_URL);
- 
-			try
-			{
-				
+			HttpPost httpPost = new HttpPost(
+					ApplicationConstants.UPLOAD_FILE_URL);
+
+			try {
+
 				UsernamePasswordCredentials creds = new UsernamePasswordCredentials(
-						mPrefs.getString(ApplicationConstants.USERNAME, ""), mPrefs.getString(ApplicationConstants.PASSWORD, ""));
-				httpPost.addHeader(new BasicScheme().authenticate(creds, httpPost));
-						
-				CustomMultiPartEntity multipartContent = new CustomMultiPartEntity(new ProgressListener()
-				{
-					public void transferred(long num)
-					{
-						publishProgress((int) ((num / (float) totalSize) * 100));
-					}
-				});
- 
-				 Uri fileUri = null; // if there is an image, upload the image
-				 if (mImageBitmap != null) { 
-					 fileUri = Uri.parse(mCurrentPhotoPath);
-				     //Toast.makeText(getApplicationContext(), mCurrentPhotoPath,Toast.LENGTH_SHORT).show();
-				     // else upload the video 
-				 } else {
-					 fileUri = mVideoUri; 
-					// Toast.makeText(getApplicationContext(), mVideoUri.getPath(), Toast.LENGTH_SHORT).show(); 
-				 } 
-				 Log.i(TAG, "File path: " + fileUri.getPath());
+						mPrefs.getString(ApplicationConstants.USERNAME, ""),
+						mPrefs.getString(ApplicationConstants.PASSWORD, ""));
+				httpPost.addHeader(new BasicScheme().authenticate(creds,
+						httpPost));
+
+				CustomMultiPartEntity multipartContent = new CustomMultiPartEntity(
+						new ProgressListener() {
+							public void transferred(long num) {
+								publishProgress((int) ((num / (float) totalSize) * 100));
+							}
+						});
+
+				Uri fileUri = null; // if there is an image, upload the image
+				if (mImageBitmap != null) {
+					fileUri = Uri.parse(mCurrentPhotoPath);
+					// Toast.makeText(getApplicationContext(),
+					// mCurrentPhotoPath,Toast.LENGTH_SHORT).show();
+					// else upload the video
+				} else {
+					fileUri = Uri.parse(mCurrentVideoPath);
+					// Toast.makeText(getApplicationContext(),
+					// mVideoUri.getPath(), Toast.LENGTH_SHORT).show();
+				}
+				Log.i(TAG, "File path: " + fileUri.getPath());
 				// We use FileBody to transfer an image
-				multipartContent.addPart("requestId", new StringBody(mRequestResponseDetail.getRequestId().toString()));
+				multipartContent.addPart("requestId", new StringBody(
+						mRequestResponseDetail.getRequestId().toString()));
 				multipartContent.addPart("fileName", new StringBody(""));
-				multipartContent.addPart("comment", new StringBody(mComment.getText().toString()));
-				multipartContent.addPart("file", new FileBody(new File(fileUri.getPath())));
+				multipartContent.addPart("comment", new StringBody(mComment
+						.getText().toString()));
+				multipartContent.addPart("file",
+						new FileBody(new File(fileUri.getPath())));
 				totalSize = multipartContent.getContentLength();
- 
+
 				Log.i(TAG, "Posting file");
 				// Send it
 				httpPost.setEntity(multipartContent);
-				HttpResponse response = httpClient.execute(httpPost, httpContext);
-				String serverResponse = EntityUtils.toString(response.getEntity());
+				HttpResponse response = httpClient.execute(httpPost,
+						httpContext);
+				String serverResponse = EntityUtils.toString(response
+						.getEntity());
 
 				Log.i(TAG, serverResponse);
 				return null;
 			}
- 
-			catch (Exception e)
-			{
+
+			catch (Exception e) {
 				System.out.println(e);
 				Log.e(TAG, e.toString(), e);
 			}
@@ -541,17 +585,20 @@ public class CameraPreview extends Activity {
 
 		@Override
 		protected void onPostExecute(String ui) {
-			
+
 			try {
-				// Get reference to the SmsManager that manages SMS operations such as sending text messages.
+				// Get reference to the SmsManager that manages SMS operations
+				// such as sending text messages.
 				SmsManager smsManager = SmsManager.getDefault();
 				// send the text message passing the phone number and message
-				smsManager.sendTextMessage(mRequestResponseDetail.getRequesterPhoneNumber(), null, mComment.getText().toString(), null, null);
+				smsManager.sendTextMessage(
+						mRequestResponseDetail.getRequesterPhoneNumber(), null,
+						mComment.getText().toString(), null, null);
 				mComment.setText("");
-			  } catch (Exception e) {
+			} catch (Exception e) {
 				Log.e(TAG, "Error sending SMS", e);
 				e.printStackTrace();
-			  }
+			}
 			dismissDialog(DIALOG_UPLOAD_PROGRESS);
 			// pd.dismiss();
 		}
