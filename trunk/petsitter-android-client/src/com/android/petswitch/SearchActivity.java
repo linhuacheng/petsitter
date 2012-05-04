@@ -38,4 +38,16 @@ public class SearchActivity extends Activity {
 		i.putExtra(SearchOwnerResultActivity.SEARCH_KEY, searchBy.getText().toString());
 		startActivity(i);
 	}
+	
+	public void searchNearbyPetSitter(View v)
+	{
+		// TODO: Replace with the location from phone
+		String lon = "-121.97764";
+		String lat = "37.40155";	
+				
+		Intent i = new Intent(this, SearchOwnerResultActivity.class);
+		i.putExtra(SearchOwnerResultActivity.SEARCH_NEARBY_LON, lon);
+		i.putExtra(SearchOwnerResultActivity.SEARCH_NEARBY_LAT, lat);
+		startActivity(i);
+	}
 }

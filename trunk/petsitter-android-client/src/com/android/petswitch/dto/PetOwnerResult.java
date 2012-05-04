@@ -1,9 +1,10 @@
 package com.android.petswitch.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public class PetOwnerResult {
+public class PetOwnerResult implements Serializable {
 
 	private String userName;
 	private String displayName;
