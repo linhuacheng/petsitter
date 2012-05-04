@@ -2,12 +2,18 @@ package com.android.petswitch.adapter;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.List;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -18,7 +24,9 @@ import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.petswitch.ImageDownloader;
 import com.android.petswitch.R;
+import com.android.petswitch.util.FileCacheUtil;
 import com.android.petswitch.util.RequestMethod;
 import com.android.petswitch.util.RestClient;
 import com.android.petswitch.util.RestClientFactory;
@@ -32,7 +40,7 @@ import com.android.petswitch.util.RestClientFactory;
 public class ImageAdapter extends BaseAdapter {
 	private Context context;
 	private String listingId;
-	//private List<String> imageList;
+	// private List<String> imageList;
 	private SharedPreferences preference;
 	int mGalleryItemBackground;
 	String remoteFileName;
@@ -56,12 +64,11 @@ public class ImageAdapter extends BaseAdapter {
 		this.context = ctx;
 		this.preference = prefs;
 		this.remoteFileName = remoteFileName;
-		 TypedArray attr =
-		 ctx.obtainStyledAttributes(R.styleable.ImageGalleryView);
-		 mGalleryItemBackground = attr.getResourceId(
-		 R.styleable.ImageGalleryView_android_galleryItemBackground, 0);
-		 attr.recycle();
-
+		TypedArray attr = ctx
+				.obtainStyledAttributes(R.styleable.ImageGalleryView);
+		mGalleryItemBackground = attr.getResourceId(
+				R.styleable.ImageGalleryView_android_galleryItemBackground, 0);
+		attr.recycle();
 
 		// the thread handler for asynchronous fetching of data
 		threadHandler = new Handler() {
@@ -129,9 +136,11 @@ public class ImageAdapter extends BaseAdapter {
 		} else {
 			imageView = (ImageView) convertView;
 		}
-		//ByteArrayOutputStream outputStream = getData();
-		if (byteArrayOutputStream != null){
-			imageView.setImageBitmap(BitmapFactory.decodeStream(new ByteArrayInputStream(byteArrayOutputStream.toByteArray())));
+		// ByteArrayOutputStream outputStream = getData();
+		if (byteArrayOutputStream != null) {
+			imageView.setImageBitmap(BitmapFactory
+					.decodeStream(new ByteArrayInputStream(
+							byteArrayOutputStream.toByteArray())));
 		}
 		// use image downloader to download image
 
@@ -140,26 +149,30 @@ public class ImageAdapter extends BaseAdapter {
 
 		return imageView;
 	}
+//	
+//	public void getOutputStream(){
+//		
+//	}
 
-	public ByteArrayOutputStream getData() {
-		ByteArrayOutputStream outPutStream = null;
-		RestClient client = RestClientFactory.getDownloadFileClient(preference);
-		client.addParam("fileName", remoteFileName);
-		try {
-			client.execute(RequestMethod.GET);
-
-			if (client.getResponseCode() != 200) {
-				// return server error
-				Log.e(getClass().getName(), client.getErrorMessage());
-			}
-			// return valid data
-			outPutStream = client.getByteArrayStream();
-
-		} catch (Exception e) {
-			Log.e(getClass().getName(), e.toString());
-		}
-		return outPutStream;
-	}
+//	public ByteArrayOutputStream getData() {
+//		ByteArrayOutputStream outPutStream = null;
+//		RestClient client = RestClientFactory.getDownloadFileClient(preference);
+//		client.addParam("fileName", remoteFileName);
+//		try {
+//			client.execute(RequestMethod.GET);
+//
+//			if (client.getResponseCode() != 200) {
+//				// return server error
+//				Log.e(getClass().getName(), client.getErrorMessage());
+//			}
+//			// return valid data
+//			outPutStream = client.getByteArrayStream();
+//
+//		} catch (Exception e) {
+//			Log.e(getClass().getName(), e.toString());
+//		}
+//		return outPutStream;
+//	}
 
 	class DataThread extends Thread {
 
@@ -168,24 +181,63 @@ public class ImageAdapter extends BaseAdapter {
 		public void run() {
 
 			Log.i(INNER_TAG, "Start parsing items");
+			FileOutputStream fos  = null;
 
-			RestClient client = RestClientFactory
-					.getDownloadFileClient(preference);
-			
-			client.addParam("fileName", remoteFileName);
+			File file = FileCacheUtil.getCacheFile(remoteFileName);
+
 			try {
-				client.execute(RequestMethod.GET);
-
-				if (client.getResponseCode() != 200) {
-					// return server error
-					Log.e(INNER_TAG, client.getErrorMessage());
+				Log.i(getClass().getName(), file.getAbsolutePath());
+				if (!file.exists()) {
+					
+					// compress the bit map
+					//bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos);
+					Log.i(getClass().getName(), "Inside File not exists");
+					RestClient client = RestClientFactory
+							.getDownloadFileClient(preference);
+	
+					client.addParam("fileName", remoteFileName);
+					client.execute(RequestMethod.GET);
+	
+					if (client.getResponseCode() != 200) {
+						// return server error
+						Log.e(INNER_TAG, client.getErrorMessage());
+					}
+					// return valid data
+					byteArrayOutputStream = client.getByteArrayStream();
+					if (!file.getParentFile().exists()) {
+						Log.i(getClass().getName(), "Parent File Path"
+								+ file.getParentFile().getPath());
+						file.getParentFile().mkdirs();
+					}
+					// create file out put stream
+					fos = new FileOutputStream(file);
+					Log.i(getClass().getName(), "Writing file from web to SD card");
+					fos.write(byteArrayOutputStream.toByteArray());
+					fos.flush();
+				}else {
+					FileInputStream fis = new FileInputStream(file);
+					byte data[] = new byte[1024];
+					long total = 0;
+					int numRead;
+					byteArrayOutputStream = new ByteArrayOutputStream();
+					while ((numRead = fis.read(data)) != -1) {
+						total += numRead;
+						
+						byteArrayOutputStream.write(data, 0, numRead);
+					}
+					Log.i(getClass().getName(), "Read total bytes" + total);
 				}
-				// return valid data
-				byteArrayOutputStream = client
-						.getByteArrayStream();
-
 			} catch (Exception e) {
 				Log.e(INNER_TAG, e.toString());
+				//release io connections
+				
+				if (fos != null){
+					try {
+						fos.close();
+					} catch (Exception e2) {
+						Log.e(getClass().getName(), "Exception", e2);
+					}
+				}
 			}
 
 			Log.i(INNER_TAG,
