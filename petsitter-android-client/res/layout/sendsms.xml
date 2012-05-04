@@ -36,7 +36,7 @@
         android:text="@string/sms_send_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_edittext"
+        android:background="@drawable/green_button"
         android:padding="10dp"
         android:layout_gravity="center" />
 

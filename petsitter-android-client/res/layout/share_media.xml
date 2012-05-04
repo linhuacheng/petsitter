@@ -10,10 +10,9 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        
-        android:text="@string/comment"
-        android:textColor="#000000" 
-        android:background="#ABABAB" 
+        style="@style/DescFont"
+        android:paddingLeft="10dp"
+        android:text="@string/comment"     
         />
 <View
                 android:layout_width="40sp"
@@ -45,25 +44,29 @@
             android:id="@+id/btnIntendS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="0.45"
             android:text="@string/take_photo"
-            android:paddingLeft="10dp"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:paddingLeft="15dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:paddingRight="10dp"
-        android:background="@drawable/rounded_edittext" />
+            android:paddingRight="15dp"
+        android:background="@drawable/green_button" />
 
         <Button
             android:id="@+id/btnIntendV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="0.45"
             android:text="@string/take_video"
-            android:paddingLeft="10dp"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"            
+            android:paddingLeft="15dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:paddingRight="10dp"
-        android:background="@drawable/rounded_edittext"  />
+            android:paddingRight="15dp"
+        android:background="@drawable/green_button"  />
     </LinearLayout>
 
     <LinearLayout
@@ -93,14 +96,10 @@
         android:id="@+id/btnIntendShare"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dip"
+        android:layout_marginBottom="20dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:text="@string/share" 
-        android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:paddingRight="10dp"
-        android:background="@drawable/rounded_edittext" />
+                android:background="@drawable/green_button" />
 
 </LinearLayout>

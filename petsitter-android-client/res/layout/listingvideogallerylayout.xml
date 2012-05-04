@@ -23,6 +23,7 @@
     android:id="@+id/downloadButton"
 	android:spacing="3dip"
     android:text="Download"
+    android:background="@drawable/green_button"
     />
 <TextView
     android:id="@+id/lbMediaName"
