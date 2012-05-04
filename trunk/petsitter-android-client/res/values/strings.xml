@@ -51,11 +51,11 @@
     <string name="label_slide_anim_end">Slide Animation Ended</string>
     <string name="userdetails">USER DETAILS</string>
     
-    <string name="comment">Comment:</string>
-    <string name="take_photo">Take a photo</string>
-    <string name="take_video">Take a video</string>
-    <string name="share">Share</string>
-    <string name="pick_request">Share to</string>  
+    <string name="comment">COMMENT:</string>
+    <string name="take_photo">TAKE A PHOTO</string>
+    <string name="take_video">TAKE A VIDEO</string>
+    <string name="share">SHARE</string>
+    <string name="pick_request">SHARE TO...</string>  
 
     
     <!--     Send SMS  -->
