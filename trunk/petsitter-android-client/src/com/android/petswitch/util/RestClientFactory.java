@@ -21,6 +21,10 @@ public class RestClientFactory {
         return new RestClient (pref, ApplicationConstants.REQUESTS_URL);
 	}
 	
+	public static RestClient getRequestPickerClient(SharedPreferences pref) {
+        return new RestClient (pref, ApplicationConstants.REQUESTS_PICKER_URL);
+	}
+	
 	public static RestClient getUploadFileClient(SharedPreferences pref) {
         return new RestClient (pref, ApplicationConstants.UPLOAD_FILE_URL);
 	}
