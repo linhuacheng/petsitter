@@ -5,26 +5,33 @@
     android:background="@drawable/background_android_pets"
     android:orientation="vertical" >
     
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    
     <TextView
  		style="@style/CodeFont"
  		android:textSize="15sp"
  		android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1" 
         android:text="SEARCH RESULT" />
- <Button
-        android:id="@+id/btnIntendShare"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-         android:layout_marginBottom="10dip"
-        android:layout_marginTop="10dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:text="@string/map_button" 
-        android:onClick="onClickViewMap"
-        android:background="@drawable/green_button" />
-            
+    
+    	<ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"  
+                android:background="@android:color/transparent"   
+                android:layout_marginTop="10dip"
+                android:layout_marginBottom="10dip"
+                android:layout_marginRight="10dip"                
+                android:onClick="onClickViewMap"
+                android:src="@drawable/maps_alt" />
+    
+    </LinearLayout>
     <ListView android:id="@+id/petownerlist" 
         android:layout_height="0dp"
         android:layout_width="match_parent"
