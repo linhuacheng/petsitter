@@ -17,6 +17,9 @@ public class ApplicationConstants {
 	public static String REQUESTS_URL = APPLICATION_HOST
 			+ "/petsitter/requests/requestresponse.json";
 	
+	public static String REQUESTS_PICKER_URL = APPLICATION_HOST
+			+ "/petsitter/requests/simple.json";	
+	
 	public static String UPLOAD_FILE_URL = APPLICATION_HOST
 			+ "/petsitter/uploadfile";
 	
@@ -24,6 +27,8 @@ public class ApplicationConstants {
 	+ "/petsitter/uploadfile";
 
 	public static String DATE_FORMAT = "MM/dd/yyyy";
+	
+	public static String DATE_FORMAT_PRETTY = "MM/dd/yyyy";
 	
 	public static String USERNAME = "userName";
 	public static String PASSWORD = "password";
