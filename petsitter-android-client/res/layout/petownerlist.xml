@@ -2,20 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-         >
+    android:background="@drawable/background_android_pets"
+    android:orientation="vertical" >
     
     <TextView
-        style="@style/DescFont"
-        android:background="#A0FF00"
-        android:text="Search Petsitter Result" />
-        
+ 		style="@style/CodeFont"
+ 		android:textSize="15sp"
+ 		android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SEARCH RESULT" />
+ <Button
+        android:id="@+id/btnIntendShare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         android:layout_marginBottom="10dip"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:text="@string/map_button" 
+        android:onClick="onClickViewMap"
+        android:background="@drawable/green_button" />
+            
     <ListView android:id="@+id/petownerlist" 
-        android:layout_height="0dp" 
-        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
         android:divider="#b5b5b5"
         android:dividerHeight="1dp"
         android:layout_weight="1"
         />
-
+ 
 </LinearLayout>
