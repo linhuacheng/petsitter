@@ -65,7 +65,7 @@ public class MapsTrialActivity extends MapActivity {
         List<Overlay> mapOverlays = mapView.getOverlays();
         Drawable drawable = this.getResources().getDrawable(R.drawable.ic_launcher);
         HelloItemizedOverlay itemizedoverlay = new HelloItemizedOverlay(drawable, this);
-        GeoPoint point = new GeoPoint(selectedLng, selectedLat);
+        GeoPoint point = new GeoPoint(selectedLat, selectedLng);
         OverlayItem overlayitem = new OverlayItem(point, address1, address2);
         itemizedoverlay.addOverlay(overlayitem);
         mapOverlays.add(itemizedoverlay);
