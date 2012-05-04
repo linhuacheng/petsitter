@@ -13,6 +13,7 @@ import com.android.petswitch.adapter.RequestListAdapter;
 import com.android.petswitch.dto.PetOwnerResult;
 import com.android.petswitch.dto.RequestResponseDetail;
 import com.android.petswitch.util.ApplicationConstants;
+import com.android.petswitch.util.FileCacheUtil;
 
 public class RequestList extends Activity {
 	public void onCreate(Bundle icicle) {
@@ -61,7 +62,7 @@ public class RequestList extends Activity {
 						RequestResponseDetail.ORES.equalsIgnoreCase(requestResponseDetail.getType())){
 					Intent intent = new Intent(view.getContext(),
 							ImageGalleryActivity.class);
-					intent.putExtra("type", "image");
+					intent.putExtra("type", FileCacheUtil.getMediaType(requestResponseDetail.getContentType()));
 					intent.putExtra("fileName", requestResponseDetail.getFileName());
 					startActivity(intent);
 				}

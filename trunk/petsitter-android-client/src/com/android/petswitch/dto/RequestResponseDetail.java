@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.android.petswitch.R;
 import com.android.petswitch.util.ApplicationConstants;
 
 public class RequestResponseDetail {
@@ -144,5 +145,5 @@ public class RequestResponseDetail {
     	return date;    			
 	}
 	
-	
+
 }

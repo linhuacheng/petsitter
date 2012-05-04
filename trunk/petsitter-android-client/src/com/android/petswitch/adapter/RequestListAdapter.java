@@ -21,6 +21,7 @@ import com.android.petswitch.R;
 import com.android.petswitch.dto.RequestResponseDetail;
 import com.android.petswitch.dto.RequestResponseDetailRest;
 import com.android.petswitch.util.ApplicationConstants;
+import com.android.petswitch.util.FileCacheUtil;
 import com.android.petswitch.util.RequestMethod;
 import com.android.petswitch.util.RestClient;
 import com.android.petswitch.util.RestClientFactory;
@@ -100,11 +101,10 @@ public class RequestListAdapter extends BaseAdapter {
 			if (reqDetails.getContentType() ==null) {
 				reqDetails.setContentType("");
 			}
-			if (reqDetails.getContentType().toLowerCase()
-					.matches("img|jpg|png|bmp")) {
+			String mediaType = FileCacheUtil.getMediaType(reqDetails.getContentType());
+			if (FileCacheUtil.MEDIA_TYPE_IMAGE.equalsIgnoreCase(mediaType)) {
 				imageView.setImageResource(R.drawable.img_icon);
-			} else if (reqDetails.getContentType().toLowerCase()
-					.matches("mp3|mp4|3gp|avi")){
+			} else if (FileCacheUtil.MEDIA_TYPE_VIEDO.equalsIgnoreCase(mediaType)){
 				imageView.setImageResource(R.drawable.video_icon);
 			} else{
 				imageView.setImageResource(R.drawable.text_icon);
@@ -123,7 +123,7 @@ public class RequestListAdapter extends BaseAdapter {
 
 		TextView textView = new TextView(viewGroup.getContext());
 		textView.setTextSize(10);
-		textView.setTextAppearance(context, R.style.TextFieldStyle);
+		textView.setTextAppearance(context, R.style.TextFieldSmallStyle);
 		textView.setText(text);
 		textView.setTextColor(Color.WHITE);
 		viewGroup.addView(textView);
