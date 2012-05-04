@@ -23,6 +23,7 @@
     <string name="searchby">SEARCH BY</string>
     <string name="enterkey">ENTER KEY</string>
     <string name="searchbutton">   SEARCH   </string>
+    <string name="searchNearbybutton">SEARCH NEARBY</string>
     <string name="planet_prompt">Choose a planet</string>
     <string-array name="planets_array">
         <item><i>Zip</i></item>
@@ -62,6 +63,7 @@
     
     <string name="sms_content_label">Message Body</string>
     <string name="sms_send_message">Send</string>
+    <string name="map_button">MAP VIEW</string>
     
     
 </resources>
