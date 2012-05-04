@@ -114,6 +114,19 @@ public class RequestDetails extends Activity {
 			
 		});
 		
+		
+		Button b = (Button) findViewById(R.id.back_requestdetails);
+		
+		// set the on click listener for "Back to listings"
+	    b.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View arg0) {
+	         
+	        // when "back to listings" is clicked, go back to the real estate listings	 
+	         setResult(RESULT_OK);
+	         finish();
+	         } 
+	      });
+		
 	}
 	
 	public void updateRequest(String result)
