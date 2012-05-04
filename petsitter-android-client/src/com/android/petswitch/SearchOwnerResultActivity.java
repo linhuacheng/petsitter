@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -89,6 +90,19 @@ public class SearchOwnerResultActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+		
+		
+		Button b = (Button) findViewById(R.id.back_petownerlist);
+		
+		// set the on click listener for "Back to listings"
+	    b.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View arg0) {
+	         
+	        // when "back to listings" is clicked, go back to the real estate listings	 
+	         setResult(RESULT_OK);
+	         finish();
+	         } 
+	      });
 
 		// Turn on the progress bar AFTER the layout has been created.
 		//setProgressBarIndeterminateVisibility(true);
