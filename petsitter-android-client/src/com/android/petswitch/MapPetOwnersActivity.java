@@ -16,6 +16,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -31,6 +32,7 @@ import com.google.android.maps.OverlayItem;
 
 public class MapPetOwnersActivity extends MapActivity {
 
+	private static String LOG_TAG = "MapPetOwner";
 	public static String PET_OWNERS = "PET_OWNERS";
 	/** Called when the activity is first created. */
 	// int selectedLat = 19240000,selectedLng = -99120000;
@@ -54,6 +56,7 @@ public class MapPetOwnersActivity extends MapActivity {
 		List<PetOwnerResult> petOwners = (ArrayList<PetOwnerResult>) extras
 				.get(PET_OWNERS);
 
+		Log.i(LOG_TAG, "Starting to map users");
 		MapView mapView = (MapView) findViewById(R.id.mapview);
 		mapView.setBuiltInZoomControls(true);
 		List<Overlay> mapOverlays = mapView.getOverlays();
@@ -62,7 +65,7 @@ public class MapPetOwnersActivity extends MapActivity {
 		HelloItemizedOverlay itemizedoverlay = new HelloItemizedOverlay(
 				drawable, this);
 		for (PetOwnerResult user : petOwners) {
-			
+			Log.i(LOG_TAG, "Mapping " + user.getUserName());
 			GeoPoint point = new GeoPoint(user.getLatitudeE6(),
 					user.getLongitudeE6());
 			String address1 = new StringBuilder()
