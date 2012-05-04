@@ -24,8 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:background="@drawable/rounded_edittext"
             android:gravity="left"
              android:textColor="#000000"
@@ -57,8 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:background="@drawable/rounded_edittext"
             android:gravity="left"
              android:textColor="#000000"
@@ -91,8 +91,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:background="@drawable/rounded_edittext"
             
             android:gravity="left"
@@ -126,8 +126,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:background="@drawable/rounded_edittext"
              android:textColor="#000000"
         android:typeface="normal"
@@ -160,8 +160,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:background="@drawable/rounded_edittext"
             android:textColor="#000000"
         android:typeface="normal"
@@ -176,19 +176,6 @@
                 android:layout_height="50sp" />
     
      
-     
-    <TextView 
-            android:id="@+id/status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/DescFont"
-            android:layout_gravity="center"
-             android:textColor="#000000"
-        android:typeface="normal"
-        android:textStyle="bold"
-        android:textSize="15sp"/>
-    
-    
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -219,5 +206,20 @@
             android:text="REJECT"/>
         
     </LinearLayout>
+    
+    
+     
+    <TextView 
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/DescFont"
+            android:layout_gravity="center"
+             android:textColor="#ffffff"
+        android:typeface="normal"
+        android:textStyle="bold"
+        android:textSize="15sp"/>
+    
+    
     
 </LinearLayout>
