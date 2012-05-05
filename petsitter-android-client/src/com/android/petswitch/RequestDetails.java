@@ -1,17 +1,20 @@
 package com.android.petswitch;
 
-import com.android.petswitch.util.ApplicationConstants;
-import com.android.petswitch.util.RequestMethod;
-import com.android.petswitch.util.RestClient;
-import com.android.petswitch.util.RestClientFactory;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.petswitch.util.ApplicationConstants;
+import com.android.petswitch.util.RequestMethod;
+import com.android.petswitch.util.RestClient;
+import com.android.petswitch.util.RestClientFactory;
 
 public class RequestDetails extends Activity {
 	
@@ -32,7 +35,9 @@ public class RequestDetails extends Activity {
 	private String req_end_date;
 	private String message; 
 	private String requestId;
-
+	private String phoneNo;
+	private String requestType;
+	
 	private String result = "new";
 
 	public void onCreate(Bundle icicle) {
@@ -46,6 +51,8 @@ public class RequestDetails extends Activity {
 		req_end_date = getIntent().getStringExtra("reqEndDate");
 		message = getIntent().getStringExtra("comment");
 		requestId = getIntent().getStringExtra("requestId");
+		phoneNo = getIntent().getStringExtra("phoneNo");
+		requestType = getIntent().getStringExtra("requestType");
 		
 		
 		petType = (TextView) findViewById(R.id.pet_type);
@@ -62,7 +69,7 @@ public class RequestDetails extends Activity {
 		reqEndDate.setText(req_end_date);
 		comment.setText(message);
 		
-		if(req_status.equalsIgnoreCase("new"))
+		if(req_status.equalsIgnoreCase("new") && requestType.equalsIgnoreCase("received"))
 		{
 			
 		}
@@ -90,6 +97,19 @@ public class RequestDetails extends Activity {
 				
 //				Intent intent = new Intent(RequestDetails.this, RequestList.class);
 //				startActivity(intent);
+			}
+			
+		});
+		
+		ImageView iv = (ImageView) findViewById(R.id.call_requestdetails);
+		
+		iv.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				
+				Intent phoneCall = new Intent(Intent.ACTION_CALL);	// call ACTION_CALL intent when Call option is selected
+				phoneCall.setData(Uri.parse("tel:"+phoneNo));					
+				startActivity(phoneCall);
+				
 			}
 			
 		});
