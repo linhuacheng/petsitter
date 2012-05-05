@@ -10,7 +10,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.android.petswitch.adapter.RequestListAdapter;
-import com.android.petswitch.dto.PetOwnerResult;
 import com.android.petswitch.dto.RequestResponseDetail;
 import com.android.petswitch.util.ApplicationConstants;
 import com.android.petswitch.util.FileCacheUtil;
@@ -40,24 +39,33 @@ public class RequestList extends Activity {
 					
 					System.out.println("Requestor userName is .... "+requestResponseDetail.getRequestorUserName());
 					
-					if(requestResponseDetail.getRequestorUserName().equalsIgnoreCase(prefs.getString(ApplicationConstants.USERNAME, "")));
+					intent.putExtra("petType", requestResponseDetail.getPetType());
+					intent.putExtra("reqStartDate", requestResponseDetail.getRequestStartDate());
+					intent.putExtra("reqEndDate", requestResponseDetail.getRequestEndDate());
+					intent.putExtra("comment", requestResponseDetail.getComment());
+					intent.putExtra("status", requestResponseDetail.getStatus());
+					intent.putExtra("requestId", requestResponseDetail.getRequestId().toString());
+					
+					
+					if(requestResponseDetail.getRequestorUserName().equalsIgnoreCase(prefs.getString(ApplicationConstants.USERNAME, "")))
 					{
 						intent.putExtra("userName", requestResponseDetail.getApproverUserName());
 						
-						//intent.putExtra("phoneNo", requestResponseDetail.getMobile());  -- should get it from server
+						intent.putExtra("phoneNo", requestResponseDetail.getApproverPhoneNumber());
 						
-						intent.putExtra("petType", requestResponseDetail.getPetType());
-						intent.putExtra("reqStartDate", requestResponseDetail.getRequestStartDate());
-						intent.putExtra("reqEndDate", requestResponseDetail.getRequestEndDate());
-						intent.putExtra("comment", requestResponseDetail.getComment());
-						intent.putExtra("status", requestResponseDetail.getStatus());
-						intent.putExtra("requestId", requestResponseDetail.getRequestId().toString());
+						intent.putExtra("requestType", "sent");
 					}
-					System.out.println("Starting the activity");
-					// intent.putExtra(ItemAdapter.ITEM_INDEX, position);
+					else
+					{
+						intent.putExtra("userName", requestResponseDetail.getRequestorUserName());
+						
+						intent.putExtra("phoneNo", requestResponseDetail.getRequesterPhoneNumber());
+						
+						intent.putExtra("requestType", "received");
+					}
+					
 					startActivity(intent);
-	//				Intent showDetail = new Intent(RequestList.this, RequestDetails.class);
-	//				startActivity(showDetail);
+
 				} else if (RequestResponseDetail.IRES.equalsIgnoreCase(requestResponseDetail.getType()) || 
 						RequestResponseDetail.ORES.equalsIgnoreCase(requestResponseDetail.getType())){
 					Intent intent = new Intent(view.getContext(),
