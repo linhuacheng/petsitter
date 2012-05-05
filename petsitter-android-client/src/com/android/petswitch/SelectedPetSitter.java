@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -46,8 +47,9 @@ public class SelectedPetSitter extends Activity {
 	private TextView petType;
 	private TextView petDesc;
 
-	private LinearLayout l;
-	
+	LayoutInflater linflater;
+    LinearLayout l;
+    
 	private String display_name;
 	private String phone_no;
 	private String address1;
@@ -61,7 +63,9 @@ public class SelectedPetSitter extends Activity {
 	private String full_address1;
 	private String full_address2;
 	
-	List<PetDetailBean> userPetDetails = new ArrayList<PetDetailBean>(); 
+	static List<PetDetailBean> petDetails = new ArrayList<PetDetailBean>();
+	
+	List<PetDetailBean> userPetDetails = new ArrayList<PetDetailBean>();
 	PetDetailBean pdb = new PetDetailBean();
 	PetOwnerResult petOwnerDetail;
 	
@@ -80,28 +84,34 @@ public class SelectedPetSitter extends Activity {
             R.drawable.list1_2,
             R.drawable.list1_3,
             R.drawable.list1_4};
-
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details);
         System.out.println("Entered SelectedPetSitter...");
+
+        
+      mFlipper = ((ViewFlipper) this.findViewById(R.id.flipper2));
+        
+      // add the the images to the flipper
+      for(int i=0;i<mImageIds.length;i++)
+      {
+          setFlipperImage(mImageIds[i]);
+      }
+      
+      startFlip();
+
         
         
-        mFlipper = ((ViewFlipper) this.findViewById(R.id.flipper2));
         
-        // add the the images to the flipper
-        for(int i=0;i<mImageIds.length;i++)
-        {
-            setFlipperImage(mImageIds[i]);
-        }
-        
-        startFlip();
-        
-        
+        petName = (TextView) findViewById(R.id.pet_name);
+        petType = (TextView) findViewById(R.id.pet_type);
+        petDesc = (TextView) findViewById(R.id.pet_desc);
+        l = (LinearLayout) findViewById(R.id.pet_linear_layout);
         
         user_name = getIntent().getStringExtra("userName");
-        l = (LinearLayout) findViewById(R.id.pet_details);
+        
         
         latitude = getIntent().getExtras().getDouble("latitude");
         longitude = getIntent().getExtras().getDouble("longitude");
@@ -124,14 +134,13 @@ public class SelectedPetSitter extends Activity {
      				} else {
      				      if(userPetDetails.size()!=0)
      				        {
-     				    	 for(int i = 0; i<userPetDetails.size();i++)
-    				    	  {
-    				    		 PetDetailBean pdb1 = new PetDetailBean();
-    				    		 pdb1 = userPetDetails.get(i);
-    				    		 addTextView(l, pdb1.getPetType()+" - "+pdb1.getPetName());
-//    				    		 addTextView(l, pdb1.getPetDesc());
-    				    		 addTextView(l,"");
-    				    	  }
+     				    	  	SelectedPetSitter.petDetails = userPetDetails;
+//     				    	  	addTextView(l, "Pet 1: ");
+  				    	 		pdb = userPetDetails.get(0);
+  				    	 		petType.setText(pdb.getPetType()+" - "+pdb.getPetName());
+  				    	 		petDesc.setText(pdb.getPetDesc());
+     				    	  
+     				    	 	
      				        }
      				}
      				
@@ -174,12 +183,12 @@ public class SelectedPetSitter extends Activity {
         phoneNo.setText(content);
         address.setText(address1+address2+city+state+zip);
         
+        
         registerForContextMenu(phoneNo);
         
         Button b = (Button) findViewById(R.id.back_details);
 		
-		// set the on click listener for "Back to listings"
-	    b.setOnClickListener(new View.OnClickListener() {
+		b.setOnClickListener(new View.OnClickListener() {
 	         public void onClick(View arg0) {
 	         
 	        // when "back to listings" is clicked, go back to the real estate listings	 
@@ -187,20 +196,6 @@ public class SelectedPetSitter extends Activity {
 	         finish();
 	         } 
 	      });
-	    
-	    Button toSearch = (Button) findViewById(R.id.search_details);
-		
-		// set the on click listener for "Back to listings"
-	    toSearch.setOnClickListener(new View.OnClickListener() {
-	         public void onClick(View arg0) {
-	         
-	        	 Intent i = new Intent(SelectedPetSitter.this, MobilePetSwitchActivity.class);
-	        	 startActivity(i);
-	         } 
-	      });
-	    
-
-        
         
         System.out.println("User Name at the end of onCreate Method is..."+user_name);
         
@@ -273,7 +268,7 @@ public class SelectedPetSitter extends Activity {
         startActivity(i);
     }
     
-	
+ 	
 	public void gotoRequestForm(View v)
 	{
 		Intent i = new Intent(this, RequestForm.class);
@@ -352,6 +347,5 @@ public class SelectedPetSitter extends Activity {
         mFlipper.setFlipInterval(1300);
 	}
 	
-	
-	
+
 }
