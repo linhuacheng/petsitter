@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     public static final String PROP_ZIP = "zip";
     public static final String PROP_CITY = "city";
     public static final String PROP_PASSWORD = "password";
-    public static final double RADIUS = 30;
+    public static final double RADIUS = 30/69;
     //1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA
     public static final Double[] Amphitheatre_1600_Pkwy_Mountain_View_CA_94043 = new Double[]{-122.08530320,37.42114440};
     //"160 N Main St, Milpitas, CA 95035, USA
