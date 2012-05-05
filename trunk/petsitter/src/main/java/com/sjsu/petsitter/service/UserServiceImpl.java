@@ -29,12 +29,12 @@ public class UserServiceImpl implements UserService {
     public static final String PROP_ZIP = "zip";
     public static final String PROP_CITY = "city";
     public static final String PROP_PASSWORD = "password";
-    public static final double RADIUS = 30/69;
+    public static final double RADIUS = (30.0/69.0);
     //1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA
     public static final Double[] Amphitheatre_1600_Pkwy_Mountain_View_CA_94043 = new Double[]{-122.08530320,37.42114440};
     //"160 N Main St, Milpitas, CA 95035, USA
     public static final Double[] NMainSt_160_Milpitas_CA_95035 = new Double[]{-121.9068760, 37.4327710};
-    Log log = LogFactory.getLog(UserServiceImpl.class);
+    private static final Log log = LogFactory.getLog(UserServiceImpl.class);
 
     @Autowired
     MongoTemplate mongoTemplate;
@@ -55,7 +55,9 @@ public class UserServiceImpl implements UserService {
         if (searchRequestBean.getNearLoc() != null && searchRequestBean.getNearLoc().length > 0
                 && searchRequestBean.getNearLoc()[0] != null &&
                 searchRequestBean.getNearLoc()[1] != null){
-
+            log.debug("RADIUS:"+RADIUS);
+            log.debug("Near Location lon"+searchRequestBean.getNearLoc()[0]);
+            log.debug("Near Location lat"+ searchRequestBean.getNearLoc()[1]);
             Circle circle = new Circle(searchRequestBean.getNearLoc()[0], searchRequestBean.getNearLoc()[1], RADIUS);
             //Point point = new Point(searchRequestBean.getNearLoc()[0], searchRequestBean.getNearLoc()[1]);
             query = new Query(Criteria.where("loc").within(circle).and("id").ne(searchRequestBean.getLoggedOnUserId()))
