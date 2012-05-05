@@ -201,6 +201,9 @@ public class ImageGalleryActivity extends Activity {
 
 				// mediaController.setAnchorView(videoView);
 				videoView.setMediaController(mediaController);
+				TextView textView = (TextView) findViewById(R.id.lbMediaName);
+				textView.setText("Selected: " + fileName);
+
 				
 				// videoView.setVideoURI(Uri.parse("http://hermes.sprc.samsung.pl/widget/tmp/testh.3gp"));
 				// videoView.setVideoPath("/sdcard/ga.3gp");
@@ -216,18 +219,19 @@ public class ImageGalleryActivity extends Activity {
 				} else {
 					// set video url to external link
 					path = file.getAbsolutePath();
+					setMedia(file);
 				}
-				TextView textView = (TextView) findViewById(R.id.lbMediaName);
-				textView.setText("Selected: " + fileName);
 				Log.v(getClass().getName(), "Selected path" + path);
-				videoView.setVideoURI(Uri.parse(path));
-				videoView.requestFocus();
-				// videoView.start();
-
 			}
 		});
 	}
-
+	private void setMedia(File file){
+		String path = file.getAbsolutePath();
+		VideoView videoView = (VideoView) findViewById(R.id.videoView);
+		videoView.setVideoURI(Uri.parse(path));
+		videoView.requestFocus();
+	}
+	
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
@@ -250,7 +254,7 @@ public class ImageGalleryActivity extends Activity {
 	 * 
 	 */
 	class DownloadFileAsync extends AsyncTask<String, String, String> {
-
+		File file = null;
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -270,10 +274,11 @@ public class ImageGalleryActivity extends Activity {
 			ByteArrayOutputStream byteArrayOutputStream;
 			FileOutputStream fos = null;
 			FileInputStream fis = null;
+			
 			try {
 				SharedPreferences preference = getSharedPreferences(
 						ApplicationConstants.USER_PREF, 0);
-				File file = FileCacheUtil.getCacheFile(remoteFileName);
+				file = FileCacheUtil.getCacheFile(remoteFileName);
 				if (!file.exists()) {
 					Log.v(getClass().getName(), "File does not exist" + file.getAbsolutePath());
 					// compress the bit map
@@ -342,11 +347,16 @@ public class ImageGalleryActivity extends Activity {
 
 		protected void onProgressUpdate(String... progress) {
 			Log.d("AsyncDownload", progress[0]);
+			
 			progressDialog.setProgress(Integer.parseInt(progress[0]));
 		}
 
 		@Override
 		protected void onPostExecute(String unused) {
+			// videoView.start();
+			if (file != null && file.exists()){
+				setMedia(file);
+			}
 			dismissDialog(STATUS_DOWNLOAD_PROGRESS);
 		}
 	}
