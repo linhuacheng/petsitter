@@ -70,7 +70,7 @@ public class VideoAdapter extends BaseAdapter {
 		String fileName = mediaList.get(position);
 		int imageIcon ;
 		
-		imageIcon = R.drawable.movie;
+		imageIcon = R.drawable.video_icon;
 		
 		imageView.setImageResource(imageIcon);
 
