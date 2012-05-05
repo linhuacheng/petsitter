@@ -196,6 +196,19 @@ public class SelectedPetSitter extends Activity {
 	         finish();
 	         } 
 	      });
+		
+		
+		Button search = (Button) findViewById(R.id.search_details);
+		
+		search.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View arg0) {
+	         
+	        // when "back to listings" is clicked, go back to the real estate listings	 
+	         Intent i = new Intent(SelectedPetSitter.this,MobilePetSwitchActivity.class);
+	         startActivity(i);
+	         
+	         } 
+	      });
         
         System.out.println("User Name at the end of onCreate Method is..."+user_name);
         
