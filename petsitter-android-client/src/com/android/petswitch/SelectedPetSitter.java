@@ -1,9 +1,6 @@
 package com.android.petswitch;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Activity;
@@ -18,13 +15,17 @@ import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.android.petswitch.dto.PetDetailBean;
 import com.android.petswitch.dto.PetDetailResultRest;
@@ -71,11 +72,33 @@ public class SelectedPetSitter extends Activity {
 			"http://i744.photobucket.com/albums/xx90/lunoza/Labrador.jpg",
 			"http://i1061.photobucket.com/albums/t467/cindypumpkin/labrador_retriever.jpg"};
 	private SlideShow ss;
+	
+	public ViewFlipper mFlipper = null;
+
+	private Integer[] mImageIds = {
+            R.drawable.list1_1,
+            R.drawable.list1_2,
+            R.drawable.list1_3,
+            R.drawable.list1_4};
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details);
         System.out.println("Entered SelectedPetSitter...");
+        
+        
+        mFlipper = ((ViewFlipper) this.findViewById(R.id.flipper2));
+        
+        // add the the images to the flipper
+        for(int i=0;i<mImageIds.length;i++)
+        {
+            setFlipperImage(mImageIds[i]);
+        }
+        
+        startFlip();
+        
+        
         
         user_name = getIntent().getStringExtra("userName");
         l = (LinearLayout) findViewById(R.id.pet_details);
@@ -250,69 +273,6 @@ public class SelectedPetSitter extends Activity {
         startActivity(i);
     }
     
-    public void viewSlideshow() throws MalformedURLException {
-		
-		ss = (SlideShow) findViewById(R.id.slide_show);
-		ss.setSlideShowListener(new SlideShow.SlideShowListener() {
-			// displays the content that slideshow is loading
-			public void onLoadSlidesEnd(SlideShow slideshow) {
-				System.out.println("-----");
-				Toast.makeText(SelectedPetSitter.this,
-						R.string.label_ss_load_end, Toast.LENGTH_SHORT).show();
-			}
-
-			// displays the content that slideshow is loaded
-			public void onLoadSlidesStart(SlideShow slideshow) {
-				System.out.println("-----");
-				Toast.makeText(SelectedPetSitter.this,
-						R.string.label_ss_load_start, Toast.LENGTH_SHORT)
-						.show();
-			}
-		});
-
-		ImageButton buttPrev = (ImageButton) findViewById(R.id.butt_slide_main_prev);
-		ImageButton buttNext = (ImageButton) findViewById(R.id.butt_slide_main_next);
-		buttNext.setOnClickListener(new View.OnClickListener() {
-			// depending on which button is clicked display the image in the
-			// linked list
-			public void onClick(View arg0) {
-				try {
-					ss.drawNextSlide();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-		});
-		buttPrev.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View arg0) {
-				try {
-					ss.drawPrevSlide();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-		});
-
-		// get slides
-		ss.setSlides(getSlides());
-		ss.loadSlides();
-	}
-
-	private LinkedList<DrawableSlide> getSlides() throws MalformedURLException {
-		LinkedList<DrawableSlide> slides = new LinkedList<DrawableSlide>();
-		String[] album = album1;
-		// define list of resource ids
-		
-		URL[] slideUrl = new URL[album.length];
-		for (int i = 0; i < album.length; i++) {
-			slideUrl[i] = new URL(album[i]);
-			slides.add(new DrawableSlide(slideUrl[i], true));
-		}
-		return slides;
-	}
 	
 	public void gotoRequestForm(View v)
 	{
@@ -369,4 +329,29 @@ public class SelectedPetSitter extends Activity {
 			threadHandler.sendMessage(dataMsg);
 		}
 	}
+	
+	
+	
+	// create the image view and add the view to the flipper
+	private void setFlipperImage(int res) {
+	    ImageView image = new ImageView(getApplicationContext());
+	    image.setBackgroundResource(res);
+	    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(100,100,Gravity.CENTER);
+	    image.setLayoutParams(params);
+	    mFlipper.addView(image);
+	}
+
+	
+	private void startFlip()
+	{
+		mFlipper.setInAnimation(AnimationUtils.loadAnimation(this,
+                R.anim.push_left_in));
+        mFlipper.setOutAnimation(AnimationUtils.loadAnimation(this,
+                R.anim.push_left_out));
+        mFlipper.startFlipping();
+        mFlipper.setFlipInterval(1300);
+	}
+	
+	
+	
 }
