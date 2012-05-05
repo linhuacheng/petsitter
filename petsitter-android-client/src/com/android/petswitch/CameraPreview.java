@@ -585,19 +585,21 @@ public class CameraPreview extends Activity {
 
 		@Override
 		protected void onPostExecute(String ui) {
-
-			try {
-				// Get reference to the SmsManager that manages SMS operations
-				// such as sending text messages.
-				SmsManager smsManager = SmsManager.getDefault();
-				// send the text message passing the phone number and message
-				smsManager.sendTextMessage(
-						mRequestResponseDetail.getRequesterPhoneNumber(), null,
-						mComment.getText().toString(), null, null);
-				mComment.setText("");
-			} catch (Exception e) {
-				Log.e(TAG, "Error sending SMS", e);
-				e.printStackTrace();
+			String comment = mComment.getText().toString();
+			if (comment != null && comment.length()>0) {
+				try {
+					// Get reference to the SmsManager that manages SMS operations
+					// such as sending text messages.
+					SmsManager smsManager = SmsManager.getDefault();
+					// send the text message passing the phone number and message
+					smsManager.sendTextMessage(
+							mRequestResponseDetail.getRequesterPhoneNumber(), null,
+							comment, null, null);
+					mComment.setText("");
+				} catch (Exception e) {
+					Log.e(TAG, "Error sending SMS", e);
+					e.printStackTrace();
+				}
 			}
 			dismissDialog(DIALOG_UPLOAD_PROGRESS);
 			// pd.dismiss();
