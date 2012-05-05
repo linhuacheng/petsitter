@@ -150,7 +150,7 @@ public class ImageGalleryActivity extends Activity {
 	 */
 	public void handleMediaGallery(final Gallery galleryView,
 			final String fileName) {
-		galleryView.setAdapter(new VideoAdapter(this, null, Arrays.asList(fileName)));
+		//galleryView.setAdapter(new VideoAdapter(this, null, Arrays.asList(fileName)));
 		final MediaController mediaController = new MediaController(this);
 
 		Button button = (Button) findViewById(R.id.downloadButton);
@@ -185,7 +185,7 @@ public class ImageGalleryActivity extends Activity {
 			//@Override
 			public void onNothingSelected(AdapterView<?> parent) {
 				// TODO Auto-generated method stub
-				parent.setSelection(0);
+				//parent.setSelection(0);
 
 			}
 
@@ -201,15 +201,17 @@ public class ImageGalleryActivity extends Activity {
 
 				// mediaController.setAnchorView(videoView);
 				videoView.setMediaController(mediaController);
-
+				
 				// videoView.setVideoURI(Uri.parse("http://hermes.sprc.samsung.pl/widget/tmp/testh.3gp"));
 				// videoView.setVideoPath("/sdcard/ga.3gp");
 				// get the video url
 				Log.v(getClass().getName(), "Selected video url" + fileName);
 				File file = FileCacheUtil.getCacheFile(fileName);
-				if (file.exists()) {
+				if (! file.exists()) {
 					// set video url to internal link
-					new DownloadFileAsync().execute(fileName);
+					Log.v(getClass().getName(), "File does not exist downloading " + fileName);
+					AsyncTask activty = new DownloadFileAsync().execute(fileName);
+					
 					path = file.getAbsolutePath();
 				} else {
 					// set video url to external link
@@ -272,17 +274,17 @@ public class ImageGalleryActivity extends Activity {
 				SharedPreferences preference = getSharedPreferences(
 						ApplicationConstants.USER_PREF, 0);
 				File file = FileCacheUtil.getCacheFile(remoteFileName);
-				if (file.exists()) {
-
+				if (!file.exists()) {
+					Log.v(getClass().getName(), "File does not exist" + file.getAbsolutePath());
 					// compress the bit map
 					// bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos);
-
+				
 					RestClient client = RestClientFactory
 							.getDownloadFileClient(preference);
 
 					client.addParam("fileName", remoteFileName);
 					client.execute(RequestMethod.GET);
-
+					Log.v(getClass().getName(), "response code " + client.getResponseCode());
 					if (client.getResponseCode() != 200) {
 						// return server error
 						Log.e(getClass().getName(), client.getErrorMessage());
@@ -296,14 +298,14 @@ public class ImageGalleryActivity extends Activity {
 					}
 					// create file out put stream
 					fos = new FileOutputStream(file);
-
+					Log.v(getClass().getName(), "writing to sd card ");
 					fos.write(byteArrayOutputStream.toByteArray());
 					fos.flush();
 				} else {
 					fis = new FileInputStream(file);
 					byte data[] = new byte[1024];
 					long total = 0;
-
+					Log.v(getClass().getName(), "Reading from sd card ");
 					byteArrayOutputStream = new ByteArrayOutputStream();
 					while ((numRead = fis.read(data)) != -1) {
 						total += numRead;
