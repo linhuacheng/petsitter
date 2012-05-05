@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -15,6 +18,7 @@ import com.android.petswitch.util.ApplicationConstants;
 import com.android.petswitch.util.FileCacheUtil;
 
 public class RequestList extends Activity {
+	
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.requestresponselist);
@@ -77,6 +81,22 @@ public class RequestList extends Activity {
 			}
 
 		});
+	}
+	
+	public boolean onCreateOptionsMenu(Menu menu){
+		MenuInflater inflater = getMenuInflater();
+
+		inflater.inflate(R.menu.petmenu, menu);
+		return true;
+
+	}
+	
+	public boolean onOptionsItemSelected (MenuItem item){ 
+		if (item.getItemId() == R.id.refresh){
+			finish();
+			startActivity(getIntent());
+		}
+		return true;
 	}
 
 }

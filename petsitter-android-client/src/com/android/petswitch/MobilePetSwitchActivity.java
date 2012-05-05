@@ -35,7 +35,7 @@ public class MobilePetSwitchActivity extends TabActivity {
         intent = new Intent().setClass(this, RequestList.class);
         spec = tabHost.newTabSpec("reqres").setIndicator(null,
         		res.getDrawable(R.drawable.dog_with_message_trans))
-                      .setContent(intent);
+        			 .setContent(intent);
         tabHost.addTab(spec);
         intent = new Intent().setClass(this, CameraPreview.class);
         spec = tabHost.newTabSpec("capture").setIndicator("",
@@ -49,4 +49,6 @@ public class MobilePetSwitchActivity extends TabActivity {
         	tabHost.setCurrentTab(0);
 
     }
+    
+    
 }
